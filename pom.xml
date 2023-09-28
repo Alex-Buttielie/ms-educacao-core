@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.core-educ</groupId>
-    <artifactId>core-educ</artifactId>
+    <artifactId>educacao</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>core-educ</name>
     <description>core-educ</description>
