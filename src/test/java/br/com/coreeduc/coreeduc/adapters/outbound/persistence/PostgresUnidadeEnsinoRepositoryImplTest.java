@@ -64,4 +64,11 @@ class PostgresUnidadeEnsinoRepositoryImplTest {
         Assert.assertEquals(unidadeEnsino.getCodigoInep(), unidadeRetorno.getCodigoInep());
     }
 
+    @Test
+    void deveFalhar() {
+        when(springDataUnidadeEnsinoRepository.save(any(UnidadeEnsinoEntity.class))).thenReturn(unidadeEnsinoEntity);
+        UnidadeEnsino unidadeRetorno = repository.save(unidadeEnsino);
+        Assert.assertNotEquals(unidadeEnsino.getCodigoInep(), unidadeRetorno.getCodigoInep());
+    }
+
 }
