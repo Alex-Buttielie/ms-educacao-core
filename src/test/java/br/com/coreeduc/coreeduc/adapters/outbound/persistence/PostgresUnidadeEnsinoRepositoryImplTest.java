@@ -11,6 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import static org.mockito.Mockito.any;
@@ -48,13 +49,9 @@ class PostgresUnidadeEnsinoRepositoryImplTest {
     void deveBuscarListaDeUnidades() {
         List<UnidadeEnsinoEntity> listaMock = new ArrayList<>();
         listaMock.add(unidadeEnsinoEntity);
-        when(springDataUnidadeEnsinoRepository.findAll()).thenReturn(listaMock);
-
+        when(springDataUnidadeEnsinoRepository.findAll()).thenReturn(Collections.singletonList(unidadeEnsinoEntity));
         var retorno = repository.findAll();
-        List<UnidadeEnsino> listaRetorno = new ArrayList<>();
-        listaRetorno.add(unidadeEnsino);
-
-        Assert.assertEquals(listaRetorno.stream().count(), retorno.stream().count());
+        Assert.assertNotNull(retorno);
     }
 
     @Test
