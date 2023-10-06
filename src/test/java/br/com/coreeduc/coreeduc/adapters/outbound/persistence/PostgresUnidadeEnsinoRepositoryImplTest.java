@@ -47,8 +47,6 @@ class PostgresUnidadeEnsinoRepositoryImplTest {
 
     @Test
     void deveBuscarListaDeUnidades() {
-        List<UnidadeEnsinoEntity> listaMock = new ArrayList<>();
-        listaMock.add(unidadeEnsinoEntity);
         when(springDataUnidadeEnsinoRepository.findAll()).thenReturn(Collections.singletonList(unidadeEnsinoEntity));
         var retorno = repository.findAll();
         Assert.assertNotNull(retorno);
