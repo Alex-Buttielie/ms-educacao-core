@@ -1,30 +1,6 @@
 package br.com.coreeduc.aplication.domains;
 
-import br.com.coreeduc.adapters.outbound.persistence.entities.AbastecimentoAguaEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.AcessoInternetEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.DependenciasFisicasEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.DestinacaoLixoEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.EnderecoUnidadeEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.EquipamentosExistentesUnidadeEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.EquipamentosUsadosAlunosAcessoInternetEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.EscolasComQualCompartilhaEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.EsferaAdministrativaEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.EsgotamentoSanitarioEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.FonteEnergiaEletricaEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.FormasContratacaoEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.IdiomaEnsinoEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.InstrumentosMateriaisSocioCulturaisEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.LocalFuncionamentoEscolaEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.MantenedoraEscolaPrivadaEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.NumeroMatriculasAtendidasParceriaConvenioEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.OrgaosColegiadosFuncionamentoEscolaEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.QuantidadeComputadoresEmUsoAlunosEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.QuantidadeEquipamentosProcessoAprendizagemEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.RecursoPessoasDeficientesEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.RedeLocalInterligacaoComputadoresEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.ReservaVagasSistemaCotasEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.TotalProfissionaisAtivosEscolaEntity;
-import br.com.coreeduc.adapters.outbound.persistence.entities.TratamentoLixoEntity;
+
 import br.com.coreeduc.aplication.domains.contraints.DependenciaAdministrativa;
 import br.com.coreeduc.aplication.domains.contraints.LocalizacaoDiferenciadaResidencia;
 import br.com.coreeduc.aplication.domains.contraints.LocalizacaoZonaResidencia;
@@ -55,31 +31,31 @@ public class UnidadeEnsino {
     private Boolean secretariaEstadual;
     private Boolean secretariaMunicipal;
     private Boolean naoPossuiParceriaConvenio;
-    private EsferaAdministrativaEntity esferaAdministrativaEntity;
-    private EnderecoUnidadeEntity enderecoUnidadeEntity;
-    private MantenedoraEscolaPrivadaEntity MantenedoraEscolaPrivada;
-    private FormasContratacaoEntity formasContratacaoEntity;
-    private NumeroMatriculasAtendidasParceriaConvenioEntity numeroMatriculasAtendidasParceriaConvenioEntity;
-    private LocalFuncionamentoEscolaEntity localFuncionamentoEscolaEntity;
-    private EscolasComQualCompartilhaEntity escolasComQualCompartilhaEntity;
-    private AbastecimentoAguaEntity abastecimentoAguaEntity;
-    private FonteEnergiaEletricaEntity fonteEnergiaEletricaEntity;
-    private EsgotamentoSanitarioEntity esgotamentoSanitario;
-    private DestinacaoLixoEntity destinacaoLixoEntity;
-    private TratamentoLixoEntity tratamentoLixoEntity;
-    private DependenciasFisicasEntity dependenciasFisicasEntity;
-    private RecursoPessoasDeficientesEntity recursoPessoasDeficientesEntity;
-    private EquipamentosExistentesUnidadeEntity equipamentosExistentesUnidadeEntity;
-    private QuantidadeEquipamentosProcessoAprendizagemEntity quantidadeEquipamentosProcessoAprendizagemEntity;
-    private QuantidadeComputadoresEmUsoAlunosEntity quantidadeComputadoresEmUsoAlunosEntity;
-    private AcessoInternetEntity acessoInternetEntity;
-    private EquipamentosUsadosAlunosAcessoInternetEntity equipamentosUsadosAlunosAcessoInternetEntity;
-    private RedeLocalInterligacaoComputadoresEntity redeLocalInterligacaoComputadoresEntity;
-    private TotalProfissionaisAtivosEscolaEntity totalProfissionaisAtivosEscolaEntity;
-    private InstrumentosMateriaisSocioCulturaisEntity instrumentosMateriaisSocioCulturaisEntity;
-    private IdiomaEnsinoEntity idiomaEnsinoEntity;
-    private ReservaVagasSistemaCotasEntity reservaVagasSistemaCotasEntity;
-    private OrgaosColegiadosFuncionamentoEscolaEntity orgaosColegiadosFuncionamentoEscolaEntity;
+    private EsferaAdministrativa esferaAdministrativa;
+    private EnderecoUnidade enderecoUnidade;
+    private MantenedoraEscolaPrivada mantenedoraEscolaPrivada;
+    private FormasContratacao formasContratacao;
+    private NumeroMatriculasAtendidasParceriaConvenio numeroMatriculasAtendidasParceriaConvenio;
+    private LocalFuncionamentoEscola localFuncionamentoEscola;
+    private EscolasComQualCompartilha escolasComQualCompartilha;
+    private AbastecimentoAgua abastecimentoAgua;
+    private FonteEnergiaEletrica fonteEnergiaEletrica;
+    private EsgotamentoSanitario esgotamentoSanitario;
+    private DestinacaoLixo destinacaoLixo;
+    private TratamentoLixo tratamentoLixo;
+    private DependenciasFisicas dependenciasFisicas;
+    private RecursoPessoasDeficientes recursoPessoasDeficientes;
+    private EquipamentosExistentesUnidade equipamentosExistentesUnidade;
+    private QuantidadeEquipamentosProcessoAprendizagem quantidadeEquipamentosProcessoAprendizagem;
+    private QuantidadeComputadoresEmUsoAlunos quantidadeComputadoresEmUsoAlunos;
+    private AcessoInternet acessoInternet;
+    private EquipamentosUsadosAlunosAcessoInternet equipamentosUsadosAlunosAcessoInternet;
+    private RedeLocalInterligacaoComputadores redeLocalInterligacaoComputadores;
+    private TotalProfissionaisAtivosEscola totalProfissionaisAtivosEscola;
+    private InstrumentosMateriaisSocioCulturais instrumentosMateriaisSocioCulturais;
+    private IdiomaEnsino idiomaEnsino;
+    private ReservaVagasSistemaCotas reservaVagasSistemaCotas;
+    private OrgaosColegiadosFuncionamentoEscola orgaosColegiadosFuncionamentoEscola;
 
     public Long getCodigoInep() {
         return codigoInep;
@@ -241,203 +217,203 @@ public class UnidadeEnsino {
         this.naoPossuiParceriaConvenio = naoPossuiParceriaConvenio;
     }
 
-    public EsferaAdministrativaEntity getEsferaAdministrativaEntity() {
-        return esferaAdministrativaEntity;
+    public EsferaAdministrativa getEsferaAdministrativa() {
+        return esferaAdministrativa;
     }
 
-    public void setEsferaAdministrativaEntity(EsferaAdministrativaEntity esferaAdministrativaEntity) {
-        this.esferaAdministrativaEntity = esferaAdministrativaEntity;
+    public void setEsferaAdministrativa(EsferaAdministrativa esferaAdministrativa) {
+        this.esferaAdministrativa = esferaAdministrativa;
     }
 
-    public EnderecoUnidadeEntity getEnderecoUnidadeEntity() {
-        return enderecoUnidadeEntity;
+    public EnderecoUnidade getEnderecoUnidade() {
+        return enderecoUnidade;
     }
 
-    public void setEnderecoUnidadeEntity(EnderecoUnidadeEntity enderecoUnidadeEntity) {
-        this.enderecoUnidadeEntity = enderecoUnidadeEntity;
+    public void setEnderecoUnidade(EnderecoUnidade enderecoUnidade) {
+        this.enderecoUnidade = enderecoUnidade;
     }
 
-    public MantenedoraEscolaPrivadaEntity getMantenedoraEscolaPrivada() {
-        return MantenedoraEscolaPrivada;
+    public MantenedoraEscolaPrivada getMantenedoraEscolaPrivada() {
+        return mantenedoraEscolaPrivada;
     }
 
-    public void setMantenedoraEscolaPrivada(MantenedoraEscolaPrivadaEntity mantenedoraEscolaPrivada) {
-        MantenedoraEscolaPrivada = mantenedoraEscolaPrivada;
+    public void setMantenedoraEscolaPrivada(MantenedoraEscolaPrivada mantenedoraEscolaPrivada) {
+        this.mantenedoraEscolaPrivada = mantenedoraEscolaPrivada;
     }
 
-    public FormasContratacaoEntity getFormasContratacaoEntity() {
-        return formasContratacaoEntity;
+    public FormasContratacao getFormasContratacao() {
+        return formasContratacao;
     }
 
-    public void setFormasContratacaoEntity(FormasContratacaoEntity formasContratacaoEntity) {
-        this.formasContratacaoEntity = formasContratacaoEntity;
+    public void setFormasContratacao(FormasContratacao formasContratacao) {
+        this.formasContratacao = formasContratacao;
     }
 
-    public NumeroMatriculasAtendidasParceriaConvenioEntity getNumeroMatriculasAtendidasParceriaConvenioEntity() {
-        return numeroMatriculasAtendidasParceriaConvenioEntity;
+    public NumeroMatriculasAtendidasParceriaConvenio getNumeroMatriculasAtendidasParceriaConvenio() {
+        return numeroMatriculasAtendidasParceriaConvenio;
     }
 
-    public void setNumeroMatriculasAtendidasParceriaConvenioEntity(NumeroMatriculasAtendidasParceriaConvenioEntity numeroMatriculasAtendidasParceriaConvenioEntity) {
-        this.numeroMatriculasAtendidasParceriaConvenioEntity = numeroMatriculasAtendidasParceriaConvenioEntity;
+    public void setNumeroMatriculasAtendidasParceriaConvenio(NumeroMatriculasAtendidasParceriaConvenio numeroMatriculasAtendidasParceriaConvenio) {
+        this.numeroMatriculasAtendidasParceriaConvenio = numeroMatriculasAtendidasParceriaConvenio;
     }
 
-    public LocalFuncionamentoEscolaEntity getLocalFuncionamentoEscolaEntity() {
-        return localFuncionamentoEscolaEntity;
+    public LocalFuncionamentoEscola getLocalFuncionamentoEscola() {
+        return localFuncionamentoEscola;
     }
 
-    public void setLocalFuncionamentoEscolaEntity(LocalFuncionamentoEscolaEntity localFuncionamentoEscolaEntity) {
-        this.localFuncionamentoEscolaEntity = localFuncionamentoEscolaEntity;
+    public void setLocalFuncionamentoEscola(LocalFuncionamentoEscola localFuncionamentoEscola) {
+        this.localFuncionamentoEscola = localFuncionamentoEscola;
     }
 
-    public EscolasComQualCompartilhaEntity getEscolasComQualCompartilhaEntity() {
-        return escolasComQualCompartilhaEntity;
+    public EscolasComQualCompartilha getEscolasComQualCompartilha() {
+        return escolasComQualCompartilha;
     }
 
-    public void setEscolasComQualCompartilhaEntity(EscolasComQualCompartilhaEntity escolasComQualCompartilhaEntity) {
-        this.escolasComQualCompartilhaEntity = escolasComQualCompartilhaEntity;
+    public void setEscolasComQualCompartilha(EscolasComQualCompartilha escolasComQualCompartilha) {
+        this.escolasComQualCompartilha = escolasComQualCompartilha;
     }
 
-    public AbastecimentoAguaEntity getAbastecimentoAguaEntity() {
-        return abastecimentoAguaEntity;
+    public AbastecimentoAgua getAbastecimentoAgua() {
+        return abastecimentoAgua;
     }
 
-    public void setAbastecimentoAguaEntity(AbastecimentoAguaEntity abastecimentoAguaEntity) {
-        this.abastecimentoAguaEntity = abastecimentoAguaEntity;
+    public void setAbastecimentoAgua(AbastecimentoAgua abastecimentoAgua) {
+        this.abastecimentoAgua = abastecimentoAgua;
     }
 
-    public FonteEnergiaEletricaEntity getFonteEnergiaEletricaEntity() {
-        return fonteEnergiaEletricaEntity;
+    public FonteEnergiaEletrica getFonteEnergiaEletrica() {
+        return fonteEnergiaEletrica;
     }
 
-    public void setFonteEnergiaEletricaEntity(FonteEnergiaEletricaEntity fonteEnergiaEletricaEntity) {
-        this.fonteEnergiaEletricaEntity = fonteEnergiaEletricaEntity;
+    public void setFonteEnergiaEletrica(FonteEnergiaEletrica fonteEnergiaEletrica) {
+        this.fonteEnergiaEletrica = fonteEnergiaEletrica;
     }
 
-    public EsgotamentoSanitarioEntity getEsgotamentoSanitario() {
+    public EsgotamentoSanitario getEsgotamentoSanitario() {
         return esgotamentoSanitario;
     }
 
-    public void setEsgotamentoSanitario(EsgotamentoSanitarioEntity esgotamentoSanitario) {
+    public void setEsgotamentoSanitario(EsgotamentoSanitario esgotamentoSanitario) {
         this.esgotamentoSanitario = esgotamentoSanitario;
     }
 
-    public DestinacaoLixoEntity getDestinacaoLixoEntity() {
-        return destinacaoLixoEntity;
+    public DestinacaoLixo getDestinacaoLixo() {
+        return destinacaoLixo;
     }
 
-    public void setDestinacaoLixoEntity(DestinacaoLixoEntity destinacaoLixoEntity) {
-        this.destinacaoLixoEntity = destinacaoLixoEntity;
+    public void setDestinacaoLixo(DestinacaoLixo destinacaoLixo) {
+        this.destinacaoLixo = destinacaoLixo;
     }
 
-    public TratamentoLixoEntity getTratamentoLixoEntity() {
-        return tratamentoLixoEntity;
+    public TratamentoLixo getTratamentoLixo() {
+        return tratamentoLixo;
     }
 
-    public void setTratamentoLixoEntity(TratamentoLixoEntity tratamentoLixoEntity) {
-        this.tratamentoLixoEntity = tratamentoLixoEntity;
+    public void setTratamentoLixo(TratamentoLixo tratamentoLixo) {
+        this.tratamentoLixo = tratamentoLixo;
     }
 
-    public DependenciasFisicasEntity getDependenciasFisicasEntity() {
-        return dependenciasFisicasEntity;
+    public DependenciasFisicas getDependenciasFisicas() {
+        return dependenciasFisicas;
     }
 
-    public void setDependenciasFisicasEntity(DependenciasFisicasEntity dependenciasFisicasEntity) {
-        this.dependenciasFisicasEntity = dependenciasFisicasEntity;
+    public void setDependenciasFisicas(DependenciasFisicas dependenciasFisicas) {
+        this.dependenciasFisicas = dependenciasFisicas;
     }
 
-    public RecursoPessoasDeficientesEntity getRecursoPessoasDeficientesEntity() {
-        return recursoPessoasDeficientesEntity;
+    public RecursoPessoasDeficientes getRecursoPessoasDeficientes() {
+        return recursoPessoasDeficientes;
     }
 
-    public void setRecursoPessoasDeficientesEntity(RecursoPessoasDeficientesEntity recursoPessoasDeficientesEntity) {
-        this.recursoPessoasDeficientesEntity = recursoPessoasDeficientesEntity;
+    public void setRecursoPessoasDeficientes(RecursoPessoasDeficientes recursoPessoasDeficientes) {
+        this.recursoPessoasDeficientes = recursoPessoasDeficientes;
     }
 
-    public EquipamentosExistentesUnidadeEntity getEquipamentosExistentesUnidadeEntity() {
-        return equipamentosExistentesUnidadeEntity;
+    public EquipamentosExistentesUnidade getEquipamentosExistentesUnidade() {
+        return equipamentosExistentesUnidade;
     }
 
-    public void setEquipamentosExistentesUnidadeEntity(EquipamentosExistentesUnidadeEntity equipamentosExistentesUnidadeEntity) {
-        this.equipamentosExistentesUnidadeEntity = equipamentosExistentesUnidadeEntity;
+    public void setEquipamentosExistentesUnidade(EquipamentosExistentesUnidade equipamentosExistentesUnidade) {
+        this.equipamentosExistentesUnidade = equipamentosExistentesUnidade;
     }
 
-    public QuantidadeEquipamentosProcessoAprendizagemEntity getQuantidadeEquipamentosProcessoAprendizagemEntity() {
-        return quantidadeEquipamentosProcessoAprendizagemEntity;
+    public QuantidadeEquipamentosProcessoAprendizagem getQuantidadeEquipamentosProcessoAprendizagem() {
+        return quantidadeEquipamentosProcessoAprendizagem;
     }
 
-    public void setQuantidadeEquipamentosProcessoAprendizagemEntity(QuantidadeEquipamentosProcessoAprendizagemEntity quantidadeEquipamentosProcessoAprendizagemEntity) {
-        this.quantidadeEquipamentosProcessoAprendizagemEntity = quantidadeEquipamentosProcessoAprendizagemEntity;
+    public void setQuantidadeEquipamentosProcessoAprendizagem(QuantidadeEquipamentosProcessoAprendizagem quantidadeEquipamentosProcessoAprendizagem) {
+        this.quantidadeEquipamentosProcessoAprendizagem = quantidadeEquipamentosProcessoAprendizagem;
     }
 
-    public QuantidadeComputadoresEmUsoAlunosEntity getQuantidadeComputadoresEmUsoAlunosEntity() {
-        return quantidadeComputadoresEmUsoAlunosEntity;
+    public QuantidadeComputadoresEmUsoAlunos getQuantidadeComputadoresEmUsoAlunos() {
+        return quantidadeComputadoresEmUsoAlunos;
     }
 
-    public void setQuantidadeComputadoresEmUsoAlunosEntity(QuantidadeComputadoresEmUsoAlunosEntity quantidadeComputadoresEmUsoAlunosEntity) {
-        this.quantidadeComputadoresEmUsoAlunosEntity = quantidadeComputadoresEmUsoAlunosEntity;
+    public void setQuantidadeComputadoresEmUsoAlunos(QuantidadeComputadoresEmUsoAlunos quantidadeComputadoresEmUsoAlunos) {
+        this.quantidadeComputadoresEmUsoAlunos = quantidadeComputadoresEmUsoAlunos;
     }
 
-    public AcessoInternetEntity getAcessoInternetEntity() {
-        return acessoInternetEntity;
+    public AcessoInternet getAcessoInternet() {
+        return acessoInternet;
     }
 
-    public void setAcessoInternetEntity(AcessoInternetEntity acessoInternetEntity) {
-        this.acessoInternetEntity = acessoInternetEntity;
+    public void setAcessoInternet(AcessoInternet acessoInternet) {
+        this.acessoInternet = acessoInternet;
     }
 
-    public EquipamentosUsadosAlunosAcessoInternetEntity getEquipamentosUsadosAlunosAcessoInternetEntity() {
-        return equipamentosUsadosAlunosAcessoInternetEntity;
+    public EquipamentosUsadosAlunosAcessoInternet getEquipamentosUsadosAlunosAcessoInternet() {
+        return equipamentosUsadosAlunosAcessoInternet;
     }
 
-    public void setEquipamentosUsadosAlunosAcessoInternetEntity(EquipamentosUsadosAlunosAcessoInternetEntity equipamentosUsadosAlunosAcessoInternetEntity) {
-        this.equipamentosUsadosAlunosAcessoInternetEntity = equipamentosUsadosAlunosAcessoInternetEntity;
+    public void setEquipamentosUsadosAlunosAcessoInternet(EquipamentosUsadosAlunosAcessoInternet equipamentosUsadosAlunosAcessoInternet) {
+        this.equipamentosUsadosAlunosAcessoInternet = equipamentosUsadosAlunosAcessoInternet;
     }
 
-    public RedeLocalInterligacaoComputadoresEntity getRedeLocalInterligacaoComputadoresEntity() {
-        return redeLocalInterligacaoComputadoresEntity;
+    public RedeLocalInterligacaoComputadores getRedeLocalInterligacaoComputadores() {
+        return redeLocalInterligacaoComputadores;
     }
 
-    public void setRedeLocalInterligacaoComputadoresEntity(RedeLocalInterligacaoComputadoresEntity redeLocalInterligacaoComputadoresEntity) {
-        this.redeLocalInterligacaoComputadoresEntity = redeLocalInterligacaoComputadoresEntity;
+    public void setRedeLocalInterligacaoComputadores(RedeLocalInterligacaoComputadores redeLocalInterligacaoComputadores) {
+        this.redeLocalInterligacaoComputadores = redeLocalInterligacaoComputadores;
     }
 
-    public TotalProfissionaisAtivosEscolaEntity getTotalProfissionaisAtivosEscolaEntity() {
-        return totalProfissionaisAtivosEscolaEntity;
+    public TotalProfissionaisAtivosEscola getTotalProfissionaisAtivosEscola() {
+        return totalProfissionaisAtivosEscola;
     }
 
-    public void setTotalProfissionaisAtivosEscolaEntity(TotalProfissionaisAtivosEscolaEntity totalProfissionaisAtivosEscolaEntity) {
-        this.totalProfissionaisAtivosEscolaEntity = totalProfissionaisAtivosEscolaEntity;
+    public void setTotalProfissionaisAtivosEscola(TotalProfissionaisAtivosEscola totalProfissionaisAtivosEscola) {
+        this.totalProfissionaisAtivosEscola = totalProfissionaisAtivosEscola;
     }
 
-    public InstrumentosMateriaisSocioCulturaisEntity getInstrumentosMateriaisSocioCulturaisEntity() {
-        return instrumentosMateriaisSocioCulturaisEntity;
+    public InstrumentosMateriaisSocioCulturais getInstrumentosMateriaisSocioCulturais() {
+        return instrumentosMateriaisSocioCulturais;
     }
 
-    public void setInstrumentosMateriaisSocioCulturaisEntity(InstrumentosMateriaisSocioCulturaisEntity instrumentosMateriaisSocioCulturaisEntity) {
-        this.instrumentosMateriaisSocioCulturaisEntity = instrumentosMateriaisSocioCulturaisEntity;
+    public void setInstrumentosMateriaisSocioCulturais(InstrumentosMateriaisSocioCulturais instrumentosMateriaisSocioCulturais) {
+        this.instrumentosMateriaisSocioCulturais = instrumentosMateriaisSocioCulturais;
     }
 
-    public IdiomaEnsinoEntity getIdiomaEnsinoEntity() {
-        return idiomaEnsinoEntity;
+    public IdiomaEnsino getIdiomaEnsino() {
+        return idiomaEnsino;
     }
 
-    public void setIdiomaEnsinoEntity(IdiomaEnsinoEntity idiomaEnsinoEntity) {
-        this.idiomaEnsinoEntity = idiomaEnsinoEntity;
+    public void setIdiomaEnsino(IdiomaEnsino idiomaEnsino) {
+        this.idiomaEnsino = idiomaEnsino;
     }
 
-    public ReservaVagasSistemaCotasEntity getReservaVagasSistemaCotasEntity() {
-        return reservaVagasSistemaCotasEntity;
+    public ReservaVagasSistemaCotas getReservaVagasSistemaCotas() {
+        return reservaVagasSistemaCotas;
     }
 
-    public void setReservaVagasSistemaCotasEntity(ReservaVagasSistemaCotasEntity reservaVagasSistemaCotasEntity) {
-        this.reservaVagasSistemaCotasEntity = reservaVagasSistemaCotasEntity;
+    public void setReservaVagasSistemaCotas(ReservaVagasSistemaCotas reservaVagasSistemaCotas) {
+        this.reservaVagasSistemaCotas = reservaVagasSistemaCotas;
     }
 
-    public OrgaosColegiadosFuncionamentoEscolaEntity getOrgaosColegiadosFuncionamentoEscolaEntity() {
-        return orgaosColegiadosFuncionamentoEscolaEntity;
+    public OrgaosColegiadosFuncionamentoEscola getOrgaosColegiadosFuncionamentoEscola() {
+        return orgaosColegiadosFuncionamentoEscola;
     }
 
-    public void setOrgaosColegiadosFuncionamentoEscolaEntity(OrgaosColegiadosFuncionamentoEscolaEntity orgaosColegiadosFuncionamentoEscolaEntity) {
-        this.orgaosColegiadosFuncionamentoEscolaEntity = orgaosColegiadosFuncionamentoEscolaEntity;
+    public void setOrgaosColegiadosFuncionamentoEscola(OrgaosColegiadosFuncionamentoEscola orgaosColegiadosFuncionamentoEscola) {
+        this.orgaosColegiadosFuncionamentoEscola = orgaosColegiadosFuncionamentoEscola;
     }
 }
