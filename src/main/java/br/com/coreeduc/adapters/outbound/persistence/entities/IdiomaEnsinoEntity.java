@@ -39,15 +39,15 @@ public class IdiomaEnsinoEntity {
     @OneToOne
     @JoinColumn()
     @JsonFormat
-    private LinguaIndigenaEntity codigoLinguaIndigenaEntity1;
+    private LinguaIndigenaEntity codigoLinguaIndigena1;
     @OneToOne
     @JoinColumn()
     @JsonFormat
-    private LinguaIndigenaEntity codigoLinguaIndigenaEntity2;
+    private LinguaIndigenaEntity codigoLinguaIndigena2;
     @OneToOne
     @JoinColumn()
     @JsonFormat
-    private LinguaIndigenaEntity codigoLinguaIndigenaEntity3;
+    private LinguaIndigenaEntity codigoLinguaIndigena3;
     @Basic
     @Column(name = "realiza_exames_avaliacao_alunos")
     private Boolean realizaExamesAvaliacaoAlunos;
