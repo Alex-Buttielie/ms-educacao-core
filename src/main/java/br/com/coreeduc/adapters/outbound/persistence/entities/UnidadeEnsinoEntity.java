@@ -98,11 +98,11 @@ public class UnidadeEnsinoEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private EsferaAdministrativaEntity esferaAdministrativaEntity;
+    private EsferaAdministrativaEntity esferaAdministrativa;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private EnderecoUnidadeEntity enderecoUnidadeEntity;
+    private EnderecoUnidadeEntity enderecoUnidade;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
@@ -110,27 +110,27 @@ public class UnidadeEnsinoEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private FormasContratacaoEntity formasContratacaoEntity;
+    private FormasContratacaoEntity formasContratacao;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private NumeroMatriculasAtendidasParceriaConvenioEntity numeroMatriculasAtendidasParceriaConvenioEntity;
+    private NumeroMatriculasAtendidasParceriaConvenioEntity numeroMatriculasAtendidasParceriaConvenio;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private LocalFuncionamentoEscolaEntity localFuncionamentoEscolaEntity;
+    private LocalFuncionamentoEscolaEntity localFuncionamentoEscola;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private EscolasComQualCompartilhaEntity escolasComQualCompartilhaEntity;
+    private EscolasComQualCompartilhaEntity escolasComQualCompartilha;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private AbastecimentoAguaEntity abastecimentoAguaEntity;
+    private AbastecimentoAguaEntity abastecimentoAgua;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private FonteEnergiaEletricaEntity fonteEnergiaEletricaEntity;
+    private FonteEnergiaEletricaEntity fonteEnergiaEletrica;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
@@ -138,62 +138,62 @@ public class UnidadeEnsinoEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private DestinacaoLixoEntity destinacaoLixoEntity;
+    private DestinacaoLixoEntity destinacaoLixo;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private TratamentoLixoEntity tratamentoLixoEntity;
+    private TratamentoLixoEntity tratamentoLixo;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private DependenciasFisicasEntity dependenciasFisicasEntity;
+    private DependenciasFisicasEntity dependenciasFisicas;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private RecursoPessoasDeficientesEntity recursoPessoasDeficientesEntity;
+    private RecursoPessoasDeficientesEntity recursoPessoasDeficientes;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private EquipamentosExistentesUnidadeEntity equipamentosExistentesUnidadeEntity;
+    private EquipamentosExistentesUnidadeEntity equipamentosExistentesUnidade;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private QuantidadeEquipamentosProcessoAprendizagemEntity quantidadeEquipamentosProcessoAprendizagemEntity;
+    private QuantidadeEquipamentosProcessoAprendizagemEntity quantidadeEquipamentosProcessoAprendizagem;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private QuantidadeComputadoresEmUsoAlunosEntity quantidadeComputadoresEmUsoAlunosEntity;
+    private QuantidadeComputadoresEmUsoAlunosEntity quantidadeComputadoresEmUsoAlunos;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private AcessoInternetEntity acessoInternetEntity;
+    private AcessoInternetEntity acessoInternet;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private EquipamentosUsadosAlunosAcessoInternetEntity equipamentosUsadosAlunosAcessoInternetEntity;
+    private EquipamentosUsadosAlunosAcessoInternetEntity equipamentosUsadosAlunosAcessoInternet;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private RedeLocalInterligacaoComputadoresEntity redeLocalInterligacaoComputadoresEntity;
+    private RedeLocalInterligacaoComputadoresEntity redeLocalInterligacaoComputadores;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private TotalProfissionaisAtivosEscolaEntity totalProfissionaisAtivosEscolaEntity;
+    private TotalProfissionaisAtivosEscolaEntity totalProfissionaisAtivosEscola;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private InstrumentosMateriaisSocioCulturaisEntity instrumentosMateriaisSocioCulturaisEntity;
+    private InstrumentosMateriaisSocioCulturaisEntity instrumentosMateriaisSocioCulturais;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private IdiomaEnsinoEntity idiomaEnsinoEntity;
+    private IdiomaEnsinoEntity idiomaEnsino;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private ReservaVagasSistemaCotasEntity reservaVagasSistemaCotasEntity;
+    private ReservaVagasSistemaCotasEntity reservaVagasSistemaCotas;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private OrgaosColegiadosFuncionamentoEscolaEntity orgaosColegiadosFuncionamentoEscolaEntity;
+    private OrgaosColegiadosFuncionamentoEscolaEntity orgaosColegiadosFuncionamentoEscola;
 
 }
