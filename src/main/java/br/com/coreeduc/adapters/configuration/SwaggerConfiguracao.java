@@ -26,7 +26,7 @@ public class SwaggerConfiguracao {
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("br.com.coreeduc.adapters.inbound.resources"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
@@ -40,7 +40,7 @@ public class SwaggerConfiguracao {
     }
     ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("Sistema educacional")
-                .description("Enspoint sistema")
+                .description("End-points do sistema")
                 .version(version)
                 .build();
     }
