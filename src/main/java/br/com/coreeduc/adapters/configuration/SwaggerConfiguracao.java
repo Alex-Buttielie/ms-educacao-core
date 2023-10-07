@@ -26,7 +26,7 @@ public class SwaggerConfiguracao {
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("br.com.coreeduc.coreeduc.adapters.inbound.resources"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo())
