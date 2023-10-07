@@ -1,11 +1,27 @@
 package br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities;
 
-import br.com.coreeduc.coreeduc.aplication.domains.contraints.*;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.DependenciaAdministrativa;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.LocalizacaoDiferenciadaResidencia;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.LocalizacaoZonaResidencia;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.SituacaoFuncionamento;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.TipoRegistro;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Table(name = "unidade_ensino")
