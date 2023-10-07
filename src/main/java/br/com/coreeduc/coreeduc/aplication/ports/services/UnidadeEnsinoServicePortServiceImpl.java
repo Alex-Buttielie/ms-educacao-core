@@ -11,7 +11,7 @@ public class UnidadeEnsinoServicePortServiceImpl implements UnidadeEnsinoService
         this.repository = repository;
     }
 
-    public UnidadeEnsino save (UnidadeEnsino unidadeEnsino) {
+    public UnidadeEnsino salvar (UnidadeEnsino unidadeEnsino) {
         return repository.save(unidadeEnsino);
     }
 

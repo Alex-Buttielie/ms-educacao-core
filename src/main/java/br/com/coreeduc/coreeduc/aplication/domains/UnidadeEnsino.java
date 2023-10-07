@@ -1,11 +1,35 @@
 package br.com.coreeduc.coreeduc.aplication.domains;
 
-import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.*;
-import br.com.coreeduc.coreeduc.aplication.domains.contraints.*;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.DynamicUpdate;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.AbastecimentoAguaEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.AcessoInternetEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.DependenciasFisicasEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.DestinacaoLixoEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.EnderecoUnidadeEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.EquipamentosExistentesUnidadeEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.EquipamentosUsadosAlunosAcessoInternetEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.EscolasComQualCompartilhaEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.EsferaAdministrativaEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.EsgotamentoSanitarioEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.FonteEnergiaEletricaEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.FormasContratacaoEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.IdiomaEnsinoEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.InstrumentosMateriaisSocioCulturaisEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.LocalFuncionamentoEscolaEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.MantenedoraEscolaPrivadaEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.NumeroMatriculasAtendidasParceriaConvenioEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.OrgaosColegiadosFuncionamentoEscolaEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.QuantidadeComputadoresEmUsoAlunosEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.QuantidadeEquipamentosProcessoAprendizagemEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.RecursoPessoasDeficientesEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.RedeLocalInterligacaoComputadoresEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.ReservaVagasSistemaCotasEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.TotalProfissionaisAtivosEscolaEntity;
+import br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities.TratamentoLixoEntity;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.DependenciaAdministrativa;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.LocalizacaoDiferenciadaResidencia;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.LocalizacaoZonaResidencia;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.SituacaoFuncionamento;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.TipoRegistro;
 
 import java.util.Date;
 

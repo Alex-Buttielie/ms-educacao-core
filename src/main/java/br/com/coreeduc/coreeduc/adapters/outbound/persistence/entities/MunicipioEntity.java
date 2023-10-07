@@ -1,11 +1,11 @@
 package br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities;
 
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import javax.persistence.*;
 
 @Table(name = "municipio")
 @Getter

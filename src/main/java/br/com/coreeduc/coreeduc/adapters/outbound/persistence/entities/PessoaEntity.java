@@ -1,10 +1,33 @@
 package br.com.coreeduc.coreeduc.adapters.outbound.persistence.entities;
 
-import br.com.coreeduc.coreeduc.aplication.domains.contraints.*;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.CorRaca;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.LocalizacaoDiferenciadaResidencia;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.LocalizacaoZonaResidencia;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.MaiorNivelEscolaridadeConcluido;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.Nacionalidade;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.Paises;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.Sexo;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.TipoEnsinoMedioCursado;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.TipoFiliacao;
+import br.com.coreeduc.coreeduc.aplication.domains.contraints.TipoRegistro;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
