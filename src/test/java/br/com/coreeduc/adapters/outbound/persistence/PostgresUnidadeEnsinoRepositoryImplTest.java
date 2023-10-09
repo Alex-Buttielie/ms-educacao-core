@@ -1,5 +1,6 @@
 package br.com.coreeduc.adapters.outbound.persistence;
 
+
 import br.com.coreeduc.adapters.outbound.persistence.entities.UnidadeEnsinoEntity;
 import br.com.coreeduc.adapters.outbound.persistence.repositories.SpringDataUnidadeEnsinoRepository;
 import br.com.coreeduc.aplication.domains.UnidadeEnsino;
@@ -13,7 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 import java.util.Optional;
-import static org.mockito.Mockito.any;
+
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -30,17 +32,17 @@ class PostgresUnidadeEnsinoRepositoryImplTest {
 
     @BeforeEach
     void init() {
-       unidadeEnsinoEntity =  UnidadeEnsinoEntity.builder().codigoInep(1l).build();
-       unidadeEnsinoEntityOptional =  Optional.of(UnidadeEnsinoEntity.builder().codigoInep(1l).build());
-       unidadeEnsino = new UnidadeEnsino();
-       unidadeEnsino.setCodigoInep(unidadeEnsinoEntity.getCodigoInep());
+        unidadeEnsinoEntity =  UnidadeEnsinoEntity.builder().codigoInep(1l).build();
+        unidadeEnsinoEntityOptional =  Optional.of(UnidadeEnsinoEntity.builder().codigoInep(1l).build());
+        unidadeEnsino = new UnidadeEnsino();
+        unidadeEnsino.setCodigoInep(unidadeEnsinoEntity.getCodigoInep());
 
     }
 
     @Test
     void deveBuscarPeloCodigoInep() {
         when(springDataUnidadeEnsinoRepository.findById(any())).thenReturn(unidadeEnsinoEntityOptional);
-        UnidadeEnsino unidadeRetorno = repository.findById(1l);
+        UnidadeEnsino unidadeRetorno = repository.findById(1l).get();
         Assert.assertEquals(unidadeEnsino.getCodigoInep(), unidadeRetorno.getCodigoInep());
     }
 
@@ -53,9 +55,15 @@ class PostgresUnidadeEnsinoRepositoryImplTest {
 
     @Test
     void deveSalvarUnidadeEnsino() {
-        when(springDataUnidadeEnsinoRepository.save(any(UnidadeEnsinoEntity.class))).thenReturn(unidadeEnsinoEntity);
+        when(springDataUnidadeEnsinoRepository.save(any())).thenReturn(unidadeEnsinoEntity);
         UnidadeEnsino unidadeRetorno = repository.save(unidadeEnsino);
         Assert.assertEquals(unidadeEnsino.getCodigoInep(), unidadeRetorno.getCodigoInep());
+    }
+
+    @Test
+    void deveConverterUnidade() {
+        var retorno = repository.convertsUnidadeFromSpringToUnidadeEntity(unidadeEnsinoEntity);
+        Assert.assertEquals(retorno.getCodigoInep(), unidadeEnsino.getCodigoInep());
     }
 
 }
