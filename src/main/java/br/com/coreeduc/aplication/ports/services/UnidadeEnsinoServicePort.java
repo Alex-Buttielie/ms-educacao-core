@@ -4,6 +4,7 @@ package br.com.coreeduc.aplication.ports.services;
 import br.com.coreeduc.aplication.domains.UnidadeEnsino;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UnidadeEnsinoServicePort {
 
@@ -11,4 +12,5 @@ public interface UnidadeEnsinoServicePort {
 
     List<UnidadeEnsino> buscar();
 
+    Optional findById(Long codigoInep);
 }
