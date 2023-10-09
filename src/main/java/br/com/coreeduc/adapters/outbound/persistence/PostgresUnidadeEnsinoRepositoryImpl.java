@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class PostgresUnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort {
 
     private final SpringDataUnidadeEnsinoRepository unidadeEnsinoRepository;
+    private final String MSG_ERRO_SALVAR_UNIDADE = "Ocorreu algum erro ao salvar a unidade de ensino";
 
     @Autowired
     public PostgresUnidadeEnsinoRepositoryImpl(final SpringDataUnidadeEnsinoRepository unidadeEnsinoRepository){
@@ -33,7 +34,7 @@ public class PostgresUnidadeEnsinoRepositoryImpl implements UnidadeEnsinoReposit
                 .map(convertsUnidadeEntityFromSpringToUnidade())
                 .map(unidadeEnsinoRepository::save)
                 .map(this::convertsUnidadeFromSpringToUnidadeEntity)
-                .orElse(null);
+                .orElseThrow(()-> new RuntimeException(MSG_ERRO_SALVAR_UNIDADE));
     }
 
     Function <UnidadeEnsino, UnidadeEnsinoEntity>convertsUnidadeEntityFromSpringToUnidade()  {
