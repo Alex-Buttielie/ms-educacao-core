@@ -95,6 +95,7 @@ public class UnidadeEnsinoEntity {
     @Basic
     @Column(name="nao_possui_parceria_convenio")
     private Boolean naoPossuiParceriaConvenio;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
@@ -123,8 +124,8 @@ public class UnidadeEnsinoEntity {
     @JoinColumn()
     @JsonFormat
     private EscolasComQualCompartilhaEntity escolasComQualCompartilha;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn()
+    @OneToOne
+    @JoinColumn(name = "abastecimento_agua_id", referencedColumnName = "id",  nullable = false, unique = false)
     @JsonFormat
     private AbastecimentoAguaEntity abastecimentoAgua;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -163,9 +164,8 @@ public class UnidadeEnsinoEntity {
     @JoinColumn()
     @JsonFormat
     private QuantidadeComputadoresEmUsoAlunosEntity quantidadeComputadoresEmUsoAlunos;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn()
-    @JsonFormat
+    @OneToOne
+    @JoinColumn(nullable = false, unique = false)
     private AcessoInternetEntity acessoInternet;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()

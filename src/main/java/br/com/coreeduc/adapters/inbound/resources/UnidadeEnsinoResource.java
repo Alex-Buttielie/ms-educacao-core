@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -22,16 +21,16 @@ public class UnidadeEnsinoResource {
 
     @ApiOperation(value = "Salva unidade de ensino")
     @PostMapping
-    public ResponseEntity<br.com.coreeduc.aplication.domains.UnidadeEnsino> salvar(@RequestBody br.com.coreeduc.aplication.domains.UnidadeEnsino unidade) {
-        br.com.coreeduc.aplication.domains.UnidadeEnsino unidadeEnsino = servicePort.salvar(unidade);
+    public ResponseEntity<UnidadeEnsino> salvar(@RequestBody UnidadeEnsino unidade) {
+        UnidadeEnsino unidadeEnsino = servicePort.salvar(unidade);
         return ResponseEntity.ok(unidadeEnsino);
     }
 
     @ApiOperation(value = "Busca unidades ensino do município")
     @GetMapping
-    public List<UnidadeEnsino> buscar() {
-        List<UnidadeEnsino> unidades = servicePort.buscar();
-        return unidades;
+    public ResponseEntity<List<UnidadeEnsino>> buscar() {
+        var unidades = servicePort.buscar();
+        return ResponseEntity.ok(unidades);
     }
 
 }
