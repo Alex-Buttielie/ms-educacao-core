@@ -4,7 +4,7 @@ import br.com.coreeduc.adapters.outbound.persistence.entities.UnidadeEnsinoEntit
 import br.com.coreeduc.adapters.outbound.persistence.repositories.SpringDataUnidadeEnsinoRepository;
 import br.com.coreeduc.aplication.domains.UnidadeEnsino;
 import br.com.coreeduc.aplication.ports.repositories.UnidadeEnsinoRepositoryPort;
-import org.modelmapper.ModelMapper;
+import br.com.coreeduc.aplication.utils.UtilMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -63,11 +63,10 @@ public class PostgresUnidadeEnsinoRepositoryImpl implements UnidadeEnsinoReposit
     }
 
     public UnidadeEnsino convertsUnidadeFromSpringToUnidadeEntity(UnidadeEnsinoEntity unidadeEnsinoEntity) {
-        return  Optional.ofNullable(unidadeEnsinoEntity).map(this::converts).orElse(new UnidadeEnsino());
+        return (UnidadeEnsino) Optional.ofNullable(unidadeEnsinoEntity)
+                .map(UtilMapper.converts(UnidadeEnsino.class))
+                .orElse(new UnidadeEnsino());
     }
 
-    protected UnidadeEnsino converts(UnidadeEnsinoEntity entity) {
-        return new ModelMapper().map(entity, UnidadeEnsino.class);
-    }
 
 }
