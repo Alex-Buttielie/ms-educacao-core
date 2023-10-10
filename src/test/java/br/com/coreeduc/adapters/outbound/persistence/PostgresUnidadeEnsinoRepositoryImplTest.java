@@ -50,7 +50,7 @@ class PostgresUnidadeEnsinoRepositoryImplTest {
     void deveBuscarListaDeUnidades() {
         when(springDataUnidadeEnsinoRepository.findAll()).thenReturn(Collections.singletonList(unidadeEnsinoEntity));
         var retorno = repository.findAll();
-        Assert.assertNotNull(retorno);
+        Assert.assertFalse(retorno.isEmpty());
     }
 
     @Test
