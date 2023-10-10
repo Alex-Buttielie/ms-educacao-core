@@ -64,7 +64,7 @@ public class PostgresUnidadeEnsinoRepositoryImpl implements UnidadeEnsinoReposit
 
     public UnidadeEnsino convertsUnidadeFromSpringToUnidadeEntity(UnidadeEnsinoEntity unidadeEnsinoEntity) {
         return (UnidadeEnsino) Optional.ofNullable(unidadeEnsinoEntity)
-                .map(entity -> UtilMapper.converts(entity, UnidadeEnsino.class))
+                .map(UtilMapper.converts(UnidadeEnsino.class))
                 .orElse(new UnidadeEnsino());
     }
 
