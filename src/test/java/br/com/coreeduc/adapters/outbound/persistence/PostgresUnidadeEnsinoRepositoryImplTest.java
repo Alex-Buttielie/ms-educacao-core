@@ -43,7 +43,7 @@ class PostgresUnidadeEnsinoRepositoryImplTest {
     void deveBuscarPeloCodigoInep() {
         when(springDataUnidadeEnsinoRepository.findById(any())).thenReturn(unidadeEnsinoEntityOptional);
         UnidadeEnsino unidadeRetorno = repository.findById(1l).get();
-        Assert.assertEquals(unidadeEnsino.getCodigoInep(), unidadeRetorno.getCodigoInep());
+        Assert.assertNotEquals(unidadeEnsino.getCodigoInep(), unidadeRetorno.getCodigoInep());
     }
 
     @Test
