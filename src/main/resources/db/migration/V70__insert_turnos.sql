@@ -1,0 +1,4 @@
+INSERT INTO turno (nome) VALUES ('MATUTINO');
+INSERT INTO turno (nome) VALUES ('VESPERTINO');
+INSERT INTO turno (nome) VALUES ('NOTURNO');
+INSERT INTO turno (nome) VALUES ('INTEGRAL');
