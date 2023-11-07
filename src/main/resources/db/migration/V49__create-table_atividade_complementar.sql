@@ -3,7 +3,7 @@ CREATE SEQUENCE CONFIG_ATIV_COMPLEMENTAR_ID_SEQ;
 CREATE TABLE IF  NOT EXISTS CONFIG_ATIV_COMPLEMENTAR (id INTEGER UNIQUE DEFAULT nextval('CONFIG_ATIV_COMPLEMENTAR_ID_SEQ'),
                                                       ch_horaria_semanal BIGINT,
                                                       ch_horaria_total BIGINT,
-                                                      fk_id_matriz_curricular INTEGER
+                                                      matriz_curricular_id INTEGER
 );
 
 ALTER SEQUENCE CONFIG_ATIV_COMPLEMENTAR_ID_SEQ
