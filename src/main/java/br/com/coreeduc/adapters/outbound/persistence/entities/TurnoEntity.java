@@ -13,20 +13,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "mes")
+@Table(name = "turno")
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class MesEntity {
+public class TurnoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Basic
-    @Column(name="mes")
-    private Integer mes;
     @Basic
     @Column(name="nome")
     private String nome;

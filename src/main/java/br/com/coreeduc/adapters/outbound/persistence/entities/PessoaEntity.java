@@ -3,11 +3,9 @@ package br.com.coreeduc.adapters.outbound.persistence.entities;
 import br.com.coreeduc.aplication.domains.contraints.CorRaca;
 import br.com.coreeduc.aplication.domains.contraints.LocalizacaoDiferenciadaResidencia;
 import br.com.coreeduc.aplication.domains.contraints.LocalizacaoZonaResidencia;
-import br.com.coreeduc.aplication.domains.contraints.MaiorNivelEscolaridadeConcluido;
 import br.com.coreeduc.aplication.domains.contraints.Nacionalidade;
 import br.com.coreeduc.aplication.domains.contraints.Paises;
 import br.com.coreeduc.aplication.domains.contraints.Sexo;
-import br.com.coreeduc.aplication.domains.contraints.TipoEnsinoMedioCursado;
 import br.com.coreeduc.aplication.domains.contraints.TipoFiliacao;
 import br.com.coreeduc.aplication.domains.contraints.TipoRegistro;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -97,15 +95,6 @@ public class PessoaEntity implements Serializable {
     @Column(name = "localizacao_diferenciada_residencia")
     private LocalizacaoDiferenciadaResidencia localizacaoDiferenciadaResidencia;
     @Basic
-    @Column(name = "maior_nivel_escolaridade_concluido")
-    private MaiorNivelEscolaridadeConcluido maiorNivelEscolaridadeConcluido;
-    @Basic
-    @Column(name = "nao_tem_pos_graduacao_concluida")
-    private Boolean naoTemPosGraduacaoConcluida;
-    @Basic
-    @Column(name = "tipo_ensino_medio_cursado")
-    private TipoEnsinoMedioCursado tipoEnsinoMedioCursado;
-    @Basic
     @Column(name = "endereco_eletronico_email")
     private String enderecoEletronicoEmail;
     @OneToOne()
@@ -116,18 +105,6 @@ public class PessoaEntity implements Serializable {
     @JoinColumn()
     @JsonFormat
     private MunicipioEntity fkMunNasc;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn()
-    @JsonFormat
-    private FormacaoComplementarPedagogicaProfessorEntity formacaoComplementarPedagogicaProfessor;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn()
-    @JsonFormat
-    private PosGraduacaoConcluidaProfessorEntity posGraduacaoConcluidaProfessor;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn()
-    @JsonFormat
-    private OutrosCursosEspecificosEntity outrosCursosEspecificos;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat

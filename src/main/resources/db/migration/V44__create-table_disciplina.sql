@@ -5,8 +5,8 @@ CREATE TABLE IF  NOT EXISTS DISCIPLINAS (
     codigo_mec INTEGER PRIMARY KEY  NOT NULL,
     nome VARCHAR (100) NOT NULL,
     abreviacao VARCHAR (100),
-    fk_codigo_area_conhecimento INTEGER,
-    CONSTRAINT fk_area_conhecimento FOREIGN KEY (fk_codigo_area_conhecimento)
+    area_conhecimento_codigo INTEGER,
+    CONSTRAINT fk_area_conhecimento FOREIGN KEY (area_conhecimento_codigo)
     REFERENCES area_conhecimento (codigo)
     );
 

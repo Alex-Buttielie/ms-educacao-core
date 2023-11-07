@@ -1,8 +1,9 @@
 package br.com.coreeduc.aplication.domains;
 
-public class Mes {
+
+public class Municipio {
     private Long id;
-    private Integer mes;
+    private Long codigoMec;
     private String nome;
 
     public Long getId() {
@@ -13,17 +14,20 @@ public class Mes {
         this.id = id;
     }
 
-    public Integer getMes() {
-        return mes;
+    public Long getCodigoMec() {
+        return codigoMec;
     }
 
-    public void setMes(Integer mes) {
-        this.mes = mes;
+    public void setCodigoMec(Long codigoMec) {
+        this.codigoMec = codigoMec;
     }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 }

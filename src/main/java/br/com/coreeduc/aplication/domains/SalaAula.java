@@ -1,8 +1,8 @@
 package br.com.coreeduc.aplication.domains;
 
-public class Mes {
+public class SalaAula {
     private Long id;
-    private Integer mes;
+    private Integer quantidadeVagas;
     private String nome;
 
     public Long getId() {
@@ -13,17 +13,20 @@ public class Mes {
         this.id = id;
     }
 
-    public Integer getMes() {
-        return mes;
+    public Integer getQuantidadeVagas() {
+        return quantidadeVagas;
     }
 
-    public void setMes(Integer mes) {
-        this.mes = mes;
+    public void setQuantidadeVagas(Integer quantidadeVagas) {
+        this.quantidadeVagas = quantidadeVagas;
     }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
 }

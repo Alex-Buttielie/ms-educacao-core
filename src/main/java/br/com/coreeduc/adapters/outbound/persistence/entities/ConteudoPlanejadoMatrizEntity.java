@@ -1,6 +1,5 @@
 package br.com.coreeduc.adapters.outbound.persistence.entities;
 
-import br.com.coreeduc.aplication.domains.contraints.TipoReprovacao;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,28 +19,27 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
-@Table(name = "serie")
+@Table(name = "conteudo_planejado_matriz")
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SerieEntity implements Serializable {
+public class ConteudoPlanejadoMatrizEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Basic
-    @Column(name = "nome ")
-    private String nome;
-    @Basic
-    @Column(name = "tipo_reprovacao ")
-    private TipoReprovacao tipoReprovacao;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private ComposicaoEnsinoEntity composicaoEnsino;
+    private ConteudoPlanejadoEntity conteudoPlanejado;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private DisciplinasMatrizEntity disciplinasMatriz;
 
 }
