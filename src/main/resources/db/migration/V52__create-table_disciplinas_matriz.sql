@@ -1,12 +1,12 @@
 CREATE SEQUENCE DISCIPLINAS_MATRIZ_ID_SEQ;
 
 CREATE TABLE IF  NOT EXISTS DISCIPLINAS_MATRIZ (id INTEGER UNIQUE DEFAULT nextval('DISCIPLINAS_MATRIZ_ID_SEQ'),
-                                                fk_id_disciplina INTEGER,
-                                                fk_id_matriz_curricular INTEGER,
+                                                disciplina_id INTEGER,
+                                                matriz_curricular_id INTEGER,
                                                 carga_horaria_disciplina BIGINT,
-                                                CONSTRAINT fk_disciplina FOREIGN KEY (fk_id_disciplina)
+                                                CONSTRAINT fk_disciplina FOREIGN KEY (disciplina_id)
                                                     REFERENCES disciplinas (id),
-                                                CONSTRAINT fk_matriz_curricular FOREIGN KEY (fk_id_matriz_curricular)
+                                                CONSTRAINT fk_matriz_curricular FOREIGN KEY (matriz_curricular_id)
                                                     REFERENCES matriz_curricular (id)
 );
 

@@ -18,27 +18,40 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.io.Serializable;
+import java.util.Date;
 
-@Table(name = "composicao")
+@Table(name = "turma")
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ComposicaoEntity implements Serializable {
-
+public class TurmaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Basic
-    @Column(name = "nome ")
+    @Column(name = "codigo_inep")
+    private Long codigoInep;
+    @Basic
+    @Column(name = "nome")
     private String nome;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private CriterioAvaliacaoEntity criterioAvaliacao;
+    private DiretrizEntity diretriz;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private TurnoEntity turnoEntity;
+    @Basic
+    @Column(name = "data_criacao")
+    private Date dataCriacao;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private SalaAulaEntity salaAula;
 
 }

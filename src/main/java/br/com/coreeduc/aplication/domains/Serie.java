@@ -9,7 +9,7 @@ public class Serie implements Serializable {
     private Long id;
     private String nome;
     private TipoReprovacao tipoReprovacao;
-    private Composicao composicao;
+    private ComposicaoEnsino composicaoEnsino;
 
     public Long getId() {
         return id;

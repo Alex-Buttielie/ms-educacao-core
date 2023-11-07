@@ -1,6 +1,5 @@
 package br.com.coreeduc.adapters.outbound.persistence.entities;
 
-import br.com.coreeduc.aplication.domains.contraints.TipoReprovacao;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,29 +19,38 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Date;
 
-@Table(name = "serie")
+@Table(name = "modulacao")
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SerieEntity implements Serializable {
+public class ModulacaoEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Basic
-    @Column(name = "nome ")
-    private String nome;
+    @Column(name = "data_fim")
+    private Date dataFim;
     @Basic
-    @Column(name = "tipo_reprovacao ")
-    private TipoReprovacao tipoReprovacao;
+    @Column(name = "data_inicio")
+    private Date dataInicio;
+    @Basic
+    @Column(name = "carga_horaria")
+    private Integer cargaHoraria;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private ComposicaoEnsinoEntity composicaoEnsino;
+    private TurmaEntity turma;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private ProfessorEntity professor;
 
 }

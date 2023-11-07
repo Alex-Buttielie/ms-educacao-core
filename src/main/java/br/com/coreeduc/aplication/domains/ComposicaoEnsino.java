@@ -2,7 +2,7 @@ package br.com.coreeduc.aplication.domains;
 
 import java.io.Serializable;
 
-public class Composicao implements Serializable {
+public class ComposicaoEnsino implements Serializable {
 
     private Long id;
     private String nome;

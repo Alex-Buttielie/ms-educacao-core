@@ -4,7 +4,7 @@ CREATE TABLE IF  NOT EXISTS DIAS_LETIVOS (id INTEGER UNIQUE DEFAULT nextval('DIA
                                           dia INTEGER,
                                           calendario_id INTEGER,
                                           mes_id INTEGER,
-                                          CONSTRAINT fk_id_calendario FOREIGN KEY (calendario_id)
+                                          CONSTRAINT fk_calendario FOREIGN KEY (calendario_id)
                                               REFERENCES calendario (id)
 );
 ALTER SEQUENCE DIAS_LETIVOS_ID_SEQ
