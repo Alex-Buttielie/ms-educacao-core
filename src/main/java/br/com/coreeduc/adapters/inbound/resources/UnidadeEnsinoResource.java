@@ -50,7 +50,7 @@ public class UnidadeEnsinoResource {
         return (ResponseEntity<Object>) getServicePort()
                 .findById(codigoInep)
                 .map(unidade -> ResponseEntity.status(HttpStatus.OK).body(unidade))
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email not found"));
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Unidade não encontrada"));
     }
 
 }
