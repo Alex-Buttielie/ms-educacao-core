@@ -33,8 +33,6 @@ public class Pessoa {
     private String enderecoEletronicoEmail;
     private UnidadeEnsino fkUni;
     private Municipio fkMunNasc;
-    private TipoDeficienciaEspectroAltasHabilidades tipoDeficienciaEspectroAltasHabilidades;
-    private RecursoAlunoParaAvaliacaoInep recursoAlunoParaAvaliacaoInep;
     private Municipio fkMunResid;
 
     public Long getId() {
@@ -203,22 +201,6 @@ public class Pessoa {
 
     public void setFkMunNasc(Municipio fkMunNasc) {
         this.fkMunNasc = fkMunNasc;
-    }
-
-    public TipoDeficienciaEspectroAltasHabilidades getTipoDeficienciaEspectroAltasHabilidades() {
-        return tipoDeficienciaEspectroAltasHabilidades;
-    }
-
-    public void setTipoDeficienciaEspectroAltasHabilidades(TipoDeficienciaEspectroAltasHabilidades tipoDeficienciaEspectroAltasHabilidades) {
-        this.tipoDeficienciaEspectroAltasHabilidades = tipoDeficienciaEspectroAltasHabilidades;
-    }
-
-    public RecursoAlunoParaAvaliacaoInep getRecursoAlunoParaAvaliacaoInep() {
-        return recursoAlunoParaAvaliacaoInep;
-    }
-
-    public void setRecursoAlunoParaAvaliacaoInep(RecursoAlunoParaAvaliacaoInep recursoAlunoParaAvaliacaoInep) {
-        this.recursoAlunoParaAvaliacaoInep = recursoAlunoParaAvaliacaoInep;
     }
 
     public Municipio getFkMunResid() {

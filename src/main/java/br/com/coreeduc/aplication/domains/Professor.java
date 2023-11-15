@@ -12,6 +12,8 @@ public class Professor {
     private Boolean naoTemPosGraduacaoConcluida;
     private TipoEnsinoMedioCursado tipoEnsinoMedioCursado;
     private MaiorNivelEscolaridadeConcluido maiorNivelEscolaridadeConcluido;
+    private TipoDeficienciaEspectroAltasHabilidades tipoDeficienciaEspectroAltasHabilidades;
+    private RecursoAlunoParaAvaliacaoInep recursoAlunoParaAvaliacaoInep;
 
     public Long getId() {
         return id;
@@ -76,4 +78,21 @@ public class Professor {
     public void setMaiorNivelEscolaridadeConcluido(MaiorNivelEscolaridadeConcluido maiorNivelEscolaridadeConcluido) {
         this.maiorNivelEscolaridadeConcluido = maiorNivelEscolaridadeConcluido;
     }
+
+    public TipoDeficienciaEspectroAltasHabilidades getTipoDeficienciaEspectroAltasHabilidades() {
+        return tipoDeficienciaEspectroAltasHabilidades;
+    }
+
+    public void setTipoDeficienciaEspectroAltasHabilidades(TipoDeficienciaEspectroAltasHabilidades tipoDeficienciaEspectroAltasHabilidades) {
+        this.tipoDeficienciaEspectroAltasHabilidades = tipoDeficienciaEspectroAltasHabilidades;
+    }
+
+    public RecursoAlunoParaAvaliacaoInep getRecursoAlunoParaAvaliacaoInep() {
+        return recursoAlunoParaAvaliacaoInep;
+    }
+
+    public void setRecursoAlunoParaAvaliacaoInep(RecursoAlunoParaAvaliacaoInep recursoAlunoParaAvaliacaoInep) {
+        this.recursoAlunoParaAvaliacaoInep = recursoAlunoParaAvaliacaoInep;
+    }
+
 }
