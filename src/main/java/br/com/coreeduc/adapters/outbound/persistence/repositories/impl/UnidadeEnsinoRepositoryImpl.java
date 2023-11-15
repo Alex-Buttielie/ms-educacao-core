@@ -1,7 +1,7 @@
-package br.com.coreeduc.adapters.outbound.persistence;
+package br.com.coreeduc.adapters.outbound.persistence.repositories.impl;
 
 import br.com.coreeduc.adapters.outbound.persistence.entities.UnidadeEnsinoEntity;
-import br.com.coreeduc.adapters.outbound.persistence.repositories.SpringDataUnidadeEnsinoRepository;
+import br.com.coreeduc.adapters.outbound.persistence.repositories.UnidadeEnsinoRepository;
 import br.com.coreeduc.aplication.domains.UnidadeEnsino;
 import br.com.coreeduc.aplication.ports.repositories.UnidadeEnsinoRepositoryPort;
 import br.com.coreeduc.aplication.utils.UtilMapper;
@@ -17,13 +17,13 @@ import java.util.stream.Collectors;
 
 @Component
 @Primary
-public class PostgresUnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort {
+public class UnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort {
 
-    private final SpringDataUnidadeEnsinoRepository unidadeEnsinoRepository;
+    private final UnidadeEnsinoRepository unidadeEnsinoRepository;
     private final String MSG_ERRO_SALVAR_UNIDADE = "Ocorreu algum erro ao salvar a unidade de ensino";
 
     @Autowired
-    public PostgresUnidadeEnsinoRepositoryImpl(final SpringDataUnidadeEnsinoRepository unidadeEnsinoRepository){
+    public UnidadeEnsinoRepositoryImpl(final UnidadeEnsinoRepository unidadeEnsinoRepository){
         this.unidadeEnsinoRepository = unidadeEnsinoRepository;
     }
 
@@ -31,18 +31,10 @@ public class PostgresUnidadeEnsinoRepositoryImpl implements UnidadeEnsinoReposit
     public UnidadeEnsino save(UnidadeEnsino unidadeEnsino) {
         return Optional
                 .ofNullable(unidadeEnsino)
-                .map(convertsUnidadeEntityFromSpringToUnidade())
+                .map(converterUnidadeFromToUnidadeEntity())
                 .map(unidadeEnsinoRepository::save)
-                .map(this::convertsUnidadeFromSpringToUnidadeEntity)
+                .map(this::converterUnidadeEntityToUnidade)
                 .orElseThrow(()-> new RuntimeException(MSG_ERRO_SALVAR_UNIDADE));
-    }
-
-    Function <UnidadeEnsino, UnidadeEnsinoEntity>convertsUnidadeEntityFromSpringToUnidade()  {
-        return unidade -> {
-            var entity = UnidadeEnsinoEntity.builder().build();
-            BeanUtils.copyProperties(unidade, entity);
-            return entity;
-        };
     }
 
     @Override
@@ -50,23 +42,30 @@ public class PostgresUnidadeEnsinoRepositoryImpl implements UnidadeEnsinoReposit
         return unidadeEnsinoRepository
                 .findAll()
                 .stream()
-                .map(this::convertsUnidadeFromSpringToUnidadeEntity)
+                .map(this::converterUnidadeEntityToUnidade)
                 .collect(Collectors.toList());
 
     }
 
     public Optional<UnidadeEnsino> findById(Long id) {
         return unidadeEnsinoRepository.findById(id)
-                .map(this::convertsUnidadeFromSpringToUnidadeEntity)
+                .map(this::converterUnidadeEntityToUnidade)
                 .map(Optional::of)
                 .orElse(Optional.empty());
     }
 
-    public UnidadeEnsino convertsUnidadeFromSpringToUnidadeEntity(UnidadeEnsinoEntity unidadeEnsinoEntity) {
+    public UnidadeEnsino converterUnidadeEntityToUnidade(UnidadeEnsinoEntity unidadeEnsinoEntity) {
         return (UnidadeEnsino) Optional.ofNullable(unidadeEnsinoEntity)
                 .map(UtilMapper.converts(UnidadeEnsino.class))
                 .orElse(new UnidadeEnsino());
     }
 
+    Function <UnidadeEnsino, UnidadeEnsinoEntity>converterUnidadeFromToUnidadeEntity()  {
+        return unidade -> {
+            var entity = UnidadeEnsinoEntity.builder().build();
+            BeanUtils.copyProperties(unidade, entity);
+            return entity;
+        };
+    }
 
 }

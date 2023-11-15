@@ -1,4 +1,4 @@
-package br.com.coreeduc.coreeduc;
+package br.com.coreeduc;
 
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -47,6 +47,14 @@ public class ProfessorEntity {
     @JoinColumn()
     @JsonFormat
     private PosGraduacaoConcluidaProfessorEntity posGraduacaoConcluidaProfessor;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private TipoDeficienciaEspectroAltasHabilidadesEntity tipoDeficienciaEspectroAltasHabilidades;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private RecursoAlunoParaAvaliacaoInepEntity recursoAlunoParaAvaliacaoInep;
     @Basic
     @Column(name = "nao_tem_pos_graduacao_concluida")
     private Boolean naoTemPosGraduacaoConcluida;
@@ -56,4 +64,5 @@ public class ProfessorEntity {
     @Basic
     @Column(name = "maior_nivel_escolaridade_concluido")
     private MaiorNivelEscolaridadeConcluido maiorNivelEscolaridadeConcluido;
+
 }
