@@ -7,23 +7,16 @@ import br.com.coreeduc.aplication.ports.repositories.PessoaRepositoryPort;
 import br.com.coreeduc.aplication.utils.UtilMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.function.Function;
 
 @Component
-@Primary
 public class PessoaRepositoryImpl implements PessoaRepositoryPort {
 
-    private final PessoaRepository unidadeEnsinoRepository;
-
     @Autowired
-    public PessoaRepositoryImpl(final PessoaRepository unidadeEnsinoRepository){
-        this.unidadeEnsinoRepository = unidadeEnsinoRepository;
-    }
-
+    private PessoaRepository unidadeEnsinoRepository;
 
     @Override
     public Pessoa save(Pessoa pessoa) {
@@ -32,10 +25,10 @@ public class PessoaRepositoryImpl implements PessoaRepositoryPort {
                 .map(convertsPessoaToPessoaEntity())
                 .map(unidadeEnsinoRepository::save)
                 .map(this::convertsPessoaEntityFromPessoa)
-                .orElseThrow(()-> new RuntimeException("Erro ao salvar"));
+                .orElseThrow(() -> new RuntimeException("Erro ao salvar"));
     }
 
-    Function<Pessoa, PessoaEntity> convertsPessoaToPessoaEntity()  {
+    Function<Pessoa, PessoaEntity> convertsPessoaToPessoaEntity() {
         return pessoa -> {
             var entity = PessoaEntity.builder().build();
             BeanUtils.copyProperties(pessoa, entity);

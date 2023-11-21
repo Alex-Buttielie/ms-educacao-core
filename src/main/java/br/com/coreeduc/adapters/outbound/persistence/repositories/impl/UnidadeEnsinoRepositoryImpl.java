@@ -7,7 +7,6 @@ import br.com.coreeduc.aplication.ports.repositories.UnidadeEnsinoRepositoryPort
 import br.com.coreeduc.aplication.utils.UtilMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,16 +15,10 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
-@Primary
 public class UnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort {
-
-    private final UnidadeEnsinoRepository unidadeEnsinoRepository;
     private final String MSG_ERRO_SALVAR_UNIDADE = "Ocorreu algum erro ao salvar a unidade de ensino";
-
     @Autowired
-    public UnidadeEnsinoRepositoryImpl(final UnidadeEnsinoRepository unidadeEnsinoRepository){
-        this.unidadeEnsinoRepository = unidadeEnsinoRepository;
-    }
+    private UnidadeEnsinoRepository unidadeEnsinoRepository;
 
     @Override
     public UnidadeEnsino save(UnidadeEnsino unidadeEnsino) {
@@ -34,7 +27,7 @@ public class UnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort 
                 .map(converterUnidadeFromToUnidadeEntity())
                 .map(unidadeEnsinoRepository::save)
                 .map(this::converterUnidadeEntityToUnidade)
-                .orElseThrow(()-> new RuntimeException(MSG_ERRO_SALVAR_UNIDADE));
+                .orElseThrow(() -> new RuntimeException(MSG_ERRO_SALVAR_UNIDADE));
     }
 
     @Override
@@ -60,7 +53,7 @@ public class UnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort 
                 .orElse(new UnidadeEnsino());
     }
 
-    Function <UnidadeEnsino, UnidadeEnsinoEntity>converterUnidadeFromToUnidadeEntity()  {
+    Function<UnidadeEnsino, UnidadeEnsinoEntity> converterUnidadeFromToUnidadeEntity() {
         return unidade -> {
             var entity = UnidadeEnsinoEntity.builder().build();
             BeanUtils.copyProperties(unidade, entity);

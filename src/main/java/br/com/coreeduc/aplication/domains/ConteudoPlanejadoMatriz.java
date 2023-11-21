@@ -1,6 +1,6 @@
 package br.com.coreeduc.aplication.domains;
 
-public class ConteudoPlanejadoMatriz  {
+public class ConteudoPlanejadoMatriz {
 
     private Long id;
     private ConteudoPlanejado conteudoPlanejado;

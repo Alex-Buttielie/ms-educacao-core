@@ -11,7 +11,7 @@ public enum Nacionalidade {
         this.codigoEducacenso = codigoEducacenso;
     }
 
-    public static String getValorStrPeloCodigo (String codigoEducacenso) {
+    public static String getValorStrPeloCodigo(String codigoEducacenso) {
         for (Nacionalidade status : values())
             if (status.getCodigoEducacenso().equals(codigoEducacenso))
                 return String.valueOf(status.ordinal());

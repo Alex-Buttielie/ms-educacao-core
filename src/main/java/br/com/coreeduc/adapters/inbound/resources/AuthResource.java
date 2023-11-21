@@ -1,7 +1,6 @@
 package br.com.coreeduc.adapters.inbound.resources;
 
 import br.com.coreeduc.adapters.outbound.authentication.dto.EmailAuthenticationDTO;
-import br.com.coreeduc.adapters.outbound.authentication.security.JWTUtil;
 import br.com.coreeduc.adapters.outbound.authentication.services.AuthService;
 import br.com.coreeduc.adapters.outbound.persistence.services.UserService;
 import io.swagger.annotations.ApiOperation;
@@ -19,40 +18,46 @@ import javax.validation.Valid;
 @RequestMapping(value = "/auth")
 public class AuthResource {
 
-    @Autowired
-    private JWTUtil jwtUtil;
-
-    @Autowired
     private AuthService service;
 
-    @Autowired
     private UserService userService;
 
     public UserService getUserService() {
         return this.userService;
     }
 
-    public AuthService getService () {
+    @Autowired
+    public AuthResource(AuthService service, UserService userService) {
+        this.service = service;
+        this.userService = userService;
+    }
+
+
+    public AuthService getService() {
         return this.service;
     }
 
-    public JWTUtil getJwtUtil() {
-        return this.jwtUtil;
-    }
+    //public JWTUtil getJwtUtil() {
+    //   return this.jwtUtil;
+    //}
 
     @RequestMapping(value = "/refresh_token", method = RequestMethod.POST)
     public ResponseEntity<Void> refreshToken(HttpServletResponse response) {
-        var user = this.getUserService().authenticated();
-        String token = this.getJwtUtil().generateToken(user.getUsername());
-        response.addHeader("Authorization", "Bearer " + token);
-        response.addHeader("access-control-expose-headers", "Authorization");
+        /**
+         * Lembrar de pegar as tenant e colocar regra aqui para geração de novo token
+         *
+         var user = this.getUserService().authenticated();
+         String token = this.getJwtUtil().generateToken(user.getUsername(), tenant);
+         response.addHeader("Authorization", "Bearer " + token);
+         response.addHeader("access-control-expose-headers", "Authorization");
+         */
         return ResponseEntity.noContent().build();
     }
 
     @ApiOperation(value = "Recuperar senha")
     @RequestMapping(value = "/forgot", method = RequestMethod.POST)
     public ResponseEntity<String> forgot(@Valid @RequestBody EmailAuthenticationDTO dto) {
-        this.getService().sendNewPassword(dto.getEmail());
+        this.getService().sendNewPassword(dto);
         return ResponseEntity.ok().build();
     }
 

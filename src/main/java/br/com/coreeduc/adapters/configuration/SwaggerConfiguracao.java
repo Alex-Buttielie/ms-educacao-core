@@ -48,6 +48,7 @@ public class SwaggerConfiguracao {
     private String getHost() {
         return host.concat(":").concat(port);
     }
+
     ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("Sistema educacional")
                 .description("End-points do sistema")

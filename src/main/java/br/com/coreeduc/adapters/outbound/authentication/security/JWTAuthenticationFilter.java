@@ -6,42 +6,37 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Date;
 
 
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
 
-    private AuthenticationManager authenticationManager;
 
-    private JWTUtil jwtUtil;
-
-    public JWTAuthenticationFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
-        setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
-        this.authenticationManager = authenticationManager;
-        this.jwtUtil = jwtUtil;
+    public JWTAuthenticationFilter(String url, AuthenticationManager authManager) {
+        super(new AntPathRequestMatcher(url));
+        setAuthenticationManager(authManager);
     }
 
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest req,
-                                                HttpServletResponse res) throws AuthenticationException {
+    public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
 
         try {
-            CredentialsDTO creds = new ObjectMapper()
-                    .readValue(req.getInputStream(), CredentialsDTO.class);
-
+            CredentialsDTO creds = new ObjectMapper().readValue(req.getInputStream(), CredentialsDTO.class);
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword());
-            Authentication auth = authenticationManager.authenticate(authToken);
+            Authentication auth = getAuthenticationManager().authenticate(authToken);
             return auth;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -52,8 +47,13 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 
+        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
+        String tenant = "";
+        for (GrantedAuthority gauth : authorities) {
+            tenant = gauth.getAuthority();
+        }
         String username = ((UserSS) auth.getPrincipal()).getUsername();
-        String token = jwtUtil.generateToken(username);
+        String token = AuthenticationService.generateToken(username, tenant);
         res.addHeader("Authorization", "Bearer " + token);
         res.addHeader("access-control-expose-headers", "Authorization");
         res.setContentType("application/json");
@@ -64,7 +64,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     private String jsonUsuario(Authentication auth, String token) {
-        return "{\"nome\": \"" + ((UserSS) auth.getPrincipal()).getUsername()  + "\", "
+        return "{\"nome\": \"" + ((UserSS) auth.getPrincipal()).getUsername() + "\", "
                 + "\"token\": \"" + token + "\"}";
     }
 

@@ -1,9 +1,11 @@
 CREATE SEQUENCE CONTEUDO_PLANEJADO_ID_SEQ;
 
-CREATE TABLE IF  NOT EXISTS CONTEUDO_PLANEJADO (id INTEGER UNIQUE DEFAULT nextval('CONTEUDO_PLANEJADO_ID_SEQ'),
-                                                dias_letivo_id INTEGER,
-                                                CONSTRAINT fk_dias_letivo FOREIGN KEY (dias_letivo_id)
-                                                    REFERENCES dias_letivos (id)
+CREATE TABLE IF NOT EXISTS CONTEUDO_PLANEJADO
+(
+    id             INTEGER UNIQUE DEFAULT nextval('CONTEUDO_PLANEJADO_ID_SEQ'),
+    dias_letivo_id INTEGER,
+    CONSTRAINT fk_dias_letivo FOREIGN KEY (dias_letivo_id)
+        REFERENCES dias_letivos (id)
 );
 
 ALTER SEQUENCE CONTEUDO_PLANEJADO_ID_SEQ

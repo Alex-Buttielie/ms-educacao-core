@@ -1,8 +1,10 @@
 CREATE SEQUENCE MES_ID_SEQ;
 
-CREATE TABLE IF  NOT EXISTS MES (id INTEGER UNIQUE DEFAULT nextval('MES_ID_SEQ'),
-                                 mes INTEGER,
-                                 nome varchar (50)
+CREATE TABLE IF NOT EXISTS MES
+(
+    id   INTEGER UNIQUE DEFAULT nextval('MES_ID_SEQ'),
+    mes  INTEGER,
+    nome varchar(50)
 
 );
 

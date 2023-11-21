@@ -1,6 +1,5 @@
 package br.com.coreeduc.adapters.inbound.resources.exceptions;
 
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

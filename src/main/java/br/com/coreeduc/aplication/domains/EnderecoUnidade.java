@@ -9,10 +9,10 @@ public class EnderecoUnidade {
     private Integer cep;
     private MunicipioEntity fkMun;
     private DistritoEntity distrito;
-    private String  endereco;
-    private String  numero;
-    private String  complemento;
-    private String  bairro;
+    private String endereco;
+    private String numero;
+    private String complemento;
+    private String bairro;
     private Integer ddd;
 
     public Long getId() {

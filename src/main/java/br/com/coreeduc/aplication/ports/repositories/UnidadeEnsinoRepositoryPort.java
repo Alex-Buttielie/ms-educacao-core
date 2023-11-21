@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UnidadeEnsinoRepositoryPort {
 
-    UnidadeEnsino save (UnidadeEnsino email);
+    UnidadeEnsino save(UnidadeEnsino email);
 
     List<UnidadeEnsino> findAll();
 

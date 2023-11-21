@@ -32,8 +32,8 @@ class UnidadeEnsinoRepositoryImplTest {
 
     @BeforeEach
     void init() {
-        unidadeEnsinoEntity =  UnidadeEnsinoEntity.builder().codigoInep(1l).build();
-        unidadeEnsinoEntityOptional =  Optional.of(UnidadeEnsinoEntity.builder().codigoInep(1l).build());
+        unidadeEnsinoEntity = UnidadeEnsinoEntity.builder().codigoInep(1l).build();
+        unidadeEnsinoEntityOptional = Optional.of(UnidadeEnsinoEntity.builder().codigoInep(1l).build());
         unidadeEnsino = new UnidadeEnsino();
         unidadeEnsino.setCodigoInep(unidadeEnsinoEntity.getCodigoInep());
 

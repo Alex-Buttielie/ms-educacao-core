@@ -1,6 +1,7 @@
 package br.com.coreeduc.adapters.outbound.authentication.services.impl;
 
 
+import br.com.coreeduc.adapters.outbound.authentication.dto.EmailAuthenticationDTO;
 import br.com.coreeduc.adapters.outbound.authentication.services.AuthService;
 import br.com.coreeduc.adapters.outbound.authentication.services.EmailService;
 import br.com.coreeduc.adapters.outbound.http.EmailDto;
@@ -21,24 +22,22 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private BCryptPasswordEncoder pe;
-
-    protected UserRepository getRepository () {
-        return this.repository;
-    }
-
     @Autowired
     private EmailService emailService;
 
-    @Override
-    public String sendNewPassword(String email) {
-        return Optional
-                .ofNullable(getRepository().findByEmail(email))
-                .map(user -> createNewPassword(user))
-                .orElseThrow(()-> new RuntimeException("Verifique o e-mail informado, usuário não encontrado"));
+    protected UserRepository getRepository() {
+        return this.repository;
     }
 
-    private String createNewPassword(UserEntity user) {
-        String newPass = "Alex@99592706";
+    @Override
+    public String sendNewPassword(EmailAuthenticationDTO dto) {
+        return Optional
+                .ofNullable(getRepository().findByEmail(dto.getEmail()))
+                .map(user -> createNewPassword(user, dto.getPassword()))
+                .orElseThrow(() -> new RuntimeException("Verifique o e-mail informado, usuário não encontrado"));
+    }
+
+    private String createNewPassword(UserEntity user, String newPass) {
         String newPasswordEncrypted = pe.encode(newPass);
         user.setPasswordUser(newPasswordEncrypted);
         user = getRepository().save(user);
@@ -52,8 +51,8 @@ public class AuthServiceImpl implements AuthService {
                 .emailFrom(user.getEmail())
                 .ownerRef(user.getEmail())
                 .emailTo(user.getEmail())
-                .subject("Solicitação de nova senha")
-                .text("Olá! Sua nova senha é: " + newPass)
+                .subject("Solicitação de nova senha do sistema Educacional: ".concat(newPass))
+                .text("Sua nova senha é: " + newPass)
                 .build();
     }
 

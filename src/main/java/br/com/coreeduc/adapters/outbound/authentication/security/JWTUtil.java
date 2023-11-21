@@ -2,31 +2,20 @@ package br.com.coreeduc.adapters.outbound.authentication.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
-@Component
+import static org.yaml.snakeyaml.nodes.Tag.PREFIX;
+
+
 public class JWTUtil {
 
     @Value("${jwt.secret}")
-    private String secret;
+    private static String secret;
 
-    @Value("${jwt.expiration}")
-    private Long expiration;
-
-    public String generateToken(String username) {
-        return Jwts
-                .builder()
-                .setSubject(username)
-                .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(SignatureAlgorithm.HS512, secret.getBytes())
-                .compact();
-    }
-
-    public boolean tokenValido(String token) {
+    public static boolean tokenValido(String token) {
         Claims claims = getClaims(token);
         if (claims != null) {
             String username = claims.getSubject();
@@ -39,7 +28,7 @@ public class JWTUtil {
         return false;
     }
 
-    public String getUsername(String token) {
+    public static String getUsername(String token) {
         Claims claims = getClaims(token);
         if (claims != null) {
             return claims.getSubject();
@@ -47,12 +36,26 @@ public class JWTUtil {
         return null;
     }
 
-    private Claims getClaims(String token) {
+    private static Claims getClaims(String token) {
         try {
             return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
+
+    public static String getTenant(HttpServletRequest req) {
+        String token = req.getHeader("Authorization");
+        if (token == null) {
+            return null;
+        }
+        String tenant = Jwts.parser()
+                .setSigningKey(secret.getBytes())
+                .parseClaimsJws(token.replace(PREFIX, ""))
+                .getBody()
+                .getAudience();
+        return tenant;
+    }
+
+
 }

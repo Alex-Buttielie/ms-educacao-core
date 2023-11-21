@@ -8,14 +8,15 @@
         <version>2.6.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <properties>
+        <java.version>17</java.version>
+        <spring-cloud.version>Greenwich.SR6</spring-cloud.version>
+    </properties>
     <groupId>br.com.core-educ</groupId>
     <artifactId>core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>core-educ</name>
     <description>core-educ</description>
-    <properties>
-        <java.version>17</java.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

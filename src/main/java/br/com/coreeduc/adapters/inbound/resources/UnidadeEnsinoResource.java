@@ -46,7 +46,7 @@ public class UnidadeEnsinoResource {
 
     @ApiOperation(value = "Busca unidade específica")
     @GetMapping("/unidade/{codigoInep}")
-    public ResponseEntity<Object> getOneEmail(@PathVariable(value = "codigoInep") Long codigoInep ) {
+    public ResponseEntity<Object> getOneEmail(@PathVariable(value = "codigoInep") Long codigoInep) {
         return (ResponseEntity<Object>) getServicePort()
                 .findById(codigoInep)
                 .map(unidade -> ResponseEntity.status(HttpStatus.OK).body(unidade))
