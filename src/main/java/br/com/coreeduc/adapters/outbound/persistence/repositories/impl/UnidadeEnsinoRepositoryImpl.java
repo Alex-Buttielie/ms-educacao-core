@@ -24,6 +24,9 @@ public class UnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort 
     @Autowired
     private UnidadeEnsinoRepository unidadeEnsinoRepository;
 
+    @Autowired
+    private PageRequest pageRequest;
+
     @Override
     public UnidadeEnsino save(UnidadeEnsino unidadeEnsino) {
         return Optional
@@ -37,8 +40,8 @@ public class UnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort 
     @Override
     public List<UnidadeEnsino> findAll() {
         try {
-            var lista =  unidadeEnsinoRepository
-                    .findAll(PageRequest.of(0, 10))
+            var lista = unidadeEnsinoRepository
+                    .findAll(pageRequest)
                     .stream()
                     .map(this::converterUnidadeEntityToUnidade)
                     .collect(Collectors.toList());

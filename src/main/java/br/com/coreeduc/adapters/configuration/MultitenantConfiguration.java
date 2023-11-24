@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -33,7 +32,7 @@ public class MultitenantConfiguration {
     @Bean
     @ConfigurationProperties(prefix = "tenants")
     public DataSource dataSource() {
-        var files = Paths.get(CAMINHO_TENANTS).toFile().listFiles();
+        var files = buscarFilesTenants();
         var resolvedDataSources = new HashMap<>();
 
         for (File propertyFile : files) {
@@ -53,12 +52,15 @@ public class MultitenantConfiguration {
             }
         }
 
-        AbstractRoutingDataSource dataSource = new MultitenantDataSource();
+        var dataSource = new MultitenantDataSource();
         dataSource.setDefaultTargetDataSource(resolvedDataSources.get(defaultTenant));
         dataSource.setTargetDataSources(resolvedDataSources);
         dataSource.afterPropertiesSet();
         return dataSource;
     }
 
+    public static File[] buscarFilesTenants() {
+        return Paths.get(CAMINHO_TENANTS).toFile().listFiles();
+    }
 
 }

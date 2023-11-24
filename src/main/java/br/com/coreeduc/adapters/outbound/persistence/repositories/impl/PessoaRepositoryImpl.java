@@ -24,6 +24,9 @@ public class PessoaRepositoryImpl implements PessoaRepositoryPort {
     @Autowired
     private PessoaRepository pessoaRepository;
 
+    @Autowired
+    private PageRequest pageRequest;
+
     @Override
     public Pessoa save(Pessoa pessoa) {
         return Optional
@@ -37,8 +40,8 @@ public class PessoaRepositoryImpl implements PessoaRepositoryPort {
     @Override
     public List<Pessoa> findAll() {
         try {
-            var lista =  pessoaRepository
-                    .findAll(PageRequest.of(0, 1000))
+            var lista = pessoaRepository
+                    .findAll(pageRequest)
                     .stream()
                     .map(this::convertsPessoaEntityFromPessoa)
                     .collect(Collectors.toList());
