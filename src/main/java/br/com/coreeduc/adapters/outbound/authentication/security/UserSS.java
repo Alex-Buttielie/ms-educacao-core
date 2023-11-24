@@ -1,9 +1,12 @@
 package br.com.coreeduc.adapters.outbound.authentication.security;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 
 public class UserSS implements UserDetails {
@@ -17,14 +20,13 @@ public class UserSS implements UserDetails {
     public UserSS() {
     }
 
-    public UserSS(Long idUser, String email, String password, String token) {
+    public UserSS(Long idUser, String email, String password, String token, String tenant) {
 
         super();
         this.idUser = idUser;
         this.email = email;
         this.password = password;
-        //this.authorities = perfis.stream().map(x -> new SimpleGrantedAuthority(x.getDescricao())).collect(Collectors.toList());
-
+        this.authorities = Collections.singletonList(new SimpleGrantedAuthority(tenant)).stream().collect(Collectors.toList());;
     }
 
     public Long getIdUser() {
@@ -66,7 +68,7 @@ public class UserSS implements UserDetails {
         return true;
     }
 
-    //public boolean hasRole(Perfil perfil) {
-    //  return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
-    //}
+    public boolean hasRole(String tenant) {
+      return getAuthorities().contains(new SimpleGrantedAuthority(tenant));
+    }
 }

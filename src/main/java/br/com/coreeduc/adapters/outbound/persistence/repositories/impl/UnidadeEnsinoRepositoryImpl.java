@@ -5,16 +5,19 @@ import br.com.coreeduc.adapters.outbound.persistence.repositories.UnidadeEnsinoR
 import br.com.coreeduc.aplication.domains.UnidadeEnsino;
 import br.com.coreeduc.aplication.ports.repositories.UnidadeEnsinoRepositoryPort;
 import br.com.coreeduc.aplication.utils.UtilMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
+@Slf4j
 public class UnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort {
     private final String MSG_ERRO_SALVAR_UNIDADE = "Ocorreu algum erro ao salvar a unidade de ensino";
     @Autowired
@@ -32,11 +35,21 @@ public class UnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort 
 
     @Override
     public List<UnidadeEnsino> findAll() {
-        return unidadeEnsinoRepository
+        try {
+            var lista =  unidadeEnsinoRepository
                 .findAll()
                 .stream()
                 .map(this::converterUnidadeEntityToUnidade)
                 .collect(Collectors.toList());
+
+            log.info("Unidades consultadas, quatidade: " + lista.stream().count());
+
+            return lista;
+
+        } catch (Exception e ){
+            log.error("Unidades não consultadas, erro: " + e.getMessage());
+            return Collections.emptyList();
+        }
 
     }
 

@@ -7,9 +7,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -20,12 +19,15 @@ import java.util.Collection;
 import java.util.Date;
 
 
-public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFilter {
+public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+    private AuthenticationManager authenticationManager;
+    private JWTUtil jwtUtil;
 
-
-    public JWTAuthenticationFilter(String url, AuthenticationManager authManager) {
-        super(new AntPathRequestMatcher(url));
+    public JWTAuthenticationFilter(AuthenticationManager authManager, JWTUtil jwtUtil) {
+        setAuthenticationFailureHandler(new JWTAuthenticationFailureHandler());
         setAuthenticationManager(authManager);
+        this.jwtUtil = jwtUtil;
+        this.authenticationManager = authManager;
     }
 
     @Override
@@ -33,8 +35,8 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
 
         try {
             CredentialsDTO creds = new ObjectMapper().readValue(req.getInputStream(), CredentialsDTO.class);
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword());
-            Authentication auth = getAuthenticationManager().authenticate(authToken);
+            var authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword());
+            Authentication auth = this.authenticationManager.authenticate(authToken);
             return auth;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -53,7 +55,7 @@ public class JWTAuthenticationFilter extends AbstractAuthenticationProcessingFil
             tenant = gauth.getAuthority();
         }
         String username = ((UserSS) auth.getPrincipal()).getUsername();
-        String token = AuthenticationService.generateToken(username, tenant);
+        String token = jwtUtil.generateToken(username, tenant);
         res.addHeader("Authorization", "Bearer " + token);
         res.addHeader("access-control-expose-headers", "Authorization");
         res.setContentType("application/json");

@@ -11,7 +11,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -31,7 +30,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-@DynamicUpdate
 public class UnidadeEnsinoEntity {
 
     @Id

@@ -21,7 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return Optional
                 .ofNullable(repo.findByEmail(email))
-                .map(user -> new UserSS(user.getIdUser(), user.getEmail(), user.getPasswordUser(), null))
+                .map(user -> new UserSS(user.getIdUser(), user.getEmail(), user.getPasswordUser(), null, user.getTenant()))
                 .orElseThrow(() -> new UsernameNotFoundException(email));
     }
 

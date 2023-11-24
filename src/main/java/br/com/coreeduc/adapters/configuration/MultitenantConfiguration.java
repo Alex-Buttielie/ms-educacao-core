@@ -27,7 +27,7 @@ public class MultitenantConfiguration {
     @Bean
     @ConfigurationProperties(prefix = "tenants")
     public DataSource dataSource() {
-        var files = Paths.get("src/main/resources/allTenants").toFile().listFiles();
+        var files = Paths.get("src/main/allTenants").toFile().listFiles();
         var resolvedDataSources = new HashMap<>();
 
         for (File propertyFile : files) {
