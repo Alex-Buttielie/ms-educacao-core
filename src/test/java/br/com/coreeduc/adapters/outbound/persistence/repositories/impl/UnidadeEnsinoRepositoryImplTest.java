@@ -27,6 +27,8 @@ class UnidadeEnsinoRepositoryImplTest {
     private UnidadeEnsinoRepositoryImpl repository;
     @Mock
     private UnidadeEnsinoRepository unidadeEnsinoRepository;
+    @Mock
+    private PageRequest pageRequest;
     private UnidadeEnsinoEntity unidadeEnsinoEntity;
     private Optional<UnidadeEnsinoEntity> unidadeEnsinoEntityOptional;
     private UnidadeEnsino unidadeEnsino;
@@ -50,7 +52,7 @@ class UnidadeEnsinoRepositoryImplTest {
 
     @Test
     void deveBuscarListaDeUnidades() {
-        when(unidadeEnsinoRepository.findAll(PageRequest.of(0, 10))).thenReturn(new PageImpl<>(Collections.singletonList(unidadeEnsinoEntity)));
+        when(unidadeEnsinoRepository.findAll(pageRequest)).thenReturn(new PageImpl<>(Collections.singletonList(unidadeEnsinoEntity)));
         var retorno = repository.findAll();
         Assert.assertFalse(retorno.isEmpty());
     }
