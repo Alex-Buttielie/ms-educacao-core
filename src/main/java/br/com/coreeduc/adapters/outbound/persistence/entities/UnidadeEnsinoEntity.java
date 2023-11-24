@@ -162,8 +162,9 @@ public class UnidadeEnsinoEntity {
     @JoinColumn()
     @JsonFormat
     private QuantidadeComputadoresEmUsoAlunosEntity quantidadeComputadoresEmUsoAlunos;
-    @OneToOne
-    @JoinColumn(nullable = false, unique = false)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
     private AcessoInternetEntity acessoInternet;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()

@@ -28,5 +28,3 @@ INSERT INTO area_pos_graduacao (codigo, nome)
 VALUES (8, 'SERVIÇOS');
 INSERT INTO area_pos_graduacao (codigo, nome)
 VALUES (9, 'OUTROS');
-INSERT INTO unidade_ensino (codigo_inep, nome)
-VALUES (52104346, 'ESCOLA MUNICIPAL MARIA EDUARDA CONDINHO FILGUEIRAS');

@@ -8,9 +8,11 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @Component
 @Order(1)
@@ -21,7 +23,7 @@ class TenantFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
-                         FilterChain chain) {
+                         FilterChain chain) throws ServletException, IOException {
 
         HttpServletRequest req = (HttpServletRequest) request;
         String tenant = jwtUtil.getTenant(req);
@@ -29,8 +31,6 @@ class TenantFilter implements Filter {
 
         try {
             chain.doFilter(request, response);
-        } catch (Exception e){
-            e.printStackTrace();
         } finally {
             SecurityContextHolder.clearContext();
             TenantContext.setCurrentTenant("");

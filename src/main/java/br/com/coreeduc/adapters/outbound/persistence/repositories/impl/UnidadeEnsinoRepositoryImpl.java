@@ -8,6 +8,7 @@ import br.com.coreeduc.aplication.utils.UtilMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -37,12 +38,12 @@ public class UnidadeEnsinoRepositoryImpl implements UnidadeEnsinoRepositoryPort 
     public List<UnidadeEnsino> findAll() {
         try {
             var lista =  unidadeEnsinoRepository
-                .findAll()
-                .stream()
-                .map(this::converterUnidadeEntityToUnidade)
-                .collect(Collectors.toList());
+                    .findAll(PageRequest.of(0, 10))
+                    .stream()
+                    .map(this::converterUnidadeEntityToUnidade)
+                    .collect(Collectors.toList());
 
-            log.info("Unidades consultadas, quatidade: " + lista.stream().count());
+            log.info("Unidades consultadas, quantidade: " + lista.stream().count());
 
             return lista;
 

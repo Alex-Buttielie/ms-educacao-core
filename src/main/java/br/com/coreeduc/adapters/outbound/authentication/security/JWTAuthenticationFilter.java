@@ -2,6 +2,7 @@ package br.com.coreeduc.adapters.outbound.authentication.security;
 
 import br.com.coreeduc.adapters.outbound.authentication.dto.CredentialsDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,7 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Date;
 
 
@@ -34,9 +34,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
 
         try {
-            CredentialsDTO creds = new ObjectMapper().readValue(req.getInputStream(), CredentialsDTO.class);
+            var creds = new ObjectMapper().readValue(req.getInputStream(), CredentialsDTO.class);
             var authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getPassword());
-            Authentication auth = this.authenticationManager.authenticate(authToken);
+            var auth = this.authenticationManager.authenticate(authToken);
             return auth;
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -49,8 +49,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 
-        Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
-        String tenant = "";
+        var authorities = auth.getAuthorities();
+        String tenant = new String();
         for (GrantedAuthority gauth : authorities) {
             tenant = gauth.getAuthority();
         }
@@ -75,7 +75,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         @Override
         public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
                 throws IOException {
-            response.setStatus(401);
+            response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setContentType("application/json");
             response.getWriter().append(json());
         }

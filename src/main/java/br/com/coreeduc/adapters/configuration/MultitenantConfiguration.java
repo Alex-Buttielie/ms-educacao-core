@@ -23,24 +23,30 @@ public class MultitenantConfiguration {
 
     @Value("${defaultTenant}")
     private String defaultTenant;
+    private static final String CAMINHO_TENANTS = "src/main/allTenants";
+    private static final String PROP_NAME_TENANT = "name";
+    private static final String PROP_NAME_DATASOURCE_TENANT = "datasource.driver-class-name";
+    private static final String PROP_USERNAME_TENANT = "datasource.username";
+    private static final String PROP_PASSWORD_TENANT = "datasource.password";
+    private static final String PROP_URL_TENANT = "datasource.url";
 
     @Bean
     @ConfigurationProperties(prefix = "tenants")
     public DataSource dataSource() {
-        var files = Paths.get("src/main/allTenants").toFile().listFiles();
+        var files = Paths.get(CAMINHO_TENANTS).toFile().listFiles();
         var resolvedDataSources = new HashMap<>();
 
         for (File propertyFile : files) {
             var tenantProperties = new Properties();
-            DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+            var dataSourceBuilder = DataSourceBuilder.create();
 
             try {
                 tenantProperties.load(new FileInputStream(propertyFile));
-                String tenantId = tenantProperties.getProperty("name");
-                dataSourceBuilder.driverClassName(tenantProperties.getProperty("datasource.driver-class-name"));
-                dataSourceBuilder.username(tenantProperties.getProperty("datasource.username"));
-                dataSourceBuilder.password(tenantProperties.getProperty("datasource.password"));
-                dataSourceBuilder.url(tenantProperties.getProperty("datasource.url"));
+                String tenantId = tenantProperties.getProperty(PROP_NAME_TENANT);
+                dataSourceBuilder.driverClassName(tenantProperties.getProperty(PROP_NAME_DATASOURCE_TENANT));
+                dataSourceBuilder.username(tenantProperties.getProperty(PROP_USERNAME_TENANT));
+                dataSourceBuilder.password(tenantProperties.getProperty(PROP_PASSWORD_TENANT));
+                dataSourceBuilder.url(tenantProperties.getProperty(PROP_URL_TENANT));
                 resolvedDataSources.put(tenantId, dataSourceBuilder.build());
             } catch (IOException exp) {
                 throw new RuntimeException("Problem in tenant datasource:" + exp);
@@ -50,7 +56,6 @@ public class MultitenantConfiguration {
         AbstractRoutingDataSource dataSource = new MultitenantDataSource();
         dataSource.setDefaultTargetDataSource(resolvedDataSources.get(defaultTenant));
         dataSource.setTargetDataSources(resolvedDataSources);
-
         dataSource.afterPropertiesSet();
         return dataSource;
     }

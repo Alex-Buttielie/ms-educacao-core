@@ -1,4 +1,4 @@
-package br.com.coreeduc.application;
+package br.com.coreeduc.application.ports.services;
 
 import br.com.coreeduc.aplication.domains.UnidadeEnsino;
 import br.com.coreeduc.aplication.ports.repositories.UnidadeEnsinoRepositoryPort;
