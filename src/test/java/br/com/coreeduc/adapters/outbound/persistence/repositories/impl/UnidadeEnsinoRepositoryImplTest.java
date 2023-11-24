@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -48,7 +50,7 @@ class UnidadeEnsinoRepositoryImplTest {
 
     @Test
     void deveBuscarListaDeUnidades() {
-        when(unidadeEnsinoRepository.findAll()).thenReturn(Collections.singletonList(unidadeEnsinoEntity));
+        when(unidadeEnsinoRepository.findAll(PageRequest.of(0, 10))).thenReturn(new PageImpl<>(Collections.singletonList(unidadeEnsinoEntity)));
         var retorno = repository.findAll();
         Assert.assertFalse(retorno.isEmpty());
     }
