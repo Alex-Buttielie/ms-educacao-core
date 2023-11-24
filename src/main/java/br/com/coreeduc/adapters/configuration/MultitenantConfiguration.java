@@ -39,17 +39,14 @@ public class MultitenantConfiguration {
             var tenantProperties = new Properties();
             var dataSourceBuilder = DataSourceBuilder.create();
 
-            try {
-                tenantProperties.load(new FileInputStream(propertyFile));
-                String tenantId = tenantProperties.getProperty(PROP_NAME_TENANT);
-                dataSourceBuilder.driverClassName(tenantProperties.getProperty(PROP_NAME_DATASOURCE_TENANT));
-                dataSourceBuilder.username(tenantProperties.getProperty(PROP_USERNAME_TENANT));
-                dataSourceBuilder.password(tenantProperties.getProperty(PROP_PASSWORD_TENANT));
-                dataSourceBuilder.url(tenantProperties.getProperty(PROP_URL_TENANT));
-                resolvedDataSources.put(tenantId, dataSourceBuilder.build());
-            } catch (IOException exp) {
-                throw new RuntimeException("Problem in tenant datasource:" + exp);
-            }
+            this.carregarPropriedadesTenant(tenantProperties, propertyFile);
+
+            String tenantId = tenantProperties.getProperty(PROP_NAME_TENANT);
+            dataSourceBuilder.driverClassName(tenantProperties.getProperty(PROP_NAME_DATASOURCE_TENANT));
+            dataSourceBuilder.username(tenantProperties.getProperty(PROP_USERNAME_TENANT));
+            dataSourceBuilder.password(tenantProperties.getProperty(PROP_PASSWORD_TENANT));
+            dataSourceBuilder.url(tenantProperties.getProperty(PROP_URL_TENANT));
+            resolvedDataSources.put(tenantId, dataSourceBuilder.build());
         }
 
         var dataSource = new MultitenantDataSource();
@@ -57,6 +54,14 @@ public class MultitenantConfiguration {
         dataSource.setTargetDataSources(resolvedDataSources);
         dataSource.afterPropertiesSet();
         return dataSource;
+    }
+
+    public void carregarPropriedadesTenant (Properties tenantProperties, File propertyFile) {
+        try {
+            tenantProperties.load(new FileInputStream(propertyFile));
+        } catch (IOException | NullPointerException exp) {
+            throw new RuntimeException("Problem in tenant datasource:" + exp);
+        }
     }
 
     public static File[] buscarFilesTenants() {

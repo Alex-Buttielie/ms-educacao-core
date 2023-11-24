@@ -7,7 +7,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.File;
 import java.util.Arrays;
+import java.util.Properties;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 public class MultitenantConfigurationTest {
@@ -27,11 +31,16 @@ public class MultitenantConfigurationTest {
         Assert.notNull(file);
     }
 
-
     @Test
     public void deveBuscarDataSource() {
         var dataSource = multitenantConfiguration.dataSource();
         Assert.notNull(dataSource);
+    }
+
+    @Test
+    public void deveSoltarExceptionAoCarregarPropriedadesTenant() {
+        assertThrows(RuntimeException.class, () -> multitenantConfiguration.carregarPropriedadesTenant(null, null));
+        assertThrows(RuntimeException.class, () -> multitenantConfiguration.carregarPropriedadesTenant(new Properties(), new File("")));
     }
 
 }
