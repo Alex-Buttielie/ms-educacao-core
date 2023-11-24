@@ -6,7 +6,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
@@ -27,11 +26,11 @@ public class JWTUtil {
     UserDetailsService userDetailsService;
 
     public boolean tokenValido(String token) {
-        Claims claims = getClaims(token);
+        var claims = getClaims(token);
         if (claims != null) {
-            String username = claims.getSubject();
-            Date expirationDate = claims.getExpiration();
-            Date now = new Date(System.currentTimeMillis());
+            var username = claims.getSubject();
+            var expirationDate = claims.getExpiration();
+            var now = new Date(System.currentTimeMillis());
             if (username != null && expirationDate != null && now.before(expirationDate)) {
                 return true;
             }
@@ -50,7 +49,7 @@ public class JWTUtil {
     }
 
     public String getUsername(String token) {
-        Claims claims = getClaims(token);
+        var claims = getClaims(token);
         if (claims != null) {
             return claims.getSubject();
         }
@@ -59,8 +58,8 @@ public class JWTUtil {
 
     public UsernamePasswordAuthenticationToken getAuthentication(String token) {
         if (tokenValido(token)) {
-            String username = getUsername(token);
-            UserDetails user = userDetailsService.loadUserByUsername(username);
+            var username = getUsername(token);
+            var user = userDetailsService.loadUserByUsername(username);
             return new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         }
         return null;
@@ -75,7 +74,7 @@ public class JWTUtil {
     }
 
     public String getTenant(HttpServletRequest req) {
-        String token = req.getHeader("Authorization");
+        var token = req.getHeader("Authorization");
         if (token == null) {
             return null;
         }

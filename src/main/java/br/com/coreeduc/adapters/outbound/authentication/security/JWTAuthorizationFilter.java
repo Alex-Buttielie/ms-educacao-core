@@ -1,7 +1,6 @@
 package br.com.coreeduc.adapters.outbound.authentication.security;
 
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -30,9 +29,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                                     HttpServletResponse response,
                                     FilterChain chain) throws IOException, ServletException {
 
-        String header = request.getHeader("Authorization");
+        var header = request.getHeader("Authorization");
         if (header != null && header.startsWith("Bearer ")) {
-            Authentication auth = jwtUtil.getAuthentication(header.substring(7));
+            var auth = jwtUtil.getAuthentication(header.substring(7));
             if (auth != null) {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }

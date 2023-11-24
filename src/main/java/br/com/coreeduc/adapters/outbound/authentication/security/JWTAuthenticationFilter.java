@@ -54,8 +54,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         for (GrantedAuthority gauth : authorities) {
             tenant = gauth.getAuthority();
         }
-        String username = ((UserSS) auth.getPrincipal()).getUsername();
-        String token = jwtUtil.generateToken(username, tenant);
+        var username = ((UserSS) auth.getPrincipal()).getUsername();
+        var token = jwtUtil.generateToken(username, tenant);
         res.addHeader("Authorization", "Bearer " + token);
         res.addHeader("access-control-expose-headers", "Authorization");
         res.setContentType("application/json");
@@ -81,7 +81,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
 
         private String json() {
-            long date = new Date().getTime();
+            var date = new Date().getTime();
             logger.fatal("Login não realizado!");
             return "{\"timestamp\": " + date + ", "
                     + "\"status\": 401, "

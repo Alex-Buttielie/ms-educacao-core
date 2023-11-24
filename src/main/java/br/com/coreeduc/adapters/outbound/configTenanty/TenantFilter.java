@@ -25,8 +25,8 @@ class TenantFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws ServletException, IOException {
 
-        HttpServletRequest req = (HttpServletRequest) request;
-        String tenant = jwtUtil.getTenant(req);
+        var req = (HttpServletRequest) request;
+        var tenant = jwtUtil.getTenant(req);
         TenantContext.setCurrentTenant(tenant);
 
         try {
