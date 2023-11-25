@@ -56,7 +56,7 @@ public class MultitenantConfiguration {
         return dataSource;
     }
 
-    public void carregarPropriedadesTenant (Properties tenantProperties, File propertyFile) {
+    protected void carregarPropriedadesTenant (Properties tenantProperties, File propertyFile) {
         try {
             tenantProperties.load(new FileInputStream(propertyFile));
         } catch (IOException | NullPointerException exp) {
@@ -64,7 +64,7 @@ public class MultitenantConfiguration {
         }
     }
 
-    public static File[] buscarFilesTenants() {
+    protected static File[] buscarFilesTenants() {
         return Paths.get(CAMINHO_TENANTS).toFile().listFiles();
     }
 

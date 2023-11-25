@@ -3,7 +3,6 @@ package br.com.coreeduc.adapters.configuration;
 import br.com.coreeduc.aplication.ports.repositories.PessoaRepositoryPort;
 import br.com.coreeduc.aplication.ports.repositories.UnidadeEnsinoRepositoryPort;
 import io.jsonwebtoken.lang.Assert;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,11 +19,6 @@ public class BeanConfigurationTest {
 
     @InjectMocks
     private BeanConfiguration beanConfiguration;
-
-    @BeforeEach
-    private void init() {
-
-    }
 
     @Test
     public void deveBuscarBeanUnidadeEnsinoServiceImpl() {
