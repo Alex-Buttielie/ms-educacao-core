@@ -3,8 +3,8 @@ package br.com.coreeduc.adapters.configuration;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiKey;
@@ -14,16 +14,13 @@ import springfox.documentation.spring.web.plugins.Docket;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class SwaggerConfiguracaoTest {
 
     private final SwaggerConfiguracao swaggerConfiguracao = new SwaggerConfiguracao();
-    @Value("${host-swagger}")
-    private String EXPECTED_HOST;
-    @Value("${server.port}")
-    private String EXPECTED_PORT;
-    @Value("${versao}")
-    private String EXPECTED_VERSION;
+    private final String EXPECTED_HOST = new String("localhost");
+    private final String EXPECTED_PORT = new String("8080");
+    private final String EXPECTED_VERSION = new String("1.0");
 
     @BeforeEach
     public void init() {
