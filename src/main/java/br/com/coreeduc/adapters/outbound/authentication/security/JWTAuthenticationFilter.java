@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
 
-
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
     private JWTUtil jwtUtil;
@@ -70,11 +69,17 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 + "\"token\": \"" + token + "\"}";
     }
 
-    private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {
+    public void handleAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+                                            AuthenticationException exception) throws IOException, ServletException {
+        getFailureHandler().onAuthenticationFailure(request, response, exception);
+    }
+
+    private  class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
         @Override
-        public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
-                throws IOException {
+        public void onAuthenticationFailure(HttpServletRequest request,
+                                            HttpServletResponse response,
+                                            AuthenticationException exception) throws IOException {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setContentType("application/json");
             response.getWriter().append(json());
