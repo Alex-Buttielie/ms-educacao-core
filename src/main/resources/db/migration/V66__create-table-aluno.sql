@@ -1,9 +1,11 @@
 CREATE SEQUENCE ALUNO_ID_SEQ;
 
-CREATE TABLE IF  NOT EXISTS ALUNO (id INTEGER UNIQUE DEFAULT nextval('ALUNO_ID_SEQ'),
-                                   pessoa_id INTEGER,
-                                   CONSTRAINT fk_pessoa FOREIGN KEY (pessoa_id)
-                                       REFERENCES pessoa (id)
+CREATE TABLE IF NOT EXISTS ALUNO
+(
+    id        INTEGER UNIQUE DEFAULT nextval('ALUNO_ID_SEQ'),
+    pessoa_id INTEGER,
+    CONSTRAINT fk_pessoa FOREIGN KEY (pessoa_id)
+        REFERENCES pessoa (id)
 );
 
 ALTER SEQUENCE ALUNO_ID_SEQ

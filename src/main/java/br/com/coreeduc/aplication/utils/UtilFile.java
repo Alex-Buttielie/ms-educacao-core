@@ -19,7 +19,7 @@ public class UtilFile {
     }
 
     public UnidadeEnsino convertsUnidadeFromSpringToUnidadeEntity(UnidadeEnsinoEntity unidadeEnsinoEntity) {
-        return  Optional.ofNullable(unidadeEnsinoEntity).map(converts()).orElse(new UnidadeEnsino());
+        return Optional.ofNullable(unidadeEnsinoEntity).map(converts()).orElse(new UnidadeEnsino());
     }
 
     private Function<UnidadeEnsinoEntity, UnidadeEnsino> converts() {

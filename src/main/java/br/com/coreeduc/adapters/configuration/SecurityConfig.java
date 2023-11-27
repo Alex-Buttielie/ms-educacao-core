@@ -6,9 +6,9 @@ import br.com.coreeduc.adapters.outbound.authentication.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,64 +24,52 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final String[] PUBLIC_MATCHERS_GET = {
-            /*"/usuariosController/**",*/
-            "/auth/**"
-    };
-
-    private static final String[] PUBLIC_MATCHERS_POST = {
-            /*"/usuariosController/**",*/
-            "/auth/**"
-    };
+    private static final String[] PUBLIC_MATCHERS_AUTH = {"/auth/**"};
+    private static final String[] PUBLIC_MATCHERS_AUTHORIZATION = {"/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**"};
 
     @Autowired
     private UserDetailsService userDetailsService;
-
     @Autowired
     private JWTUtil jwtUtil;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil,  userDetailsService))
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .cors()
                 .and()
                 .csrf()
-                .disable();
-
-        http
+                .disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST)
+                .antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_AUTH)
                 .permitAll()
-                .antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET)
+                .antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_AUTH)
                 .permitAll()
                 .anyRequest()
                 .authenticated();
-
-        http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
-        http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
+
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
+        web.ignoring().antMatchers(PUBLIC_MATCHERS_AUTHORIZATION);
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
+    public CorsConfigurationSource corsConfigurationSource() {
+        var configuration = new CorsConfiguration().applyPermitDefaultValues();
         configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final var source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
@@ -90,5 +78,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
 }

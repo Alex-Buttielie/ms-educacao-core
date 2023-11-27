@@ -16,19 +16,24 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements EmailService {
 
     private static final String MENSAGEM_EMAIL_ENVIADO_COM_SUCESSO = "Email enviado com sucesso!";
-    private static final String MENSAGEM_EMAIL_NAO_ENVIADO = "Erro ao enviar email." ;
+    private static final String MENSAGEM_EMAIL_NAO_ENVIADO = "Erro ao enviar email.";
 
     private static final Logger LOG = LoggerFactory.getLogger(EmailService.class);
 
-    @Autowired
     private JavaMailSender mailSender;
+
+    private EmailClient emailClient;
+
     @Autowired
-    private EmailClient client;
+    public EmailServiceImpl(JavaMailSender mailSender, EmailClient emailClient) {
+        this.mailSender = mailSender;
+        this.emailClient = emailClient;
+    }
 
     @Override
     public String sendMail(EmailDto dto) {
         try {
-            client.enviarEmail(dto);
+            emailClient.enviarEmail(dto);
             LOG.info(this.MENSAGEM_EMAIL_ENVIADO_COM_SUCESSO);
             return this.MENSAGEM_EMAIL_ENVIADO_COM_SUCESSO;
         } catch (Exception e) {

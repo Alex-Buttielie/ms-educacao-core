@@ -3,7 +3,6 @@ package br.com.coreeduc.adapters.outbound.persistence.repositories.impl;
 
 import br.com.coreeduc.adapters.outbound.persistence.entities.PessoaEntity;
 import br.com.coreeduc.adapters.outbound.persistence.repositories.PessoaRepository;
-import br.com.coreeduc.adapters.outbound.persistence.repositories.impl.PessoaRepositoryImpl;
 import br.com.coreeduc.aplication.domains.Pessoa;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,8 +32,8 @@ class PessoaRepositoryImplTest {
 
     @BeforeEach
     void init() {
-        pessoaEntity =  PessoaEntity.builder().id(1l).build();
-        pessoaEntityOptional =  Optional.of(PessoaEntity.builder().id(1l).build());
+        pessoaEntity = PessoaEntity.builder().id(1l).build();
+        pessoaEntityOptional = Optional.of(PessoaEntity.builder().id(1l).build());
         pessoa = new Pessoa();
         pessoa.setId(pessoaEntity.getId());
 

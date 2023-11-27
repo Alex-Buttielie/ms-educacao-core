@@ -41,14 +41,15 @@ public class SwaggerConfiguracao {
     }
 
     @Bean
-    SecurityScheme apiKey() {
+    protected SecurityScheme apiKey() {
         return new ApiKey("Authorization", "Authorization", "header");
     }
 
-    private String getHost() {
+    protected String getHost() {
         return host.concat(":").concat(port);
     }
-    ApiInfo apiInfo() {
+
+    protected ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("Sistema educacional")
                 .description("End-points do sistema")
                 .version(version)

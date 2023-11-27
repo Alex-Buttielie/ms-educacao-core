@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/unidade-ensino")
+@Transactional
 public class UnidadeEnsinoResource {
 
     private UnidadeEnsinoServicePort servicePort;
@@ -46,7 +48,7 @@ public class UnidadeEnsinoResource {
 
     @ApiOperation(value = "Busca unidade específica")
     @GetMapping("/unidade/{codigoInep}")
-    public ResponseEntity<Object> getOneEmail(@PathVariable(value = "codigoInep") Long codigoInep ) {
+    public ResponseEntity<Object> getOneEmail(@PathVariable(value = "codigoInep") Long codigoInep) {
         return (ResponseEntity<Object>) getServicePort()
                 .findById(codigoInep)
                 .map(unidade -> ResponseEntity.status(HttpStatus.OK).body(unidade))

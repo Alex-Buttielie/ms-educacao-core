@@ -1,8 +1,10 @@
 CREATE SEQUENCE COMPOSICAO_ENSINO_ID_SEQ;
 
-CREATE TABLE IF  NOT EXISTS COMPOSICAO_ENSINO (id INTEGER UNIQUE DEFAULT nextval('COMPOSICAO_ENSINO_ID_SEQ'),
-                                               nome varchar (70),
-                                               criterio_avaliacao_id INTEGER
+CREATE TABLE IF NOT EXISTS COMPOSICAO_ENSINO
+(
+    id                    INTEGER UNIQUE DEFAULT nextval('COMPOSICAO_ENSINO_ID_SEQ'),
+    nome                  varchar(70),
+    criterio_avaliacao_id INTEGER
 
 );
 

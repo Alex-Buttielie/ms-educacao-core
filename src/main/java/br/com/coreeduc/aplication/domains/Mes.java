@@ -20,9 +20,11 @@ public class Mes {
     public void setMes(Integer mes) {
         this.mes = mes;
     }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }

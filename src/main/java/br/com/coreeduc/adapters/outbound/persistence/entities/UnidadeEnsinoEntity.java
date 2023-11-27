@@ -11,7 +11,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -31,7 +30,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-@DynamicUpdate
 public class UnidadeEnsinoEntity {
 
     @Id
@@ -164,8 +162,9 @@ public class UnidadeEnsinoEntity {
     @JoinColumn()
     @JsonFormat
     private QuantidadeComputadoresEmUsoAlunosEntity quantidadeComputadoresEmUsoAlunos;
-    @OneToOne
-    @JoinColumn(nullable = false, unique = false)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
     private AcessoInternetEntity acessoInternet;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()

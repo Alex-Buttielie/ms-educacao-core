@@ -62,5 +62,8 @@ public class UserEntity {
     @Basic
     @Column(name = "user_typer")
     private Integer userTyper;
+    @Basic
+    @Column(name = "tenant")
+    private String tenant;
 
 }

@@ -2,8 +2,8 @@ package br.com.coreeduc.aplication.domains.contraints;
 
 public enum UserType {
 
-    ADMINISTRADOR (1, "Administrador"),
-    FUNCIONARIO (2, "Funcionario");
+    ADMINISTRADOR(1, "Administrador"),
+    FUNCIONARIO(2, "Funcionario");
 
     private String description;
     private Number code;
@@ -13,11 +13,11 @@ public enum UserType {
         this.description = description;
     }
 
-    public String getDescription () {
+    public String getDescription() {
         return description;
     }
 
-    public Number getCode () {
+    public Number getCode() {
         return code;
     }
 }

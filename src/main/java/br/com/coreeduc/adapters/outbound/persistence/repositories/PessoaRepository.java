@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface PessoaRepository extends JpaRepository<PessoaEntity, Long> {
     Optional<PessoaEntity> findPessoaByCpf(String cpf);
+
     Optional<PessoaEntity> findPessoaByNome(String nome);
 }

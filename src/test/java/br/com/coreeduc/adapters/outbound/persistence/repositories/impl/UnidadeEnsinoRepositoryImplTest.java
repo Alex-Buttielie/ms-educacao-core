@@ -11,6 +11,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -25,6 +27,8 @@ class UnidadeEnsinoRepositoryImplTest {
     private UnidadeEnsinoRepositoryImpl repository;
     @Mock
     private UnidadeEnsinoRepository unidadeEnsinoRepository;
+    @Mock
+    private PageRequest pageRequest;
     private UnidadeEnsinoEntity unidadeEnsinoEntity;
     private Optional<UnidadeEnsinoEntity> unidadeEnsinoEntityOptional;
     private UnidadeEnsino unidadeEnsino;
@@ -32,8 +36,8 @@ class UnidadeEnsinoRepositoryImplTest {
 
     @BeforeEach
     void init() {
-        unidadeEnsinoEntity =  UnidadeEnsinoEntity.builder().codigoInep(1l).build();
-        unidadeEnsinoEntityOptional =  Optional.of(UnidadeEnsinoEntity.builder().codigoInep(1l).build());
+        unidadeEnsinoEntity = UnidadeEnsinoEntity.builder().codigoInep(1l).build();
+        unidadeEnsinoEntityOptional = Optional.of(UnidadeEnsinoEntity.builder().codigoInep(1l).build());
         unidadeEnsino = new UnidadeEnsino();
         unidadeEnsino.setCodigoInep(unidadeEnsinoEntity.getCodigoInep());
 
@@ -48,7 +52,7 @@ class UnidadeEnsinoRepositoryImplTest {
 
     @Test
     void deveBuscarListaDeUnidades() {
-        when(unidadeEnsinoRepository.findAll()).thenReturn(Collections.singletonList(unidadeEnsinoEntity));
+        when(unidadeEnsinoRepository.findAll(pageRequest)).thenReturn(new PageImpl<>(Collections.singletonList(unidadeEnsinoEntity)));
         var retorno = repository.findAll();
         Assert.assertFalse(retorno.isEmpty());
     }

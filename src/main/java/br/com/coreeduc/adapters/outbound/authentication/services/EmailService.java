@@ -1,10 +1,9 @@
 package br.com.coreeduc.adapters.outbound.authentication.services;
 
 import br.com.coreeduc.adapters.outbound.http.EmailDto;
-import org.springframework.stereotype.Service;
 
 
-@Service
+//@Service
 public interface EmailService {
 
     String sendMail(EmailDto email);
