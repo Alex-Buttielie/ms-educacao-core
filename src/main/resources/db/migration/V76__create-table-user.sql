@@ -29,6 +29,4 @@ insert into TB_USER (ds_login,
                      sex,
                      user_typer)
 
-values ('Alex.Buttielie', 'Alex Buttielie', '70846792192',
-        '$2a$10$3XhhrCOssmvwSty2jH2CveJFyaybagNXzND2WC0SPFGcROvZt5ze.', '6796000', 'buttielle3@gmail.com', '2001-03-16',
-        '62994291748', now(), 1, 1);
+values ('ADMIN','Administrador','83766432079','$2a$10$3XhhrCOssmvwSty2jH2CveJFyaybagNXzND2WC0SPFGcROvZt5ze.','489336061','admin@gmail.com', '2001-03-01','6298617-2280',now(),1, 1);
