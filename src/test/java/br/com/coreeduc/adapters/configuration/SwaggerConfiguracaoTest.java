@@ -3,6 +3,7 @@ package br.com.coreeduc.adapters.configuration;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.util.ReflectionTestUtils;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -17,9 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SwaggerConfiguracaoTest {
 
     private final SwaggerConfiguracao swaggerConfiguracao = new SwaggerConfiguracao();
-    private final String EXPECTED_HOST = new String("localhost");
-    private final String EXPECTED_PORT = new String("8080");
-    private final String EXPECTED_VERSION = new String("1.0");
+    @Value("${host-swagger}")
+    private String EXPECTED_HOST;
+    @Value("${server.port}")
+    private String EXPECTED_PORT;
+    @Value("${versao}")
+    private String EXPECTED_VERSION;
 
     @BeforeEach
     public void init() {
@@ -63,5 +67,5 @@ public class SwaggerConfiguracaoTest {
         Assert.assertEquals(docketActual.getDocumentationType(), expectedDocket.getDocumentationType());
 
     }
-    
+
 }
