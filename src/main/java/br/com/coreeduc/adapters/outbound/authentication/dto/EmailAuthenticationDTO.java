@@ -10,6 +10,7 @@ import lombok.Setter;
 public class EmailAuthenticationDTO {
 
     private String email;
-    private String password;
+    private String lastPassword;
+    private String newPassword;
 
 }

@@ -1,6 +1,7 @@
 package br.com.coreeduc.adapters.outbound.authentication.services.impl;
 
 
+import br.com.coreeduc.adapters.inbound.resources.exceptions.AuthorizationException;
 import br.com.coreeduc.adapters.outbound.authentication.dto.EmailAuthenticationDTO;
 import br.com.coreeduc.adapters.outbound.authentication.services.AuthService;
 import br.com.coreeduc.adapters.outbound.authentication.services.EmailService;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 
 @Service
@@ -21,7 +23,7 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository repository;
 
     @Autowired
-    private BCryptPasswordEncoder pe;
+    protected BCryptPasswordEncoder pe;
     @Autowired
     private EmailService emailService;
 
@@ -33,17 +35,28 @@ public class AuthServiceImpl implements AuthService {
     public String sendNewPassword(EmailAuthenticationDTO dto) {
         return Optional
                 .ofNullable(getRepository().findByEmail(dto.getEmail()))
-                .map(user -> createNewPassword(user, dto.getPassword()))
-                .orElseThrow(() -> new RuntimeException("Verifique o e-mail informado, usuário não encontrado"));
+                .map(functionValidarSenhaInformada(dto))
+                .map(user -> createNewPassword(user, dto.getNewPassword(), dto.getLastPassword()))
+                .orElseThrow(() -> new AuthorizationException("Verifique o e-mail informado, usuário não encontrado"));
     }
 
-    private String createNewPassword(UserEntity user, String newPass) {
-        String newPasswordEncrypted = pe.encode(newPass);
+    protected Function<UserEntity, UserEntity> functionValidarSenhaInformada(EmailAuthenticationDTO dto) {
+        return user -> {
+            var isSenhaInformadaValida = pe.matches(dto.getLastPassword(), user.getPasswordUser());
+            return isSenhaInformadaValida ? user : null;
+        };
+    }
+
+    private String createNewPassword(UserEntity user, String newPass, String lastPassword) {
+        var newPasswordEncrypted = getSenhaCriptografada(newPass);
         user.setPasswordUser(newPasswordEncrypted);
         user = getRepository().save(user);
         EmailDto email = getEmailNewPassword(user, newPass);
         return emailService.sendMail(email);
     }
+     protected String getSenhaCriptografada(String password) {
+        return pe.encode(password);
+     }
 
     private EmailDto getEmailNewPassword(UserEntity user, String newPass) {
         return EmailDto
