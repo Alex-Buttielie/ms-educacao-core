@@ -60,6 +60,10 @@ public class TurmaEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private HorarioFuncionamentoTurmaEntity horarioFuncionamentoTurma;
+    private HorarioFuncionamentoTurmaEntity horarioFuncionamento;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private DiasSemanaTurmaEntity diasSemana;
 
 }

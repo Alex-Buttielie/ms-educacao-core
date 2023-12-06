@@ -14,6 +14,7 @@ public class Turma {
     private SalaAula salaAula;
     private UnidadeEnsino unidadeEnsino;
     private HorarioFuncionamentoTurma horarioFuncionamentoTurma;
+    private DiasSemanaTurma diasSemanaTurma;
 
     public Long getId() {
         return id;
@@ -87,4 +88,11 @@ public class Turma {
         this.horarioFuncionamentoTurma = horarioFuncionamentoTurma;
     }
 
+    public DiasSemanaTurma getDiasSemanaTurma() {
+        return diasSemanaTurma;
+    }
+
+    public void setDiasSemanaTurma(DiasSemanaTurma diasSemanaTurma) {
+        this.diasSemanaTurma = diasSemanaTurma;
+    }
 }
