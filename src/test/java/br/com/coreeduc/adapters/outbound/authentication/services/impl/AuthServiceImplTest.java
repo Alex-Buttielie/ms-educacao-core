@@ -16,6 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceImplTest {
 
@@ -43,13 +46,15 @@ public class AuthServiceImplTest {
                 .newPassword("654321")
                 .build();
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        service.pe = passwordEncoder;
-    }
 
+    }
     @Test
     public void deveTestarFuncaoValidarSenhaComSucesso() {
-        Assert.assertNotNull(Optional.of(userEntity).map(service.functionValidarSenhaInformada(email)));
+        when(pe.matches(anyString(), anyString())).thenReturn(Boolean.TRUE);
+        var retorno = Optional.of(userEntity).map(service.functionValidarSenhaInformada(email));
+        Assert.assertTrue(retorno.isPresent());
+        Assert.assertEquals(email.getEmail(), retorno.get().getEmail());
+        Assert.assertEquals(userEntity.getPasswordUser(), retorno.get().getPasswordUser());
     }
 
 

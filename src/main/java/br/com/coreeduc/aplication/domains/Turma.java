@@ -12,6 +12,8 @@ public class Turma {
     private TurnoEntity turnoEntity;
     private Date dataCriacao;
     private SalaAula salaAula;
+    private UnidadeEnsino unidadeEnsino;
+    private HorarioFuncionamentoTurma horarioFuncionamentoTurma;
 
     public Long getId() {
         return id;
@@ -68,4 +70,21 @@ public class Turma {
     public void setSalaAula(SalaAula salaAula) {
         this.salaAula = salaAula;
     }
+
+    public UnidadeEnsino getUnidadeEnsino() {
+        return unidadeEnsino;
+    }
+
+    public void setUnidadeEnsino(UnidadeEnsino unidadeEnsino) {
+        this.unidadeEnsino = unidadeEnsino;
+    }
+
+    public HorarioFuncionamentoTurma getHorarioFuncionamentoTurma() {
+        return horarioFuncionamentoTurma;
+    }
+
+    public void setHorarioFuncionamentoTurma(HorarioFuncionamentoTurma horarioFuncionamentoTurma) {
+        this.horarioFuncionamentoTurma = horarioFuncionamentoTurma;
+    }
+
 }

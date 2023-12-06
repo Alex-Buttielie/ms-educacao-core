@@ -53,5 +53,13 @@ public class TurmaEntity {
     @JoinColumn()
     @JsonFormat
     private SalaAulaEntity salaAula;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private UnidadeEnsinoEntity unidadeEnsino;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private HorarioFuncionamentoTurmaEntity horarioFuncionamentoTurma;
 
 }

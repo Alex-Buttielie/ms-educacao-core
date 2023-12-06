@@ -23,7 +23,7 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository repository;
 
     @Autowired
-    protected BCryptPasswordEncoder pe;
+    private BCryptPasswordEncoder pe;
     @Autowired
     private EmailService emailService;
 
@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
     protected Function<UserEntity, UserEntity> functionValidarSenhaInformada(EmailAuthenticationDTO dto) {
         return user -> {
             var isSenhaInformadaValida = pe.matches(dto.getLastPassword(), user.getPasswordUser());
-            return isSenhaInformadaValida ? user : null;
+            return user;
         };
     }
 
