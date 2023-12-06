@@ -1,3 +1,3 @@
-ALTER TABLE turma ADD unidade_id int NOT NULL;
-ALTER TABLE turma ADD codigo_turma int NOT NULL;
-ALTER TABLE turma ADD CONSTRAINT turma_fk FOREIGN KEY (unidade_id) REFERENCES unidade_ensino(id);
+ALTER TABLE turma ADD unidade_ensino_codigo_inep int;
+ALTER TABLE turma ADD codigo_turma varchar;
+ALTER TABLE turma ADD CONSTRAINT turma_unidade_fk FOREIGN KEY (unidade_ensino_codigo_inep) REFERENCES unidade_ensino(codigo_inep);
