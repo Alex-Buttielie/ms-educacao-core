@@ -22,6 +22,7 @@ public class Turma {
     private Boolean itinerarioInformativo;
     private Boolean naoSeAplica;
     private TipoAtividadeComplementar tipoAtividadeComplementar;
+    private FormaOrganizacaoTurma formaOrganizacaoTurma;
 
     public Long getId() {
         return id;
@@ -158,4 +159,13 @@ public class Turma {
     public void setTipoAtividadeComplementar(TipoAtividadeComplementar tipoAtividadeComplementar) {
         this.tipoAtividadeComplementar = tipoAtividadeComplementar;
     }
+
+    public FormaOrganizacaoTurma getFormaOrganizacaoTurma() {
+        return formaOrganizacaoTurma;
+    }
+
+    public void setFormaOrganizacaoTurma(FormaOrganizacaoTurma formaOrganizacaoTurma) {
+        this.formaOrganizacaoTurma = formaOrganizacaoTurma;
+    }
+
 }

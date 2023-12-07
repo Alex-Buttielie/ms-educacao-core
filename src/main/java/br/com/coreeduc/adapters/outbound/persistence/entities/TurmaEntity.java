@@ -87,6 +87,9 @@ public class TurmaEntity {
     @JoinColumn()
     @JsonFormat
     private TipoAtividadeComplementarEntity tipoAtividadeComplementar;
-
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private FormaOrganizacaoTurmaEntity formaOrganizacaoTurma;
 
 }
