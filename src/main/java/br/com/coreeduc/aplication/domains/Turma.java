@@ -23,6 +23,7 @@ public class Turma {
     private Boolean naoSeAplica;
     private TipoAtividadeComplementar tipoAtividadeComplementar;
     private FormaOrganizacaoTurma formaOrganizacaoTurma;
+    private UnidadeCurricularTurma unidadeCurricularTurma;
 
     public Long getId() {
         return id;
@@ -166,6 +167,14 @@ public class Turma {
 
     public void setFormaOrganizacaoTurma(FormaOrganizacaoTurma formaOrganizacaoTurma) {
         this.formaOrganizacaoTurma = formaOrganizacaoTurma;
+    }
+
+    public UnidadeCurricularTurma getUnidadeCurricularTurma() {
+        return unidadeCurricularTurma;
+    }
+
+    public void setUnidadeCurricularTurma(UnidadeCurricularTurma unidadeCurricularTurma) {
+        this.unidadeCurricularTurma = unidadeCurricularTurma;
     }
 
 }
