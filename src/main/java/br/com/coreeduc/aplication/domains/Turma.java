@@ -15,6 +15,13 @@ public class Turma {
     private UnidadeEnsino unidadeEnsino;
     private HorarioFuncionamentoTurma horarioFuncionamentoTurma;
     private DiasSemanaTurma diasSemanaTurma;
+    private Boolean escolarizacao;
+    private Boolean atividadeComplementar;
+    private Boolean atendimentoEspecializado;
+    private Boolean formacaoGeralBasica;
+    private Boolean itinerarioInformativo;
+    private Boolean naoSeAplica;
+    private TipoAtividadeComplementar tipoAtividadeComplementar;
 
     public Long getId() {
         return id;
@@ -94,5 +101,61 @@ public class Turma {
 
     public void setDiasSemanaTurma(DiasSemanaTurma diasSemanaTurma) {
         this.diasSemanaTurma = diasSemanaTurma;
+    }
+
+    public Boolean getEscolarizacao() {
+        return escolarizacao;
+    }
+
+    public void setEscolarizacao(Boolean escolarizacao) {
+        this.escolarizacao = escolarizacao;
+    }
+
+    public Boolean getAtividadeComplementar() {
+        return atividadeComplementar;
+    }
+
+    public void setAtividadeComplementar(Boolean atividadeComplementar) {
+        this.atividadeComplementar = atividadeComplementar;
+    }
+
+    public Boolean getAtendimentoEspecializado() {
+        return atendimentoEspecializado;
+    }
+
+    public void setAtendimentoEspecializado(Boolean atendimentoEspecializado) {
+        this.atendimentoEspecializado = atendimentoEspecializado;
+    }
+
+    public Boolean getFormacaoGeralBasica() {
+        return formacaoGeralBasica;
+    }
+
+    public void setFormacaoGeralBasica(Boolean formacaoGeralBasica) {
+        this.formacaoGeralBasica = formacaoGeralBasica;
+    }
+
+    public Boolean getItinerarioInformativo() {
+        return itinerarioInformativo;
+    }
+
+    public void setItinerarioInformativo(Boolean itinerarioInformativo) {
+        this.itinerarioInformativo = itinerarioInformativo;
+    }
+
+    public Boolean getNaoSeAplica() {
+        return naoSeAplica;
+    }
+
+    public void setNaoSeAplica(Boolean naoSeAplica) {
+        this.naoSeAplica = naoSeAplica;
+    }
+
+    public TipoAtividadeComplementar getTipoAtividadeComplementar() {
+        return tipoAtividadeComplementar;
+    }
+
+    public void setTipoAtividadeComplementar(TipoAtividadeComplementar tipoAtividadeComplementar) {
+        this.tipoAtividadeComplementar = tipoAtividadeComplementar;
     }
 }
