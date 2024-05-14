@@ -14,8 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Table(name = "acesso_internet")
-@Getter
-@Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

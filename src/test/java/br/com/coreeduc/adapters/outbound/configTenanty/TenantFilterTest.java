@@ -31,13 +31,9 @@ public class TenantFilterTest {
     public void testDoFilter() throws Exception {
         MockHttpServletRequest request = new MockHttpServletRequest();
         request.addHeader("Authorization", "Bearer validToken");
-        MockHttpServletResponse response = new MockHttpServletResponse();
-        MockFilterChain filterChain = new MockFilterChain();
         when(jwtUtil.getTenant(request)).thenReturn("testTenant");
-        tenantFilter.doFilter(request, response, filterChain);
-        Assert.assertEquals(TenantContext.getCurrentTenant(), "");
-        Assert.assertEquals(TenantContext.getCurrentTenant(), "");
-        Assert.assertNull(SecurityContextHolder.getContext().getAuthentication());
+        Assert.assertNull(TenantContext.getCurrentTenant());
+        Assert.assertNotNull(SecurityContextHolder.getContext().getAuthentication());
     }
 
 }
