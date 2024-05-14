@@ -1,5 +1,6 @@
 package br.com.coreeduc.adapters.configuration;
 
+import br.com.coreeduc.adapters.outbound.configTenanty.DataSourcesProperties;
 import br.com.coreeduc.adapters.outbound.configTenanty.MultitenantDataSource;
 import lombok.RequiredArgsConstructor;
 import org.flywaydb.core.Flyway;

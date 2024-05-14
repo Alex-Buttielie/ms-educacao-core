@@ -1,6 +1,5 @@
-package br.com.coreeduc.adapters.configuration;
+package br.com.coreeduc.adapters.outbound.configTenanty;
 
-import br.com.coreeduc.adapters.outbound.configTenanty.TenantContext;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.context.request.WebRequest;

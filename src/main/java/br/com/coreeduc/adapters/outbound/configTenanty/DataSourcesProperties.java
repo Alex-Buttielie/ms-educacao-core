@@ -1,6 +1,5 @@
-package br.com.coreeduc.adapters.configuration;
+package br.com.coreeduc.adapters.outbound.configTenanty;
 
-import br.com.coreeduc.adapters.outbound.configTenanty.MultitenantDataSource;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
