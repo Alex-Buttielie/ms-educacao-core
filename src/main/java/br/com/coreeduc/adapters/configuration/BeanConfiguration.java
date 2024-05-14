@@ -40,9 +40,4 @@ public class BeanConfiguration {
         return PageRequest.of(INICIO_PAGES, default_quantidade_pages);
     }
 
-    @Bean
-    InterceptorRegistry InterceptorRegistry( ) {
-        return new InterceptorRegistry();
-    }
-
 }
