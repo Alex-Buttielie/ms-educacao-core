@@ -1,5 +1,6 @@
 package br.com.coreeduc.adapters.inbound.resources.exceptions;
 
+import br.com.coreeduc.adapters.inbound.exceptions.FieldMessage;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

@@ -8,7 +8,7 @@ public class TenantContext {
         return CURRENT_TENANT.get();
     }
 
-    public static void setCurrentTenant(String tenant) {
+    public static void setCurrentTenant(final String tenant) {
         CURRENT_TENANT.set(tenant);
     }
 

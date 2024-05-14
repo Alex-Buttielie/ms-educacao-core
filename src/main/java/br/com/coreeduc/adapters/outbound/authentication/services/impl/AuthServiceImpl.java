@@ -1,7 +1,7 @@
 package br.com.coreeduc.adapters.outbound.authentication.services.impl;
 
 
-import br.com.coreeduc.adapters.inbound.resources.exceptions.AuthorizationException;
+import br.com.coreeduc.adapters.inbound.exceptions.AuthorizationException;
 import br.com.coreeduc.adapters.outbound.authentication.dto.EmailAuthenticationDTO;
 import br.com.coreeduc.adapters.outbound.authentication.services.AuthService;
 import br.com.coreeduc.adapters.outbound.authentication.services.EmailService;
