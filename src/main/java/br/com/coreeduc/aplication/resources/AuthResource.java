@@ -1,8 +1,8 @@
 package br.com.coreeduc.aplication.resources;
 
-import br.com.coreeduc.aplication.authentication.dto.EmailAuthenticationDTO;
-import br.com.coreeduc.aplication.authentication.security.JWTUtil;
-import br.com.coreeduc.aplication.authentication.services.AuthService;
+import br.com.coreeduc.aplication.dto.EmailAuthenticationDTO;
+import br.com.coreeduc.aplication.services.AuthService;
+import br.com.coreeduc.architecture.authentication.security.JWTUtil;
 import br.com.coreeduc.aplication.services.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
