@@ -34,18 +34,22 @@ public class JWTUtil {
     }
 
     public boolean validToken(String token) {
-        var claims = getClaims(token);
+        try {
+            validParseClaims(token);
+            return validTokenAtributes(getClaims(token));
+        }catch (Exception e){
+            return false;
+        }
+    }
 
+    private boolean validTokenAtributes(Claims claims) {
         if (Objects.nonNull(claims)) {
             var username = claims.getSubject();
             var expirationDate = claims.getExpiration();
             var now = new Date(System.currentTimeMillis());
-
             return username != null && expirationDate != null && now.before(expirationDate);
         }
-
         return false;
-
     }
 
     public String generateToken(String username, String tenant) {
@@ -60,10 +64,7 @@ public class JWTUtil {
 
     public String getUsername(String token) {
         var claims = getClaims(token);
-        if (claims != null) {
-            return claims.getSubject();
-        }
-        return null;
+        return claims.getSubject();
     }
 
     public UsernamePasswordAuthenticationToken getAuthentication(String token) {
@@ -76,9 +77,14 @@ public class JWTUtil {
     }
 
     protected Claims getClaims(String token) {
+        validParseClaims(token);
+        return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
+    }
+
+    protected void validParseClaims(String token) {
         try {
-            return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
-        } catch (AuthorizationExceptionInvalidToken e) {
+            Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token);
+        }catch (Exception e) {
             throw new AuthorizationExceptionInvalidToken();
         }
     }

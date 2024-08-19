@@ -1,5 +1,7 @@
 package br.com.coreeduc.architecture.authentication.security;
 
+import br.com.coreeduc.architecture.exceptions.AuthorizationExceptionInvalidToken;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -69,8 +72,7 @@ class JWTUtilTest {
     @Test
     void naoDeveBuscarUsernameToken() {
         var invalidToken = "invalidToken";
-        var resultUsername = jwtUtil.getUsername(invalidToken);
-        assertNull(resultUsername);
+        assertThrows(AuthorizationExceptionInvalidToken.class, ()-> jwtUtil.getUsername(invalidToken));
     }
 
     @Test
@@ -104,8 +106,7 @@ class JWTUtilTest {
     @Test
     void deveBuscarClaimsInvalidos() {
         var invalidToken = "invalidToken";
-        var claims = jwtUtil.getClaims(invalidToken);
-        assertNull(claims);
+        Assert.assertThrows(AuthorizationExceptionInvalidToken.class, () -> jwtUtil.getClaims(invalidToken));
     }
 
     @Test

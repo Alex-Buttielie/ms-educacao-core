@@ -54,7 +54,7 @@ public class JWTAuthenticationFilterTest {
     }
 
     @Test
-    public void attemptAuthenticationTest() throws IOException, ServletException {
+    public void attemptAuthenticationTest() {
         var request = new MockHttpServletRequest();
         request.setContentType(MediaType.APPLICATION_JSON_VALUE);
         request.setContent("{\"email\":\"test@example.com\",\"password\":\"password\"}".getBytes());
