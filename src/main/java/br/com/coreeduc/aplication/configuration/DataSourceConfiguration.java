@@ -1,7 +1,7 @@
 package br.com.coreeduc.aplication.configuration;
 
-import br.com.coreeduc.aplication.configTenanty.DataSourcesProperties;
-import br.com.coreeduc.aplication.configTenanty.MultitenantDataSource;
+import br.com.coreeduc.architecture.tenanty.DataSourcesProperties;
+import br.com.coreeduc.architecture.tenanty.MultitenantDataSource;
 import lombok.RequiredArgsConstructor;
 import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;

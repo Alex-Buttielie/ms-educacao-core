@@ -1,12 +1,13 @@
 package br.com.coreeduc.aplication.resources;
 
-import br.com.coreeduc.aplication.authentication.dto.EmailAuthenticationDTO;
-import br.com.coreeduc.aplication.authentication.security.JWTUtil;
-import br.com.coreeduc.aplication.authentication.services.AuthService;
+import br.com.coreeduc.aplication.dto.EmailAuthenticationDTO;
+import br.com.coreeduc.aplication.services.AuthService;
+import br.com.coreeduc.architecture.authentication.security.JWTUtil;
 import br.com.coreeduc.aplication.services.UserService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,14 +21,16 @@ import javax.validation.Valid;
 @RequestMapping(value = "/auth")
 public class AuthResource {
 
-    @Autowired
     private JWTUtil jwtUtil;
-
-    @Autowired
     private AuthService service;
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    public AuthResource(JWTUtil jwtUtil, AuthService service, UserService userService) {
+        this.jwtUtil = jwtUtil;
+        this.service = service;
+        this.userService = userService;
+    }
 
     public UserService getUserService() {
         return this.userService;
@@ -41,7 +44,7 @@ public class AuthResource {
         return this.jwtUtil;
     }
 
-    @RequestMapping(value = "/refresh_token", method = RequestMethod.POST)
+    @PostMapping(value = "/refresh_token")
     public ResponseEntity<Void> refreshToken(HttpServletResponse response) {
         var user = this.getUserService().authenticated();
         String token = this.getJwtUtil().generateToken(user.getUsername(), jwtUtil.getTenant((HttpServletRequest) user));
@@ -51,7 +54,7 @@ public class AuthResource {
     }
 
     @ApiOperation(value = "Recuperar senha")
-    @RequestMapping(value = "/forgot", method = RequestMethod.POST)
+    @PostMapping(value = "/forgot")
     public ResponseEntity<String> forgot(@Valid @RequestBody EmailAuthenticationDTO dto) {
         this.getService().sendNewPassword(dto);
         return ResponseEntity.ok().build();

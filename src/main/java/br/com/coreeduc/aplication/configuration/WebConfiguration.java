@@ -1,6 +1,6 @@
 package br.com.coreeduc.aplication.configuration;
 
-import br.com.coreeduc.aplication.configTenanty.TenantInterceptor;
+import br.com.coreeduc.architecture.tenanty.TenantInterceptor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

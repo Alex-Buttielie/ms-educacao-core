@@ -1,8 +1,8 @@
 package br.com.coreeduc.aplication.configuration;
 
-import br.com.coreeduc.aplication.authentication.security.JWTAuthenticationFilter;
-import br.com.coreeduc.aplication.authentication.security.JWTAuthorizationFilter;
-import br.com.coreeduc.aplication.authentication.security.JWTUtil;
+import br.com.coreeduc.architecture.authentication.security.JWTAuthenticationFilter;
+import br.com.coreeduc.architecture.authentication.security.JWTAuthorizationFilter;
+import br.com.coreeduc.architecture.authentication.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
