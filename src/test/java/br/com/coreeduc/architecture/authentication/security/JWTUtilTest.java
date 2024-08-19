@@ -1,6 +1,5 @@
 package br.com.coreeduc.architecture.authentication.security;
 
-import br.com.coreeduc.architecture.authentication.security.JWTUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -40,14 +39,14 @@ class JWTUtilTest {
     @Test
     void deveValidarGeracaoToken() {
         var token = jwtUtil.generateToken("alex", "tenant_1");
-        var isValid = jwtUtil.tokenValido(token);
+        var isValid = jwtUtil.validToken(token);
         assertTrue(isValid);
     }
 
     @Test
     void naoDeveValidarToken() {
         var invalidToken = "invalidToken";
-        var isValid = jwtUtil.tokenValido(invalidToken);
+        var isValid = jwtUtil.validToken(invalidToken);
         assertFalse(isValid);
     }
 

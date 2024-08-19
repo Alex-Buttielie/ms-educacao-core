@@ -1,17 +1,16 @@
 package br.com.coreeduc.architecture.exceptions;
 
-import br.com.coreeduc.architecture.exceptions.AuthorizationException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class AuthorizationExceptionTest {
+public class AuthorizationExceptionInvalidTokenTest {
 
     @Test
     public void testConstructorWithMessage() {
         String errorMessage = "Unauthorized access";
-        AuthorizationException exception = new AuthorizationException(errorMessage);
+        AuthorizationExceptionInvalidToken exception = new AuthorizationExceptionInvalidToken(errorMessage);
         assertEquals(errorMessage, exception.getMessage());
         assertNull(exception.getCause());
     }
@@ -20,7 +19,7 @@ public class AuthorizationExceptionTest {
     public void testConstructorWithMessageAndCause() {
         String errorMessage = "Unauthorized access";
         Throwable cause = new RuntimeException("Root cause");
-        AuthorizationException exception = new AuthorizationException(errorMessage, cause);
+        AuthorizationExceptionInvalidToken exception = new AuthorizationExceptionInvalidToken(errorMessage, cause);
         assertEquals(errorMessage, exception.getMessage());
         assertEquals(cause, exception.getCause());
     }

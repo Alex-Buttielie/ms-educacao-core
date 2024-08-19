@@ -37,8 +37,8 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(err);
     }
 
-    @ExceptionHandler(AuthorizationException.class)
-    public ResponseEntity<StandardError> authorization(AuthorizationException e, HttpServletRequest request) {
+    @ExceptionHandler(AuthorizationExceptionInvalidToken.class)
+    public ResponseEntity<StandardError> authorization(AuthorizationExceptionInvalidToken e, HttpServletRequest request) {
 
         StandardError err = new StandardError(System.currentTimeMillis(), HttpStatus.FORBIDDEN.value(), "Acesso negado", e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);

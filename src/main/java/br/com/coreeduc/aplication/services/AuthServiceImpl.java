@@ -2,7 +2,7 @@ package br.com.coreeduc.aplication.services;
 
 
 import br.com.coreeduc.aplication.dto.EmailAuthenticationDTO;
-import br.com.coreeduc.architecture.exceptions.AuthorizationException;
+import br.com.coreeduc.architecture.exceptions.AuthorizationExceptionInvalidToken;
 import br.com.coreeduc.architecture.http.EmailDto;
 import br.com.coreeduc.aplication.entities.UserEntity;
 import br.com.coreeduc.aplication.repositories.UserRepository;
@@ -35,7 +35,7 @@ public class AuthServiceImpl implements AuthService {
                 .ofNullable(getRepository().findByEmail(dto.getEmail()))
                 .map(functionValidarSenhaInformada(dto))
                 .map(user -> createNewPassword(user, dto.getNewPassword(), dto.getLastPassword()))
-                .orElseThrow(() -> new AuthorizationException("Verifique o e-mail informado, usuário não encontrado"));
+                .orElseThrow(() -> new AuthorizationExceptionInvalidToken("Verifique o e-mail informado, usuário não encontrado"));
     }
 
     protected Function<UserEntity, UserEntity> functionValidarSenhaInformada(EmailAuthenticationDTO dto) {
