@@ -1,7 +1,7 @@
 package br.com.coreeduc.aplication.contraints;
 
-public enum CategoriaEscolaPrivada {
-    PARTICULA,
+public enum CategoriaEscola {
+    PARTICULAR,
     COMUNITARIA,
     CONFESSIONAL,
     FILANTROPICA;
