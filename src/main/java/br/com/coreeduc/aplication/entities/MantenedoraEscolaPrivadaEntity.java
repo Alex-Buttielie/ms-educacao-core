@@ -1,6 +1,6 @@
 package br.com.coreeduc.aplication.entities;
 
-import br.com.coreeduc.aplication.contraints.CategoriaEscolaPrivada;
+import br.com.coreeduc.aplication.contraints.CategoriaEscola;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -48,6 +48,6 @@ public class MantenedoraEscolaPrivadaEntity {
     private Boolean organizacaoDaSociedadeCivilDeInteressePublico;
     @Basic
     @Column(name="categoria_escola_privada")
-    private CategoriaEscolaPrivada categoriaEscolaPrivada;
+    private CategoriaEscola categoriaEscola;
 
 }
