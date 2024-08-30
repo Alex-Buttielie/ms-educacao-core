@@ -1,12 +1,13 @@
 package br.com.coreeduc.aplication.resources;
 
+import br.com.coreeduc.aplication.dto.OptionSelectedView;
 import br.com.coreeduc.aplication.entities.UnidadeEnsinoEntity;
 import br.com.coreeduc.aplication.services.UnidadeEnsinoService;
+import br.com.coreeduc.aplication.dto.PropertiesView;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/unidade-ensino")
-@Transactional
-public class UnidadeEnsinoResource {
+@RequestMapping("/unidade")
+public class UnidadeEnsinoResource implements ComumResource {
 
     private UnidadeEnsinoService service;
 
@@ -53,6 +53,13 @@ public class UnidadeEnsinoResource {
                 .findById(codigoInep)
                 .map(unidade -> ResponseEntity.status(HttpStatus.OK).body(unidade))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("Unidade não encontrada"));
+    }
+
+    @Override
+    @GetMapping("/findPropertiesView")
+    @ApiOperation(value = "Busca lista de propriedades que vão aproveitados pelo front")
+    public ResponseEntity<PropertiesView> findPropertiesView() {
+        return ResponseEntity.ok(getService().findPropertiesView());
     }
 
 }
