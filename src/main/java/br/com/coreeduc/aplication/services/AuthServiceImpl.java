@@ -2,14 +2,18 @@ package br.com.coreeduc.aplication.services;
 
 
 import br.com.coreeduc.aplication.dto.EmailAuthenticationDTO;
-import br.com.coreeduc.architecture.exceptions.AuthorizationExceptionInvalidToken;
-import br.com.coreeduc.architecture.http.EmailDto;
 import br.com.coreeduc.aplication.entities.UserEntity;
 import br.com.coreeduc.aplication.repositories.UserRepository;
+import br.com.coreeduc.architecture.exceptions.AuthorizationExceptionInvalidToken;
+import br.com.coreeduc.architecture.http.EmailDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -32,15 +36,15 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public String sendNewPassword(EmailAuthenticationDTO dto) {
         return Optional
-                .ofNullable(getRepository().findByEmail(dto.getEmail()))
+                .ofNullable(getRepository().findByEmail(dto.email()))
                 .map(functionValidarSenhaInformada(dto))
-                .map(user -> createNewPassword(user, dto.getNewPassword(), dto.getLastPassword()))
+                .map(user -> createNewPassword(user, dto.newPassword(), dto.lastPassword()))
                 .orElseThrow(() -> new AuthorizationExceptionInvalidToken("Verifique o e-mail informado, usuário não encontrado"));
     }
 
     protected Function<UserEntity, UserEntity> functionValidarSenhaInformada(EmailAuthenticationDTO dto) {
         return user -> {
-            var isSenhaInformadaValida = pe.matches(dto.getLastPassword(), user.getPasswordUser());
+            var isSenhaInformadaValida = pe.matches(dto.lastPassword(), user.getPasswordUser());
             return user;
         };
     }
@@ -52,9 +56,9 @@ public class AuthServiceImpl implements AuthService {
         EmailDto email = getEmailNewPassword(user, newPass);
         return emailService.sendMail(email);
     }
-     protected String getSenhaCriptografada(String password) {
+    protected String getSenhaCriptografada(String password) {
         return pe.encode(password);
-     }
+    }
 
     private EmailDto getEmailNewPassword(UserEntity user, String newPass) {
         return EmailDto
@@ -66,5 +70,21 @@ public class AuthServiceImpl implements AuthService {
                 .text("Sua nova senha é: " + newPass)
                 .build();
     }
+
+
+    public  String formatDuration(long seconds) {
+        if(seconds == 0) {
+            return "NOW";
+        }
+
+        LocalDateTime date = Instant.ofEpochSecond(seconds)
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd 'dias', MM 'meses', HH 'horas', ss 'segundos'");
+
+        return date.format(formatter);
+    }
+
 
 }
