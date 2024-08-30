@@ -39,21 +39,19 @@ public class AuthServiceImplTest {
                 .passwordUser("$2a$10$3XhhrCOssmvwSty2jH2CveJFyaybagNXzND2WC0SPFGcROvZt5ze.")
                 .build();
 
-        email = EmailAuthenticationDTO.builder()
-                .email(userEntity.getEmail())
-                .lastPassword("123456")
-                .newPassword("654321")
-                .build();
-
-
+        email = new EmailAuthenticationDTO(userEntity.getEmail(), "123456", "654321");
     }
     @Test
     public void deveTestarFuncaoValidarSenhaComSucesso() {
         when(pe.matches(anyString(), anyString())).thenReturn(Boolean.TRUE);
         var retorno = Optional.of(userEntity).map(service.functionValidarSenhaInformada(email));
         Assert.assertTrue(retorno.isPresent());
-        Assert.assertEquals(email.getEmail(), retorno.get().getEmail());
+        Assert.assertEquals(email.email(), retorno.get().getEmail());
         Assert.assertEquals(userEntity.getPasswordUser(), retorno.get().getPasswordUser());
+    }
+
+    @Test void testarTempo() {
+        service.formatDuration(1724900000);
     }
 
 
