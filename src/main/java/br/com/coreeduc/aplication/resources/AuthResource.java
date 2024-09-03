@@ -1,6 +1,6 @@
 package br.com.coreeduc.aplication.resources;
 
-import br.com.coreeduc.aplication.dto.EmailAuthenticationDTO;
+import br.com.coreeduc.aplication.records.EmailAuthenticationRecord;
 import br.com.coreeduc.aplication.services.AuthService;
 import br.com.coreeduc.architecture.authentication.security.JWTUtil;
 import br.com.coreeduc.aplication.services.UserService;
@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,7 +54,7 @@ public class AuthResource {
 
     @ApiOperation(value = "Recuperar senha")
     @PostMapping(value = "/forgot")
-    public ResponseEntity<String> forgot(@Valid @RequestBody EmailAuthenticationDTO dto) {
+    public ResponseEntity<String> forgot(@Valid @RequestBody EmailAuthenticationRecord dto) {
         this.getService().sendNewPassword(dto);
         return ResponseEntity.ok().build();
     }

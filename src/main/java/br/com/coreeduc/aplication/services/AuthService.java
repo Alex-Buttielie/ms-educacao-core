@@ -1,7 +1,7 @@
 package br.com.coreeduc.aplication.services;
 
-import br.com.coreeduc.aplication.dto.EmailAuthenticationDTO;
+import br.com.coreeduc.aplication.records.EmailAuthenticationRecord;
 
 public interface AuthService {
-    String sendNewPassword(EmailAuthenticationDTO email);
+    String sendNewPassword(EmailAuthenticationRecord email);
 }
