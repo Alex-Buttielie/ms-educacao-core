@@ -1,6 +1,5 @@
 package br.com.coreeduc.architecture.exceptions;
 
-import br.com.coreeduc.architecture.exceptions.DataIntegrityException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

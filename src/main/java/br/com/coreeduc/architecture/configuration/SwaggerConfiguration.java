@@ -1,4 +1,4 @@
-package br.com.coreeduc.aplication.configuration;
+package br.com.coreeduc.architecture.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

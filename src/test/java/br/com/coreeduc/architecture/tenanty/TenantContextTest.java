@@ -1,6 +1,5 @@
 package br.com.coreeduc.architecture.tenanty;
 
-import br.com.coreeduc.architecture.tenanty.TenantContext;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

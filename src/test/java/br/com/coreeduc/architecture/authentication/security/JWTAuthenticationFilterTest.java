@@ -1,8 +1,5 @@
 package br.com.coreeduc.architecture.authentication.security;
 
-import br.com.coreeduc.architecture.authentication.security.JWTAuthenticationFilter;
-import br.com.coreeduc.architecture.authentication.security.JWTUtil;
-import br.com.coreeduc.architecture.authentication.security.UserSS;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

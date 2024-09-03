@@ -1,6 +1,5 @@
-package br.com.coreeduc.aplication.configuration;
+package br.com.coreeduc.architecture.configuration;
 
-import br.com.coreeduc.aplication.configuration.SwaggerConfiguration;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

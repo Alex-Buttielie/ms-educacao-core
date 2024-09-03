@@ -1,7 +1,5 @@
 package br.com.coreeduc.architecture.tenanty;
 
-import br.com.coreeduc.architecture.tenanty.MultitenantDataSource;
-import br.com.coreeduc.architecture.tenanty.TenantContext;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
