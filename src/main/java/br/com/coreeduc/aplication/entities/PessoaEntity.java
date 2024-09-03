@@ -9,11 +9,6 @@ import br.com.coreeduc.aplication.contraints.Sexo;
 import br.com.coreeduc.aplication.contraints.TipoFiliacao;
 import br.com.coreeduc.aplication.contraints.TipoRegistro;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -99,11 +94,11 @@ public class PessoaEntity implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn()
     @JsonFormat
-    private MunicipioEntity fkMunNasc;
+    private CityEntity fkCityRegistry;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private MunicipioEntity fkMunResid;
+    private CityEntity fkCityResidense;
 
     public PessoaEntity() {
     }
@@ -128,8 +123,8 @@ public class PessoaEntity implements Serializable {
                         LocalizacaoDiferenciadaResidencia localizacaoDiferenciadaResidencia,
                         String enderecoEletronicoEmail,
                         UnidadeEnsinoEntity fkUni,
-                        MunicipioEntity fkMunNasc,
-                        MunicipioEntity fkMunResid) {
+                        CityEntity fkCityRegistry,
+                        CityEntity fkCityResidense) {
         this.id = id;
         this.identificacaoUnica = identificacaoUnica;
         this.tipoRegistro = tipoRegistro;
@@ -150,8 +145,8 @@ public class PessoaEntity implements Serializable {
         this.localizacaoDiferenciadaResidencia = localizacaoDiferenciadaResidencia;
         this.enderecoEletronicoEmail = enderecoEletronicoEmail;
         this.fkUni = fkUni;
-        this.fkMunNasc = fkMunNasc;
-        this.fkMunResid = fkMunResid;
+        this.fkCityRegistry = fkCityRegistry;
+        this.fkCityResidense = fkCityResidense;
     }
 
     public Long getId() {
@@ -314,20 +309,19 @@ public class PessoaEntity implements Serializable {
         this.fkUni = fkUni;
     }
 
-    public MunicipioEntity getFkMunNasc() {
-        return fkMunNasc;
+    public CityEntity getFkCityRegistry() {
+        return fkCityRegistry;
     }
 
-    public void setFkMunNasc(MunicipioEntity fkMunNasc) {
-        this.fkMunNasc = fkMunNasc;
+    public void setFkCityRegistry(CityEntity fkCityRegistry) {
+        this.fkCityRegistry = fkCityRegistry;
     }
 
-    public MunicipioEntity getFkMunResid() {
-        return fkMunResid;
+    public CityEntity getFkCityResidense() {
+        return fkCityResidense;
     }
 
-    public void setFkMunResid(MunicipioEntity fkMunResid) {
-        this.fkMunResid = fkMunResid;
+    public void setFkCityResidense(CityEntity fkCityResidense) {
+        this.fkCityResidense = fkCityResidense;
     }
-
 }

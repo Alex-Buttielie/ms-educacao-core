@@ -1,4 +1,4 @@
-INSERT INTO municipio (codigo_mec, nome)
+INSERT INTO city (codigo_mec, name)
 VALUES (5213103, 'Mineiros');
 INSERT INTO area_conhecimento (codigo, nome)
 VALUES (1, 'Linguagens');

@@ -28,18 +28,14 @@ public enum CompanyAutoCompleteComponent {
         }
     };
 
-    public List<CompanyEntity> findd(List<CompanyEntity> allByFantasyName) {
-        return allByFantasyName.isEmpty() ? companyRepository.findAll() : allByFantasyName;
+    public List<CompanyEntity> findd(List<CompanyEntity> all) {
+        return all.isEmpty() ? companyRepository.findAll() : all;
     }
 
     public abstract List<CompanyEntity> findCompanys(String value, String key);
 
 
     public Properties getProperties(String value, String key) {
-        if (value == null  || value.isEmpty()) {
-            throw new RuntimeException("Programador problema com o valor informado.");
-        }
-
         var prop = new Properties();
         prop.put(key, value);
         return prop;
