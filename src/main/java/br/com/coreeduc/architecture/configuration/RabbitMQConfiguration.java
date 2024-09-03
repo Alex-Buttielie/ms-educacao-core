@@ -1,4 +1,4 @@
-package br.com.coreeduc.aplication.configuration;
+package br.com.coreeduc.architecture.configuration;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

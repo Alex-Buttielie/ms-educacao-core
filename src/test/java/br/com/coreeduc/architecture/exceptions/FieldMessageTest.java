@@ -1,6 +1,5 @@
 package br.com.coreeduc.architecture.exceptions;
 
-import br.com.coreeduc.architecture.exceptions.FieldMessage;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

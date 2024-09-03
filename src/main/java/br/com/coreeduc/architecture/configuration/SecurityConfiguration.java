@@ -1,4 +1,4 @@
-package br.com.coreeduc.aplication.configuration;
+package br.com.coreeduc.architecture.configuration;
 
 import br.com.coreeduc.architecture.authentication.security.JWTAuthenticationFilter;
 import br.com.coreeduc.architecture.authentication.security.JWTAuthorizationFilter;

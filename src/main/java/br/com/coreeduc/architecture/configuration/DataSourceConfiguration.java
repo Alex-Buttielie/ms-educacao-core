@@ -1,4 +1,4 @@
-package br.com.coreeduc.aplication.configuration;
+package br.com.coreeduc.architecture.configuration;
 
 import br.com.coreeduc.architecture.tenanty.DataSourcesProperties;
 import br.com.coreeduc.architecture.tenanty.MultitenantDataSource;
