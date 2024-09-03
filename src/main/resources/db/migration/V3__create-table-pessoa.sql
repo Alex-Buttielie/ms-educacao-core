@@ -17,11 +17,11 @@ CREATE TABLE IF NOT EXISTS PESSOA
     cor_raca                                       INTEGER,
     nacionalidade                                  INTEGER,
     pais_nacionalidade                             INTEGER,
-    fk_mun_nasc_codigo_mec                         INTEGER,
+    fk_city_nasc_codigo_mec                         INTEGER,
     numero_matricula_certidao_nascimento           VARCHAR(32),
     pais_residencia                                VARCHAR(3),
     cep                                            VARCHAR(15),
-    fk_mun_resid_codigo_mec                        INTEGER,
+    fk_city_resid_codigo_mec                        INTEGER,
     localizacao_zona_residencia                    INTEGER,
     localizacao_diferenciada_residencia            INTEGER,
     maior_nivel_escolaridade_concluido             INTEGER,
@@ -34,10 +34,10 @@ CREATE TABLE IF NOT EXISTS PESSOA
     tipo_deficiencia_espectro_altas_habilidades_id INTEGER,
     recurso_aluno_para_avaliacao_inep_id           INTEGER,
     pos_graduacao_concluida_professor_id           INTEGER,
-    CONSTRAINT fk_municipio_residencia FOREIGN KEY (fk_mun_resid_codigo_mec)
-        REFERENCES municipio (codigo_mec),
-    CONSTRAINT fk_municipio_nascimento FOREIGN KEY (fk_mun_nasc_codigo_mec)
-        REFERENCES municipio (codigo_mec),
+    CONSTRAINT fk_city_residense FOREIGN KEY (fk_city_resid_codigo_mec)
+        REFERENCES CITY (codigo_mec),
+    CONSTRAINT fk_city_nascimento FOREIGN KEY (fk_city_nasc_codigo_mec)
+        REFERENCES CITY (codigo_mec),
     CONSTRAINT fk_codigo_inep FOREIGN KEY (fk_uni_codigo_inep)
         REFERENCES UNIDADE_ENSINO (codigo_inep)
 );

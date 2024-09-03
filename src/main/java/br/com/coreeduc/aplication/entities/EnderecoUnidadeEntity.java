@@ -38,7 +38,7 @@ public class EnderecoUnidadeEntity {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private MunicipioEntity fkMun;
+    private CityEntity fkCity;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
