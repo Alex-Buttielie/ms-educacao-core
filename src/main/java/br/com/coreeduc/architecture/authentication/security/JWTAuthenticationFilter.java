@@ -1,6 +1,6 @@
 package br.com.coreeduc.architecture.authentication.security;
 
-import br.com.coreeduc.aplication.dto.CredentialsDTO;
+import br.com.coreeduc.aplication.records.CredentialsRecord;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,7 +33,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException {
 
         try {
-            var creds = new ObjectMapper().readValue(req.getInputStream(), CredentialsDTO.class);
+            var creds = new ObjectMapper().readValue(req.getInputStream(), CredentialsRecord.class);
             var authToken = new UsernamePasswordAuthenticationToken(creds.email(), creds.password());
             var auth = this.authenticationManager.authenticate(authToken);
             return auth;

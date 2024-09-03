@@ -1,7 +1,7 @@
 package br.com.coreeduc.aplication.services;
 
 
-import br.com.coreeduc.aplication.dto.EmailAuthenticationDTO;
+import br.com.coreeduc.aplication.records.EmailAuthenticationRecord;
 import br.com.coreeduc.aplication.entities.UserEntity;
 import br.com.coreeduc.aplication.repositories.UserRepository;
 import org.junit.Assert;
@@ -29,7 +29,7 @@ public class AuthServiceImplTest {
     private BCryptPasswordEncoder pe;
     @Mock
     private EmailService emailService;
-    private  EmailAuthenticationDTO email;
+    private EmailAuthenticationRecord email;
     private UserEntity userEntity;
 
     @BeforeEach
@@ -39,7 +39,7 @@ public class AuthServiceImplTest {
                 .passwordUser("$2a$10$3XhhrCOssmvwSty2jH2CveJFyaybagNXzND2WC0SPFGcROvZt5ze.")
                 .build();
 
-        email = new EmailAuthenticationDTO(userEntity.getEmail(), "123456", "654321");
+        email = new EmailAuthenticationRecord(userEntity.getEmail(), "123456", "654321");
     }
     @Test
     public void deveTestarFuncaoValidarSenhaComSucesso() {

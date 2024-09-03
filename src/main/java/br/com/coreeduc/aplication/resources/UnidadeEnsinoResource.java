@@ -1,9 +1,8 @@
 package br.com.coreeduc.aplication.resources;
 
-import br.com.coreeduc.aplication.dto.OptionSelectedView;
 import br.com.coreeduc.aplication.entities.UnidadeEnsinoEntity;
 import br.com.coreeduc.aplication.services.UnidadeEnsinoService;
-import br.com.coreeduc.aplication.dto.PropertiesView;
+import br.com.coreeduc.aplication.records.PropertiesViewRecord;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 @RestController
 @RequestMapping("/unidade")
@@ -58,8 +60,13 @@ public class UnidadeEnsinoResource implements ComumResource {
     @Override
     @GetMapping("/findPropertiesView")
     @ApiOperation(value = "Busca lista de propriedades que vão aproveitados pelo front")
-    public ResponseEntity<PropertiesView> findPropertiesView() {
+    public ResponseEntity<PropertiesViewRecord> findPropertiesView() {
         return ResponseEntity.ok(getService().findPropertiesView());
+    }
+
+    @Override
+    public ResponseEntity autoComplete(String value, String key) {
+        return null;
     }
 
 }

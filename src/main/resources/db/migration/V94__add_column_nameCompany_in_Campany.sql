@@ -1,0 +1,1 @@
+ALTER TABLE company ADD name_company varchar(150);
