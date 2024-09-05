@@ -1,0 +1,15 @@
+CREATE SEQUENCE BRANCH_ACTING_ID_SEQ;
+
+CREATE TABLE IF NOT EXISTS BRANCH_ACTING
+(
+    ID INTEGER UNIQUE DEFAULT nextval('BRANCH_ACTING_ID_SEQ'),
+    DESCRIPTION text,
+    CODE  VARCHAR(30),
+    OBSERVATION  text,
+    group_branch_acting_id INTEGER,
+    CONSTRAINT fk_group_branch_acting FOREIGN KEY (group_branch_acting_id)
+        REFERENCES group_branch_acting (id)
+);
+
+ALTER SEQUENCE BRANCH_ACTING_ID_SEQ
+    OWNED BY BRANCH_ACTING.ID;
