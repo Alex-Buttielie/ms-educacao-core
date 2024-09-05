@@ -13,14 +13,14 @@ import java.util.Properties;
 
 public enum CompanyAutoCompleteComponent {
 
-    COMPANYS_FROM_FANTASY_NAME ("fantasyName"){
+    COMPANYS_BY_FANTASY_NAME ("fantasyName"){
         @Override
         public List<CompanyEntity> findCompanys(String value, String key) {
             var company = new CompanyFactory(getProperties(value, key)).getCompany();
             return findd(companyRepository.findAllByFantasyName(company.getFantasyName()));
         }
     },
-    COMPANYS_FROM_NAME_COMPANY ("nameCompany"){
+    COMPANYS_BY_NAME_COMPANY ("nameCompany"){
         @Override
         public List<CompanyEntity> findCompanys(String value, String key) {
             var company = new CompanyFactory(getProperties(value, key)).getCompany();

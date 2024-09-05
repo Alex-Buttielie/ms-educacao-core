@@ -13,7 +13,7 @@ import java.util.Properties;
 
 public enum CityAutoCompleteComponent {
 
-    CITYS_FROM_NAME ("name"){
+    CITYS_BY_NAME ("name"){
         @Override
         public List<CityEntity> findCitys(String value, String key) {
             var city = new CityFactory(getProperties(value, key)).getCity();

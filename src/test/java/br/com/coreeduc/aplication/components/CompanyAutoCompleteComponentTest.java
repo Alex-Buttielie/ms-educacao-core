@@ -43,27 +43,27 @@ public class CompanyAutoCompleteComponentTest {
     @Test
     void mustTestFilledFantasyNameSearch() {
         when(companyRepository.findAllByFantasyName(any())).thenReturn(List.of(company));
-        var retorn = CompanyAutoCompleteComponent.COMPANYS_FROM_FANTASY_NAME.findCompanys(company.getFantasyName(), "fantasyName");
+        var retorn = CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME.findCompanys(company.getFantasyName(), "fantasyName");
         Assertions.assertNotNull(retorn);
     }
 
     @Test
     void mustTestFilledNameCompanySearch() {
         when(companyRepository.findAllByNameCompany(any())).thenReturn(List.of(company));
-        var retorn = CompanyAutoCompleteComponent.COMPANYS_FROM_NAME_COMPANY.findCompanys(company.getNameCompany(), "nameCompany");
+        var retorn = CompanyAutoCompleteComponent.COMPANYS_BY_NAME_COMPANY.findCompanys(company.getNameCompany(), "nameCompany");
         Assertions.assertNotNull(retorn);
     }
 
     @Test
     void mustTestNullNameCompanySearch() {
         Assertions.assertThrows(RuntimeException.class,() ->
-        CompanyAutoCompleteComponent.COMPANYS_FROM_NAME_COMPANY.findCompanys(null, "nameCompany"));
+        CompanyAutoCompleteComponent.COMPANYS_BY_NAME_COMPANY.findCompanys(null, "nameCompany"));
     }
 
     @Test
     void mustTestNullKeyCompanySearch() {
         Assertions.assertThrows(RuntimeException.class,() ->
-        CompanyAutoCompleteComponent.COMPANYS_FROM_NAME_COMPANY.findCompanys("valor",  null));
+        CompanyAutoCompleteComponent.COMPANYS_BY_NAME_COMPANY.findCompanys("valor",  null));
     }
 
 
@@ -71,12 +71,12 @@ public class CompanyAutoCompleteComponentTest {
     void testGetTipoBuscaAutoComplete() {
         String value = "fantasyName";
         CompanyAutoCompleteComponent result = CompanyAutoCompleteComponent.getTipoBuscaAutoComplete(value);
-        assertEquals(CompanyAutoCompleteComponent.COMPANYS_FROM_FANTASY_NAME, result);
+        assertEquals(CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME, result);
     }
 
     @Test
     void testGetProperties() {
-        Properties properties = CompanyAutoCompleteComponent.COMPANYS_FROM_FANTASY_NAME.getProperties(company.getNameCompany(),"nameCompany");
+        Properties properties = CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME.getProperties(company.getNameCompany(),"nameCompany");
         assertEquals(company.getNameCompany(), properties.get("nameCompany"));
     }
 
