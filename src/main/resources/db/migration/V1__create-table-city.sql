@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS CITY
 (
     id         INTEGER UNIQUE DEFAULT nextval('CITY_ID_SEQ'),
     codigo_mec INTEGER PRIMARY KEY NOT NULL,
-    name       VARCHAR(100)        NOT NULL
+    name       VARCHAR(100)        NOT NULL,
+    state       VARCHAR(5)
 
 );
 

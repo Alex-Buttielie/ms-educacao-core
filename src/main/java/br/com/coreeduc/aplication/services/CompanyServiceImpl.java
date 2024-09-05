@@ -1,6 +1,7 @@
 package br.com.coreeduc.aplication.services;
 
 import br.com.coreeduc.aplication.components.CompanyAutoCompleteComponent;
+import br.com.coreeduc.aplication.contraints.SizesCompany;
 import br.com.coreeduc.aplication.contraints.StatesBrazil;
 import br.com.coreeduc.aplication.entities.CompanyEntity;
 import br.com.coreeduc.aplication.records.OptionSelectedViewRecord;
@@ -34,6 +35,7 @@ public class CompanyServiceImpl implements CompanyService {
     public Map<String, OptionSelectedViewRecord> findPropertiesFromSeleted() {
         var retorno = new HashMap<String, OptionSelectedViewRecord>();
         retorno.put("states", getStates());
+        retorno.put("sizesCompany", getCompanysSiza());
         return retorno;
     }
 
@@ -44,6 +46,12 @@ public class CompanyServiceImpl implements CompanyService {
 
     protected OptionSelectedViewRecord getStates() {
         return new OptionSelectedViewRecord(Arrays.stream(StatesBrazil.values())
+                .map(state -> new PropertiesOptionSelectedViewRecord(state.getCodigo(), state.getNome()))
+                .toList());
+    }
+
+    protected OptionSelectedViewRecord getCompanysSiza() {
+        return new OptionSelectedViewRecord(Arrays.stream(SizesCompany.values())
                 .map(state -> new PropertiesOptionSelectedViewRecord(state.getCodigo(), state.getNome()))
                 .toList());
     }

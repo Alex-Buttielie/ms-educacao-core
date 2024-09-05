@@ -59,7 +59,7 @@ class CompanyServiceImplTest {
         company.setFantasyName(value);
         List<CompanyEntity> companyList = Arrays.asList(company);
 
-        CompanyAutoCompleteComponent component = CompanyAutoCompleteComponent.COMPANYS_FROM_FANTASY_NAME;
+        CompanyAutoCompleteComponent component = CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME;
         component.setCompanyRepository(companyRepository);
         when(companyRepository.findAllByFantasyName(value)).thenReturn(companyList);
 
@@ -76,7 +76,7 @@ class CompanyServiceImplTest {
         String key = "fantasyName";
         List<CompanyEntity> emptyList = Arrays.asList();
 
-        CompanyAutoCompleteComponent component = CompanyAutoCompleteComponent.COMPANYS_FROM_FANTASY_NAME;
+        CompanyAutoCompleteComponent component = CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME;
         component.setCompanyRepository(companyRepository);
         when(companyRepository.findAllByFantasyName(value)).thenReturn(emptyList);
 
