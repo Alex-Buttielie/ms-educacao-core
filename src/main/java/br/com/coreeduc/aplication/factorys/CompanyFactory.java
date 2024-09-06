@@ -13,7 +13,11 @@ public class CompanyFactory {
         var builder = new Builder();
 
         setCompany(
-                builder.id(Optional.ofNullable(properties.getProperty("id")).map(Long::valueOf).orElse(null))
+                builder.id(
+                                Optional.ofNullable(properties.getProperty("id"))
+                                        .map(id -> !id.isEmpty() ? id : null)
+                                        .map(Long::valueOf).orElse(null)
+                        )
                         .fantasyName(properties.getProperty("fantasyName"))
                         .nameCompany(properties.getProperty("nameCompany"))
                         .build().getCompany()
