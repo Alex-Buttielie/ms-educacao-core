@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public enum CompanyAutoCompleteComponent {
 
@@ -25,6 +28,13 @@ public enum CompanyAutoCompleteComponent {
         public List<CompanyEntity> findCompanys(String value, String key) {
             var company = new CompanyFactory(getProperties(value, key)).getCompany();
             return findd(companyRepository.findAllByNameCompany(company.getFantasyName()));
+        }
+    },
+    COMPANYS_BY_ID ("id"){
+        @Override
+        public List<CompanyEntity> findCompanys(String value, String key) {
+            var company = new CompanyFactory(getProperties(value, key)).getCompany();
+            return Objects.nonNull(company.getId()) ? List.of(companyRepository.findById(company.getId()).get()) : findd(Collections.emptyList());
         }
     };
 

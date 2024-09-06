@@ -62,7 +62,7 @@ public enum BranchActignAutoCompleteComponent {
     }
 
     @Component
-    final static class ServiceInjector {
+    private static class ServiceInjector {
         @Autowired
         protected BranchActingRepository branchActingRepository;
 
