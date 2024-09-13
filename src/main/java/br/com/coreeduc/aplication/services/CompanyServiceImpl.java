@@ -3,6 +3,8 @@ package br.com.coreeduc.aplication.services;
 import br.com.coreeduc.aplication.components.CompanyAutoCompleteComponent;
 import br.com.coreeduc.aplication.contraints.SizesCompany;
 import br.com.coreeduc.aplication.contraints.StatesBrazil;
+import br.com.coreeduc.aplication.contraints.TypeLegalNature;
+import br.com.coreeduc.aplication.contraints.TypeUnitCompany;
 import br.com.coreeduc.aplication.entities.CompanyEntity;
 import br.com.coreeduc.aplication.records.OptionSelectedViewRecord;
 import br.com.coreeduc.aplication.records.PropertiesOptionSelectedViewRecord;
@@ -36,7 +38,21 @@ public class CompanyServiceImpl implements CompanyService {
         var retorno = new HashMap<String, OptionSelectedViewRecord>();
         retorno.put("states", getStates());
         retorno.put("sizesCompany", getCompanysSiza());
+        retorno.put("legalsNature", getLegalsNature());
+        retorno.put("typeUnitCompany", getTypeUnitCompany());
         return retorno;
+    }
+
+    private OptionSelectedViewRecord getTypeUnitCompany() {
+        return new OptionSelectedViewRecord(Arrays.stream(TypeUnitCompany.values())
+                .map(typeUnitCompany -> new PropertiesOptionSelectedViewRecord(typeUnitCompany.getCode(), typeUnitCompany.getDescription()))
+                .toList());
+    }
+
+    private OptionSelectedViewRecord getLegalsNature() {
+        return new OptionSelectedViewRecord(Arrays.stream(TypeLegalNature.values())
+                .map(nature -> new PropertiesOptionSelectedViewRecord(nature.getCode(), nature.getDescription()))
+                .toList());
     }
 
     @Override

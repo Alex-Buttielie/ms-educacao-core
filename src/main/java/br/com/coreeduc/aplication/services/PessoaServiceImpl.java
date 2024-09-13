@@ -2,6 +2,7 @@ package br.com.coreeduc.aplication.services;
 
 import br.com.coreeduc.aplication.entities.PessoaEntity;
 import br.com.coreeduc.aplication.repositories.PessoaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     private PessoaRepository repository;
 
+    @Autowired
     public PessoaServiceImpl(PessoaRepository repository) {
         this.repository = repository;
     }

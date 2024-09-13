@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
@@ -42,14 +40,14 @@ public class CompanyAutoCompleteComponentTest {
 
     @Test
     void mustTestFilledFantasyNameSearch() {
-        when(companyRepository.findAllByFantasyName(any())).thenReturn(List.of(company));
+        when(companyRepository.findAllByFantasyNameIgnoreCase(any())).thenReturn(List.of(company));
         var retorn = CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME.findCompanys(company.getFantasyName(), "fantasyName");
         Assertions.assertNotNull(retorn);
     }
 
     @Test
     void mustTestFilledNameCompanySearch() {
-        when(companyRepository.findAllByNameCompany(any())).thenReturn(List.of(company));
+        when(companyRepository.findAllByNameCompanyIgnoreCase(any())).thenReturn(List.of(company));
         var retorn = CompanyAutoCompleteComponent.COMPANYS_BY_NAME_COMPANY.findCompanys(company.getNameCompany(), "nameCompany");
         Assertions.assertNotNull(retorn);
     }
@@ -69,14 +67,14 @@ public class CompanyAutoCompleteComponentTest {
 
     @Test
     void testGetTipoBuscaAutoComplete() {
-        String value = "fantasyName";
-        CompanyAutoCompleteComponent result = CompanyAutoCompleteComponent.getTipoBuscaAutoComplete(value);
+        var value = "fantasyName";
+        var result = CompanyAutoCompleteComponent.getTipoBuscaAutoComplete(value);
         assertEquals(CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME, result);
     }
 
     @Test
     void testGetProperties() {
-        Properties properties = CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME.getProperties(company.getNameCompany(),"nameCompany");
+        var properties = CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME.getProperties(company.getNameCompany(),"nameCompany");
         assertEquals(company.getNameCompany(), properties.get("nameCompany"));
     }
 

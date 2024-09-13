@@ -15,6 +15,7 @@ public class CityFactory {
         setCity(
                 builder.id(Optional.ofNullable(properties.getProperty("id")).map(Long::valueOf).orElse(null))
                         .name(properties.getProperty("name"))
+                        .state(properties.getProperty("state"))
                         .build().getCity()
         );
 
@@ -44,8 +45,14 @@ public class CityFactory {
             city.setId(id);
             return this;
         }
+
         public Builder name(String name) {
             city.setName(name);
+            return this;
+        }
+
+        public Builder state(String state) {
+            city.setState(state);
             return this;
         }
 

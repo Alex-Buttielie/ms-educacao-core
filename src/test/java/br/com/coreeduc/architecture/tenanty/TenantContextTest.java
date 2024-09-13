@@ -38,7 +38,7 @@ public class TenantContextTest {
 
     @Test
     public void testMultipleThreads() throws InterruptedException {
-        Thread thread1 = new Thread(() -> {
+        var thread1 = new Thread(() -> {
             TenantContext.setCurrentTenant("Thread1Tenant");
             try {
                 Thread.sleep(100);
@@ -47,7 +47,7 @@ public class TenantContextTest {
             }
         });
 
-        Thread thread2 = new Thread(() -> {
+        var thread2 = new Thread(() -> {
             TenantContext.setCurrentTenant("Thread2Tenant");
             try {
                 Thread.sleep(100);

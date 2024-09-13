@@ -23,14 +23,18 @@ public class CityEntity {
     @Basic
     @Column(name="name")
     private String name;
+    @Basic
+    @Column(name="state")
+    private String state;
 
     public CityEntity() {
     }
 
-    public CityEntity(Long id, Long codigoMec, String name) {
+    public CityEntity(Long id, Long codigoMec, String name, String state) {
         this.id = id;
         this.codigoMec = codigoMec;
         this.name = name;
+        this.state = state;
     }
 
     public Long getId() {
@@ -55,5 +59,13 @@ public class CityEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

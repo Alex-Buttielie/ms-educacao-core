@@ -9,17 +9,17 @@ public class AuthorizationExceptionInvalidTokenTest {
 
     @Test
     public void testConstructorWithMessage() {
-        String errorMessage = "Unauthorized access";
-        AuthorizationExceptionInvalidToken exception = new AuthorizationExceptionInvalidToken(errorMessage);
+        var errorMessage = "Unauthorized access";
+        var exception = new AuthorizationExceptionInvalidToken(errorMessage);
         assertEquals(errorMessage, exception.getMessage());
         assertNull(exception.getCause());
     }
 
     @Test
     public void testConstructorWithMessageAndCause() {
-        String errorMessage = "Unauthorized access";
+        var errorMessage = "Unauthorized access";
         Throwable cause = new RuntimeException("Root cause");
-        AuthorizationExceptionInvalidToken exception = new AuthorizationExceptionInvalidToken(errorMessage, cause);
+        var exception = new AuthorizationExceptionInvalidToken(errorMessage, cause);
         assertEquals(errorMessage, exception.getMessage());
         assertEquals(cause, exception.getCause());
     }

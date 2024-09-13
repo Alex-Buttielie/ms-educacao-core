@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CityRepository extends JpaRepository<CityEntity, Long> {
-    List<CityEntity> findByName(String name);
+    List<CityEntity> findByNameIgnoreCase(String name);
+    List<CityEntity> findByStateIgnoreCase(String state);
 }
