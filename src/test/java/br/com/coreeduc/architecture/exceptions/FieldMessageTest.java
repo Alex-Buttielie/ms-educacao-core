@@ -10,11 +10,9 @@ public class FieldMessageTest {
 
     @Test
     public void testConstructorAndGetters() {
-        String fieldName = "exampleField";
-        String message = "Example error message";
-
-        FieldMessage fieldMessage = new FieldMessage(fieldName, message);
-
+        var fieldName = "exampleField";
+        var message = "Example error message";
+        var fieldMessage = new FieldMessage(fieldName, message);
         assertAll(
                 () -> assertThat(fieldMessage.getFieldName()).isEqualTo(fieldName),
                 () -> assertThat(fieldMessage.getMessage()).isEqualTo(message)
@@ -23,14 +21,11 @@ public class FieldMessageTest {
 
     @Test
     public void testSetters() {
-        String fieldName = "exampleField";
-        String message = "Example error message";
-
-        FieldMessage fieldMessage = new FieldMessage();
-
+        var fieldName = "exampleField";
+        var message = "Example error message";
+        var fieldMessage = new FieldMessage();
         fieldMessage.setFieldName(fieldName);
         fieldMessage.setMessage(message);
-
         assertAll(
                 () -> assertThat(fieldMessage.getFieldName()).isEqualTo(fieldName),
                 () -> assertThat(fieldMessage.getMessage()).isEqualTo(message)
@@ -39,17 +34,17 @@ public class FieldMessageTest {
 
     @Test
     public void testEqualsAndHashCode() {
-        FieldMessage fieldMessage1 = new FieldMessage("fieldName", "message");
-        FieldMessage fieldMessage2 = new FieldMessage("fieldName", "message");
+        var fieldMessage1 = new FieldMessage("fieldName", "message");
+        var fieldMessage2 = new FieldMessage("fieldName", "message");
         assertEquals(fieldMessage1.getMessage(), fieldMessage2.getMessage());
         assertEquals(fieldMessage1.getFieldName(), fieldMessage2.getFieldName());
     }
 
     @Test
     public void testNotEquals() {
-        FieldMessage fieldMessage1 = new FieldMessage("fieldName1", "message1");
-        FieldMessage fieldMessage2 = new FieldMessage("fieldName2", "message2");
-
+        var fieldMessage1 = new FieldMessage("fieldName1", "message1");
+        var fieldMessage2 = new FieldMessage("fieldName2", "message2");
         assertThat(fieldMessage1).isNotEqualTo(fieldMessage2);
     }
+
 }

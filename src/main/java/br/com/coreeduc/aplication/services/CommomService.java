@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface CommomService {
-    PropertiesViewRecord findPropertiesView();
+    PropertiesViewRecord findPropertiesView() ;
     Map<String, OptionSelectedViewRecord> findPropertiesFromSeleted();
     List autoComplete(String value, String key);
 }

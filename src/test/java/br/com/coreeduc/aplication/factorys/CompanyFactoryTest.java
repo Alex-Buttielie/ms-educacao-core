@@ -11,14 +11,12 @@ class CompanyFactoryTest {
 
     @Test
     void testCompanyFactoryWithProperties() {
-        Properties properties = new Properties();
+        var properties = new Properties();
         properties.setProperty("id", "123");
         properties.setProperty("fantasyName", "Test Fantasy");
         properties.setProperty("nameCompany", "Test Company");
-
-        CompanyFactory factory = new CompanyFactory(properties);
-        CompanyEntity company = factory.getCompany();
-
+        var factory = new CompanyFactory(properties);
+        var company = factory.getCompany();
         assertNotNull(company);
         assertEquals(Long.valueOf(123), company.getId());
         assertEquals("Test Fantasy", company.getFantasyName());
@@ -27,11 +25,9 @@ class CompanyFactoryTest {
 
     @Test
     void testCompanyFactoryWithMissingProperties() {
-        Properties properties = new Properties();
-
-        CompanyFactory factory = new CompanyFactory(properties);
-        CompanyEntity company = factory.getCompany();
-
+        var properties = new Properties();
+        var factory = new CompanyFactory(properties);
+        var company = factory.getCompany();
         assertNotNull(company);
         assertNull(company.getId());
         assertNull(company.getFantasyName());
@@ -40,19 +36,16 @@ class CompanyFactoryTest {
 
     @Test
     void testBuilderPattern() {
-        CompanyEntity company = new CompanyEntity();
+        var company = new CompanyEntity();
         company.setId(456L);
         company.setFantasyName("Builder Fantasy");
         company.setNameCompany("Builder Company");
-
-        CompanyFactory.Builder builder = new CompanyFactory.Builder();
+        var builder = new CompanyFactory.Builder();
         builder.id(456L);
         builder.fantasyName("Builder Fantasy");
         builder.nameCompany("Builder Company");
-
-        CompanyFactory factory = builder.build();
-        CompanyEntity builtCompany = factory.getCompany();
-
+        var factory = builder.build();
+        var builtCompany = factory.getCompany();
         assertNotNull(builtCompany);
         assertEquals(456L, builtCompany.getId());
         assertEquals("Builder Fantasy", builtCompany.getFantasyName());
@@ -61,10 +54,9 @@ class CompanyFactoryTest {
 
     @Test
     void testBuilderWithNoValues() {
-        CompanyFactory.Builder builder = new CompanyFactory.Builder();
-        CompanyFactory factory = builder.build();
-        CompanyEntity company = factory.getCompany();
-
+        var builder = new CompanyFactory.Builder();
+        var factory = builder.build();
+        var company = factory.getCompany();
         assertNotNull(company);
         assertNull(company.getId());
         assertNull(company.getFantasyName());

@@ -17,7 +17,21 @@ public enum CityAutoCompleteComponent {
         @Override
         public List<CityEntity> findCitys(String value, String key) {
             var city = new CityFactory(getProperties(value, key)).getCity();
-            return find(cityRepository.findByName(city.getName()));
+            return find(cityRepository.findByNameIgnoreCase(city.getName()));
+        }
+    },
+    CITYS_BY_STATE("state"){
+        @Override
+        public List<CityEntity> findCitys(String value, String key) {
+            var city = new CityFactory(getProperties(value, key)).getCity();
+            return find(cityRepository.findByStateIgnoreCase(city.getState()));
+        }
+    },
+    CITYS_BY_ID("id"){
+        @Override
+        public List<CityEntity> findCitys(String value, String key) {
+            var city = new CityFactory(getProperties(value, key)).getCity();
+            return find(List.of(cityRepository.findById(city.getId()).orElse(null)));
         }
     };
 
