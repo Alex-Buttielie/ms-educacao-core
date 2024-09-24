@@ -8,10 +8,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,71 +27,52 @@ public class DataSourcesProperties {
 
     @Value("${defaultTenant}")
     private String defaultTenant;
-    private static final String CAMINHO_TENANTS = "src/main/allTenants";
+    @Value("${default_db_host}")
+    private String DB_HOST;
+    @Value("${default_port_db}")
+    private String DB_PORT_DEFAULT;
+
+    private static final String CAMINHO_TENANTS = "allTenants";
     private static final String PROP_NAME_TENANT = "name";
     private static final String PROP_NAME_DATASOURCE_TENANT = "datasource.driver-class-name";
     private static final String PROP_USERNAME_TENANT = "datasource.username";
     private static final String PROP_PASSWORD_TENANT = "datasource.password";
     private static final String PROP_URL_TENANT = "datasource.url";
+
     private Object resolvedDataSourcesDefault;
     private Map<Object, Object> resolvedDataSources = new HashMap<>();
     private Map<Object, Object> datasources = new LinkedHashMap<>();
 
     public void setDatasources(Map<String, String> datasources) {
-        var files = buscarFilesTenants(datasources);
-
-        for (File propertyFile : files) {
+        for (Map.Entry<String, String> entry : datasources.entrySet()) {
+            String tenantFileName = entry.getValue() + ".properties";
             var tenantProperties = new Properties();
             var dataSourceBuilder = DataSourceBuilder.create();
-
-            this.carregarPropriedadesTenant(tenantProperties, propertyFile);
-
-            String tenantId = tenantProperties.getProperty(PROP_NAME_TENANT);
+            this.carregarPropriedadesTenant(tenantProperties, tenantFileName);
+            var tenantId = tenantProperties.getProperty(PROP_NAME_TENANT);
             dataSourceBuilder.driverClassName(tenantProperties.getProperty(PROP_NAME_DATASOURCE_TENANT));
             dataSourceBuilder.username(tenantProperties.getProperty(PROP_USERNAME_TENANT));
             dataSourceBuilder.password(tenantProperties.getProperty(PROP_PASSWORD_TENANT));
-            dataSourceBuilder.url(tenantProperties.getProperty(PROP_URL_TENANT));
+            var url = String.format(tenantProperties.getProperty(PROP_URL_TENANT), DB_HOST, DB_PORT_DEFAULT);
+            dataSourceBuilder.url(url);
             resolvedDataSources.put(tenantId, dataSourceBuilder.build());
-
-            this.datasources.put(tenantProperties.getProperty(PROP_NAME_TENANT), dataSourceBuilder.build());
-
+            this.datasources.put(tenantId, dataSourceBuilder.build());
         }
 
         resolvedDataSourcesDefault = resolvedDataSources.get(defaultTenant);
-
         var dataSource = new MultitenantDataSource();
         dataSource.setTargetDataSources(resolvedDataSources);
         dataSource.afterPropertiesSet();
-
     }
 
-    protected void carregarPropriedadesTenant (Properties tenantProperties, File propertyFile) {
-        try {
-            tenantProperties.load(new FileInputStream(propertyFile));
-        } catch (IOException | NullPointerException exp) {
-            throw new RuntimeException("Problem in tenant datasource:" + exp);
-        }
-    }
-
-    public File[] buscarFilesTenants(Map<String, String> datasources) {
-        if (!datasources.isEmpty()) {
-            File[] files = new File[datasources.size()];
-            int contadorTenantsConfiguradas = 0;
-            for (Map.Entry<String, String> entry : datasources.entrySet()) {
-                String key = entry.getKey();
-                files[contadorTenantsConfiguradas] = new File(CAMINHO_TENANTS + File.separator + key + ".properties");
-                contadorTenantsConfiguradas++;
+    protected void carregarPropriedadesTenant(Properties tenantProperties, String propertyFileName) {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(CAMINHO_TENANTS + "/" + propertyFileName)) {
+            if (inputStream == null) {
+                throw new IOException("Property file not found: " + propertyFileName);
             }
-
-            return files;
-
+            tenantProperties.load(inputStream);
+        } catch (Exception exp) {
+            throw new RuntimeException("Problem in tenant datasource: " + exp);
         }
-
-        return buscarFilesTenants();
     }
-
-    public File[] buscarFilesTenants() {
-        return Paths.get(CAMINHO_TENANTS).toFile().listFiles();
-    }
-
 }
