@@ -45,7 +45,7 @@ public class DataSourcesProperties {
 
     public void setDatasources(Map<String, String> datasources) {
         for (Map.Entry<String, String> entry : datasources.entrySet()) {
-            String tenantFileName = entry.getValue() + ".properties";
+            var tenantFileName = entry.getValue() + ".properties";
             var tenantProperties = new Properties();
             var dataSourceBuilder = DataSourceBuilder.create();
             this.carregarPropriedadesTenant(tenantProperties, tenantFileName);
