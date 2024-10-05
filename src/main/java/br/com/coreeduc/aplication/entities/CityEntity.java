@@ -4,22 +4,24 @@ package br.com.coreeduc.aplication.entities;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.UUID;
 
 @Table(name = "city")
 @Entity
-public class CityEntity {
+public class CityEntity implements Serializable {
+
+    private static final long serialVersionUID =  1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
     @Basic
     @Column(name="codigo_mec")
     private Long codigoMec;
+    @Basic
+    @Column(name="id")
+    private String id = UUID.randomUUID().toString();
     @Basic
     @Column(name="name")
     private String name;
@@ -30,18 +32,15 @@ public class CityEntity {
     public CityEntity() {
     }
 
-    public CityEntity(Long id, Long codigoMec, String name, String state) {
-        this.id = id;
+    public CityEntity(Long codigoMec) {
         this.codigoMec = codigoMec;
-        this.name = name;
-        this.state = state;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

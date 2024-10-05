@@ -1,10 +1,6 @@
 package br.com.coreeduc.aplication.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,11 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "rede_local_interligacao_computadores")
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 public class RedeLocalInterligacaoComputadoresEntity {
 
@@ -37,4 +29,51 @@ public class RedeLocalInterligacaoComputadoresEntity {
     @Column(name = "nao_ha_rede_local_interligacao")
     private Boolean naoHaRedeLocalInterligacap;
 
+    public RedeLocalInterligacaoComputadoresEntity() {
+    }
+
+    public RedeLocalInterligacaoComputadoresEntity(Long id, Boolean cabo, Boolean wireless, Boolean naoHaRedeLocalInterligacap) {
+        this.id = id;
+        this.cabo = cabo;
+        this.wireless = wireless;
+        this.naoHaRedeLocalInterligacap = naoHaRedeLocalInterligacap;
+    }
+
+    public RedeLocalInterligacaoComputadoresEntity(Boolean cabo, Boolean wireless, Boolean naoHaRedeLocalInterligacap) {
+        this.cabo = cabo;
+        this.wireless = wireless;
+        this.naoHaRedeLocalInterligacap = naoHaRedeLocalInterligacap;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getCabo() {
+        return cabo;
+    }
+
+    public void setCabo(Boolean cabo) {
+        this.cabo = cabo;
+    }
+
+    public Boolean getWireless() {
+        return wireless;
+    }
+
+    public void setWireless(Boolean wireless) {
+        this.wireless = wireless;
+    }
+
+    public Boolean getNaoHaRedeLocalInterligacap() {
+        return naoHaRedeLocalInterligacap;
+    }
+
+    public void setNaoHaRedeLocalInterligacap(Boolean naoHaRedeLocalInterligacap) {
+        this.naoHaRedeLocalInterligacap = naoHaRedeLocalInterligacap;
+    }
 }

@@ -1,11 +1,6 @@
 package br.com.coreeduc.aplication.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -48,18 +43,8 @@ public class AlunoTurmaEntity {
     public AlunoTurmaEntity() {
     }
 
-    public AlunoTurmaEntity(Long id,
-                            Integer situacao,
-                            Date dataAlocacao,
-                            Date dataSaida,
-                            MatriculaEntity matricula,
-                            TurmaEntity turma) {
+    public AlunoTurmaEntity(Long id) {
         this.id = id;
-        this.situacao = situacao;
-        this.dataAlocacao = dataAlocacao;
-        this.dataSaida = dataSaida;
-        this.matricula = matricula;
-        this.turma = turma;
     }
 
     public Long getId() {
