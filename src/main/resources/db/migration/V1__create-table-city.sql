@@ -1,13 +1,7 @@
-CREATE SEQUENCE CITY_ID_SEQ;
-
 CREATE TABLE IF NOT EXISTS CITY
 (
-    id         INTEGER UNIQUE DEFAULT nextval('CITY_ID_SEQ'),
-    codigo_mec INTEGER PRIMARY KEY NOT NULL,
-    name       VARCHAR(100)        NOT NULL,
-    state       VARCHAR(5)
-
+    id         text,
+    codigo_mec INTEGER PRIMARY KEY,
+    name       VARCHAR(100),
+    state      VARCHAR(5)
 );
-
-ALTER SEQUENCE CITY_ID_SEQ
-    OWNED BY CITY.ID;
