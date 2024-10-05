@@ -13,7 +13,7 @@ public class CityFactory {
         var builder = new Builder();
 
         setCity(
-                builder.id(Optional.ofNullable(properties.getProperty("id")).orElse(null))
+                builder.codigoMec(Optional.ofNullable(properties.getProperty("id")).map(Long::parseLong).orElse(null))
                         .name(properties.getProperty("name"))
                         .state(properties.getProperty("state"))
                         .build().getCity()
@@ -41,8 +41,8 @@ public class CityFactory {
             city = new CityEntity();
         }
 
-        public Builder id(String id) {
-            city.setId(id);
+        public Builder codigoMec(Long id) {
+            city.setCodigoMec(id);
             return this;
         }
 
