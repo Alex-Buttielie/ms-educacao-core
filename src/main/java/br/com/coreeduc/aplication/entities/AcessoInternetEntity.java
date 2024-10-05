@@ -34,8 +34,18 @@ public class AcessoInternetEntity {
     public AcessoInternetEntity() {
     }
 
-    public AcessoInternetEntity(Long id) {
+    public AcessoInternetEntity(Long id,
+                                Boolean paraUsoAdministrativo,
+                                Boolean paraUsoProcessoApredizagem,
+                                Boolean paraUsoAlunos,
+                                Boolean paraUsoComunidade,
+                                Boolean naoPossuiAcessoInternet) {
         this.id = id;
+        this.paraUsoAdministrativo = paraUsoAdministrativo;
+        this.paraUsoProcessoApredizagem = paraUsoProcessoApredizagem;
+        this.paraUsoAlunos = paraUsoAlunos;
+        this.paraUsoComunidade = paraUsoComunidade;
+        this.naoPossuiAcessoInternet = naoPossuiAcessoInternet;
     }
 
     public Long getId() {

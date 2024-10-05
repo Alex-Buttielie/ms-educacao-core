@@ -91,20 +91,62 @@ public class PessoaEntity implements Serializable {
     @JoinColumn()
     @JsonFormat
     private UnidadeEnsinoEntity fkUni;
-    @OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn()
     @JsonFormat
-    private CityEntity fkCityNasc;
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER )
+    private CityEntity fkCityRegistry;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private CityEntity fkCityResid;
+    private CityEntity fkCityResidense;
 
     public PessoaEntity() {
     }
 
-    public PessoaEntity(Long id) {
+    public PessoaEntity(Long id,
+                        Long identificacaoUnica,
+                        TipoRegistro tipoRegistro,
+                        String cpf,
+                        String nome,
+                        Date dataNascimento,
+                        TipoFiliacao tipoFiliacao,
+                        String nomeMae,
+                        String nomePai,
+                        Sexo sexo,
+                        CorRaca corRaca,
+                        Nacionalidade nacionalidade,
+                        Paises paisNacionalidade,
+                        String numeroMatriculaCertidaoNascimento,
+                        Paises paisResidencia,
+                        String cep,
+                        LocalizacaoZonaResidencia localizacaoZonaResidencia,
+                        LocalizacaoDiferenciadaResidencia localizacaoDiferenciadaResidencia,
+                        String enderecoEletronicoEmail,
+                        UnidadeEnsinoEntity fkUni,
+                        CityEntity fkCityRegistry,
+                        CityEntity fkCityResidense) {
         this.id = id;
+        this.identificacaoUnica = identificacaoUnica;
+        this.tipoRegistro = tipoRegistro;
+        this.cpf = cpf;
+        this.nome = nome;
+        this.dataNascimento = dataNascimento;
+        this.tipoFiliacao = tipoFiliacao;
+        this.nomeMae = nomeMae;
+        this.nomePai = nomePai;
+        this.sexo = sexo;
+        this.corRaca = corRaca;
+        this.nacionalidade = nacionalidade;
+        this.paisNacionalidade = paisNacionalidade;
+        this.numeroMatriculaCertidaoNascimento = numeroMatriculaCertidaoNascimento;
+        this.paisResidencia = paisResidencia;
+        this.cep = cep;
+        this.localizacaoZonaResidencia = localizacaoZonaResidencia;
+        this.localizacaoDiferenciadaResidencia = localizacaoDiferenciadaResidencia;
+        this.enderecoEletronicoEmail = enderecoEletronicoEmail;
+        this.fkUni = fkUni;
+        this.fkCityRegistry = fkCityRegistry;
+        this.fkCityResidense = fkCityResidense;
     }
 
     public Long getId() {
@@ -267,19 +309,19 @@ public class PessoaEntity implements Serializable {
         this.fkUni = fkUni;
     }
 
-    public CityEntity getFkCityNasc() {
-        return fkCityNasc;
+    public CityEntity getFkCityRegistry() {
+        return fkCityRegistry;
     }
 
-    public void setFkCityNasc(CityEntity fkCityNasc) {
-        this.fkCityNasc = fkCityNasc;
+    public void setFkCityRegistry(CityEntity fkCityRegistry) {
+        this.fkCityRegistry = fkCityRegistry;
     }
 
-    public CityEntity getFkCityResid() {
-        return fkCityResid;
+    public CityEntity getFkCityResidense() {
+        return fkCityResidense;
     }
 
-    public void setFkCityResid(CityEntity fkCityResid) {
-        this.fkCityResid = fkCityResid;
+    public void setFkCityResidense(CityEntity fkCityResidense) {
+        this.fkCityResidense = fkCityResidense;
     }
 }
