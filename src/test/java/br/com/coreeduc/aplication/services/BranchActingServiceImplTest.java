@@ -71,7 +71,7 @@ public class BranchActingServiceImplTest {
     void testAutoComplete() {
         String value = "descricao";
         String key = "descricao";
-        var branchActing = new BranchActing("id", "descricao", "observações", null);
+        var branchActing = new BranchActing("id", "descricao", "observacoes", null);
 
         when(branchActingRepository.findBranchActingByDescriptionIgnoreCase(any()))
                 .thenReturn(List.of(branchActing));

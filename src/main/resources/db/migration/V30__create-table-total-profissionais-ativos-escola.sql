@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS TOTAL_PROFISSIONAIS_ATIVOS_ESCOLA
     auxiliares_laboratorio            INTEGER,
     vice_diretor                      INTEGER,
     orientador_comunitario            INTEGER,
-    is_profissionais_funcoes_listadas BOOLEAN,
-    alimentacao_escolar_para_aluno    BOOLEAN
+    is_profissionais_funcoes_listadas BOOLEAN DEFAULT FALSE,
+    alimentacao_escolar_para_aluno    BOOLEAN DEFAULT FALSE
 );
 ALTER SEQUENCE TOTAL_PROFISSIONAIS_ATIVOS_ESCOLA_ID_SEQ
     OWNED BY TOTAL_PROFISSIONAIS_ATIVOS_ESCOLA.id;

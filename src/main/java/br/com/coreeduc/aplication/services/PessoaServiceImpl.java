@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static br.com.coreeduc.aplication.utils.Util.isCpfValido;
+
 @Service
 public class PessoaServiceImpl implements PessoaService {
 
@@ -30,6 +32,29 @@ public class PessoaServiceImpl implements PessoaService {
     @Override
     public Optional<PessoaEntity> findById(Long codigoInep) {
         return repository.findById(codigoInep);
+    }
+
+    @Override
+    public Optional<PessoaEntity> rastrearPessoaCacteristicasIndiv(String cpf, String nome) {
+        if (isCpfValido(cpf)) {
+            var pessoaRastPorCpf = rastrearPessoaCpf(cpf);
+
+            if (pessoaRastPorCpf.isPresent()) {
+                return pessoaRastPorCpf;
+            }
+
+        }
+
+        return rastrearPessoaNome(nome);
+
+    }
+
+    public Optional<PessoaEntity> rastrearPessoaCpf(String cpf) {
+        return repository.findPessoaByCpf(cpf);
+    }
+
+    public Optional<PessoaEntity> rastrearPessoaNome(String nome) {
+        return repository.findPessoaByNome(nome);
     }
 
 }

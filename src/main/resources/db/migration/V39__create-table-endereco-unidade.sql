@@ -3,7 +3,7 @@ CREATE SEQUENCE ENDERECO_UNIDADE_ID_SEQ;
 CREATE TABLE IF NOT EXISTS ENDERECO_UNIDADE
 (
     id                INTEGER PRIMARY KEY DEFAULT nextval('ENDERECO_UNIDADE_ID_SEQ'),
-    cep               INTEGER,
+    cep               varchar,
     fk_city_codigo_mec  INTEGER,
     distrito_id       INTEGER,
     endereco          VARCHAR(100),
