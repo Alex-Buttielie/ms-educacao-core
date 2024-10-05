@@ -1,11 +1,5 @@
 package br.com.coreeduc.aplication.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +10,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Table(name = "outros_cursos_especificos")
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class OutrosCursosEspecificosEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,8 +66,164 @@ public class OutrosCursosEspecificosEntity implements Serializable {
     @Basic
     @Column(name = "outros")
     private Boolean outros;
-    @Basic
-    @Column(name = "nao_tem_outros_cursos_especificos")
-    private Boolean naoTemOutrosCursosEspecificos;
 
+    public OutrosCursosEspecificosEntity() {
+    }
+
+    public OutrosCursosEspecificosEntity(Long id) {}
+
+    public OutrosCursosEspecificosEntity(Boolean creche, Boolean preEscola, Boolean anosIniciaisEnsinoFundamental, Boolean anosFinaisEnsinoFundamental, Boolean ensinoMedio, Boolean educacaoJovensAdultos, Boolean educacaoEspecial, Boolean educacaoIndigena, Boolean educacaoCampo, Boolean educacaoAmbiental, Boolean educacaoDireitosHumanos, Boolean generoDiversidadeSexual, Boolean direitoCriacaoAdolescente, Boolean educacaoRelacoesEtnicoRaciaisCulturaAfroBrasileira, Boolean gestaoEscolar, Boolean outros) {
+        this.creche = creche;
+        this.preEscola = preEscola;
+        this.anosIniciaisEnsinoFundamental = anosIniciaisEnsinoFundamental;
+        this.anosFinaisEnsinoFundamental = anosFinaisEnsinoFundamental;
+        this.ensinoMedio = ensinoMedio;
+        this.educacaoJovensAdultos = educacaoJovensAdultos;
+        this.educacaoEspecial = educacaoEspecial;
+        this.educacaoIndigena = educacaoIndigena;
+        this.educacaoCampo = educacaoCampo;
+        this.educacaoAmbiental = educacaoAmbiental;
+        this.educacaoDireitosHumanos = educacaoDireitosHumanos;
+        this.generoDiversidadeSexual = generoDiversidadeSexual;
+        this.direitoCriacaoAdolescente = direitoCriacaoAdolescente;
+        this.educacaoRelacoesEtnicoRaciaisCulturaAfroBrasileira = educacaoRelacoesEtnicoRaciaisCulturaAfroBrasileira;
+        this.gestaoEscolar = gestaoEscolar;
+        this.outros = outros;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getCreche() {
+        return creche;
+    }
+
+    public void setCreche(Boolean creche) {
+        this.creche = creche;
+    }
+
+    public Boolean getPreEscola() {
+        return preEscola;
+    }
+
+    public void setPreEscola(Boolean preEscola) {
+        this.preEscola = preEscola;
+    }
+
+    public Boolean getAnosIniciaisEnsinoFundamental() {
+        return anosIniciaisEnsinoFundamental;
+    }
+
+    public void setAnosIniciaisEnsinoFundamental(Boolean anosIniciaisEnsinoFundamental) {
+        this.anosIniciaisEnsinoFundamental = anosIniciaisEnsinoFundamental;
+    }
+
+    public Boolean getAnosFinaisEnsinoFundamental() {
+        return anosFinaisEnsinoFundamental;
+    }
+
+    public void setAnosFinaisEnsinoFundamental(Boolean anosFinaisEnsinoFundamental) {
+        this.anosFinaisEnsinoFundamental = anosFinaisEnsinoFundamental;
+    }
+
+    public Boolean getEnsinoMedio() {
+        return ensinoMedio;
+    }
+
+    public void setEnsinoMedio(Boolean ensinoMedio) {
+        this.ensinoMedio = ensinoMedio;
+    }
+
+    public Boolean getEducacaoJovensAdultos() {
+        return educacaoJovensAdultos;
+    }
+
+    public void setEducacaoJovensAdultos(Boolean educacaoJovensAdultos) {
+        this.educacaoJovensAdultos = educacaoJovensAdultos;
+    }
+
+    public Boolean getEducacaoEspecial() {
+        return educacaoEspecial;
+    }
+
+    public void setEducacaoEspecial(Boolean educacaoEspecial) {
+        this.educacaoEspecial = educacaoEspecial;
+    }
+
+    public Boolean getEducacaoIndigena() {
+        return educacaoIndigena;
+    }
+
+    public void setEducacaoIndigena(Boolean educacaoIndigena) {
+        this.educacaoIndigena = educacaoIndigena;
+    }
+
+    public Boolean getEducacaoCampo() {
+        return educacaoCampo;
+    }
+
+    public void setEducacaoCampo(Boolean educacaoCampo) {
+        this.educacaoCampo = educacaoCampo;
+    }
+
+    public Boolean getEducacaoAmbiental() {
+        return educacaoAmbiental;
+    }
+
+    public void setEducacaoAmbiental(Boolean educacaoAmbiental) {
+        this.educacaoAmbiental = educacaoAmbiental;
+    }
+
+    public Boolean getEducacaoDireitosHumanos() {
+        return educacaoDireitosHumanos;
+    }
+
+    public void setEducacaoDireitosHumanos(Boolean educacaoDireitosHumanos) {
+        this.educacaoDireitosHumanos = educacaoDireitosHumanos;
+    }
+
+    public Boolean getGeneroDiversidadeSexual() {
+        return generoDiversidadeSexual;
+    }
+
+    public void setGeneroDiversidadeSexual(Boolean generoDiversidadeSexual) {
+        this.generoDiversidadeSexual = generoDiversidadeSexual;
+    }
+
+    public Boolean getDireitoCriacaoAdolescente() {
+        return direitoCriacaoAdolescente;
+    }
+
+    public void setDireitoCriacaoAdolescente(Boolean direitoCriacaoAdolescente) {
+        this.direitoCriacaoAdolescente = direitoCriacaoAdolescente;
+    }
+
+    public Boolean getEducacaoRelacoesEtnicoRaciaisCulturaAfroBrasileira() {
+        return educacaoRelacoesEtnicoRaciaisCulturaAfroBrasileira;
+    }
+
+    public void setEducacaoRelacoesEtnicoRaciaisCulturaAfroBrasileira(Boolean educacaoRelacoesEtnicoRaciaisCulturaAfroBrasileira) {
+        this.educacaoRelacoesEtnicoRaciaisCulturaAfroBrasileira = educacaoRelacoesEtnicoRaciaisCulturaAfroBrasileira;
+    }
+
+    public Boolean getGestaoEscolar() {
+        return gestaoEscolar;
+    }
+
+    public void setGestaoEscolar(Boolean gestaoEscolar) {
+        this.gestaoEscolar = gestaoEscolar;
+    }
+
+    public Boolean getOutros() {
+        return outros;
+    }
+
+    public void setOutros(Boolean outros) {
+        this.outros = outros;
+    }
 }

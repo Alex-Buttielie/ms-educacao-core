@@ -1,10 +1,6 @@
 package br.com.coreeduc.aplication.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,11 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "fonte_energia_eletrica")
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 public class FonteEnergiaEletricaEntity {
 
@@ -40,4 +32,61 @@ public class FonteEnergiaEletricaEntity {
     @Column(name = "nao_ha_energia_eletrica")
     private Boolean naoHaEnergiaEletrica;
 
+    public FonteEnergiaEletricaEntity() {
+    }
+
+    public FonteEnergiaEletricaEntity(Long id, Boolean redePublica, Boolean geradorMovidoACombustivelFossil, Boolean fontesEnergiaRenovaveisAlternativas, Boolean naoHaEnergiaEletrica) {
+        this.id = id;
+        this.redePublica = redePublica;
+        this.geradorMovidoACombustivelFossil = geradorMovidoACombustivelFossil;
+        this.fontesEnergiaRenovaveisAlternativas = fontesEnergiaRenovaveisAlternativas;
+        this.naoHaEnergiaEletrica = naoHaEnergiaEletrica;
+    }
+
+    public FonteEnergiaEletricaEntity(Boolean redePublica, Boolean geradorMovidoACombustivelFossil, Boolean fontesEnergiaRenovaveisAlternativas, Boolean naoHaEnergiaEletrica) {
+        this.redePublica = redePublica;
+        this.geradorMovidoACombustivelFossil = geradorMovidoACombustivelFossil;
+        this.fontesEnergiaRenovaveisAlternativas = fontesEnergiaRenovaveisAlternativas;
+        this.naoHaEnergiaEletrica = naoHaEnergiaEletrica;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getRedePublica() {
+        return redePublica;
+    }
+
+    public void setRedePublica(Boolean redePublica) {
+        this.redePublica = redePublica;
+    }
+
+    public Boolean getGeradorMovidoACombustivelFossil() {
+        return geradorMovidoACombustivelFossil;
+    }
+
+    public void setGeradorMovidoACombustivelFossil(Boolean geradorMovidoACombustivelFossil) {
+        this.geradorMovidoACombustivelFossil = geradorMovidoACombustivelFossil;
+    }
+
+    public Boolean getFontesEnergiaRenovaveisAlternativas() {
+        return fontesEnergiaRenovaveisAlternativas;
+    }
+
+    public void setFontesEnergiaRenovaveisAlternativas(Boolean fontesEnergiaRenovaveisAlternativas) {
+        this.fontesEnergiaRenovaveisAlternativas = fontesEnergiaRenovaveisAlternativas;
+    }
+
+    public Boolean getNaoHaEnergiaEletrica() {
+        return naoHaEnergiaEletrica;
+    }
+
+    public void setNaoHaEnergiaEletrica(Boolean naoHaEnergiaEletrica) {
+        this.naoHaEnergiaEletrica = naoHaEnergiaEletrica;
+    }
 }
