@@ -258,7 +258,7 @@ public enum Paises {
         this.descricao = descricao;
     }
 
-    public static Paises getValorPorDescricao(int valor) {
+    public static Paises getCountryByValue(int valor) {
         for (Paises status : values())
             if (status.getValor() == valor)
                 return status;
