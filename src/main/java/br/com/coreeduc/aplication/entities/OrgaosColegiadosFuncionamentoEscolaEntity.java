@@ -15,12 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Table(name = "orgaos_colegiados_funcionamento_escola")
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class OrgaosColegiadosFuncionamentoEscolaEntity {
 
     @Id
@@ -49,4 +44,91 @@ public class OrgaosColegiadosFuncionamentoEscolaEntity {
     @Column(name = "projeto_politico_lei_ldb_12")
     private ProjetoPoliticoLeiLdb12 projetoPoliticoLeiLdb12;
 
+    public OrgaosColegiadosFuncionamentoEscolaEntity() {
+    }
+
+    public OrgaosColegiadosFuncionamentoEscolaEntity(Long id, Boolean associacaoPais, Boolean associacaoDePaisEMestres, Boolean conselhoEscolar, Boolean gremioEstudantil, Boolean outros, Boolean isOrgaosColegiadosEmFuncionamento, ProjetoPoliticoLeiLdb12 projetoPoliticoLeiLdb12) {
+        this.id = id;
+        this.associacaoPais = associacaoPais;
+        this.associacaoDePaisEMestres = associacaoDePaisEMestres;
+        this.conselhoEscolar = conselhoEscolar;
+        this.gremioEstudantil = gremioEstudantil;
+        this.outros = outros;
+        this.isOrgaosColegiadosEmFuncionamento = isOrgaosColegiadosEmFuncionamento;
+        this.projetoPoliticoLeiLdb12 = projetoPoliticoLeiLdb12;
+    }
+
+    public OrgaosColegiadosFuncionamentoEscolaEntity(Boolean associacaoPais, Boolean associacaoDePaisEMestres, Boolean conselhoEscolar, Boolean gremioEstudantil, Boolean outros, Boolean isOrgaosColegiadosEmFuncionamento, ProjetoPoliticoLeiLdb12 projetoPoliticoLeiLdb12) {
+        this.associacaoPais = associacaoPais;
+        this.associacaoDePaisEMestres = associacaoDePaisEMestres;
+        this.conselhoEscolar = conselhoEscolar;
+        this.gremioEstudantil = gremioEstudantil;
+        this.outros = outros;
+        this.isOrgaosColegiadosEmFuncionamento = isOrgaosColegiadosEmFuncionamento;
+        this.projetoPoliticoLeiLdb12 = projetoPoliticoLeiLdb12;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getAssociacaoPais() {
+        return associacaoPais;
+    }
+
+    public void setAssociacaoPais(Boolean associacaoPais) {
+        this.associacaoPais = associacaoPais;
+    }
+
+    public Boolean getAssociacaoDePaisEMestres() {
+        return associacaoDePaisEMestres;
+    }
+
+    public void setAssociacaoDePaisEMestres(Boolean associacaoDePaisEMestres) {
+        this.associacaoDePaisEMestres = associacaoDePaisEMestres;
+    }
+
+    public Boolean getConselhoEscolar() {
+        return conselhoEscolar;
+    }
+
+    public void setConselhoEscolar(Boolean conselhoEscolar) {
+        this.conselhoEscolar = conselhoEscolar;
+    }
+
+    public Boolean getGremioEstudantil() {
+        return gremioEstudantil;
+    }
+
+    public void setGremioEstudantil(Boolean gremioEstudantil) {
+        this.gremioEstudantil = gremioEstudantil;
+    }
+
+    public Boolean getOutros() {
+        return outros;
+    }
+
+    public void setOutros(Boolean outros) {
+        this.outros = outros;
+    }
+
+    public Boolean getOrgaosColegiadosEmFuncionamento() {
+        return isOrgaosColegiadosEmFuncionamento;
+    }
+
+    public void setOrgaosColegiadosEmFuncionamento(Boolean orgaosColegiadosEmFuncionamento) {
+        isOrgaosColegiadosEmFuncionamento = orgaosColegiadosEmFuncionamento;
+    }
+
+    public ProjetoPoliticoLeiLdb12 getProjetoPoliticoLeiLdb12() {
+        return projetoPoliticoLeiLdb12;
+    }
+
+    public void setProjetoPoliticoLeiLdb12(ProjetoPoliticoLeiLdb12 projetoPoliticoLeiLdb12) {
+        this.projetoPoliticoLeiLdb12 = projetoPoliticoLeiLdb12;
+    }
 }

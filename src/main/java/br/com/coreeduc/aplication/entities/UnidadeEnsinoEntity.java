@@ -35,9 +35,6 @@ public class UnidadeEnsinoEntity {
     @Column(name="nome")
     private String nome;
     @Basic
-    @Column(name="tipo_registro")
-    private TipoRegistro tipoDeRegistro;
-    @Basic
     @Column(name="situacao_funcionamento")
     private SituacaoFuncionamento situacaoFuncionamento;
     @Basic
@@ -88,7 +85,6 @@ public class UnidadeEnsinoEntity {
     @Basic
     @Column(name="nao_possui_parceria_convenio")
     private Boolean naoPossuiParceriaConvenio;
-
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
@@ -117,8 +113,8 @@ public class UnidadeEnsinoEntity {
     @JoinColumn()
     @JsonFormat
     private EscolasComQualCompartilhaEntity escolasComQualCompartilha;
-    @OneToOne
-    @JoinColumn(name = "abastecimento_agua_id", referencedColumnName = "id",  nullable = false, unique = false)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
     @JsonFormat
     private AbastecimentoAguaEntity abastecimentoAgua;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -193,9 +189,12 @@ public class UnidadeEnsinoEntity {
     public UnidadeEnsinoEntity() {
     }
 
+    public UnidadeEnsinoEntity(Long codigoInep) {
+        this.codigoInep = codigoInep;
+    }
+
     public UnidadeEnsinoEntity(Long codigoInep,
                                String nome,
-                               TipoRegistro tipoDeRegistro,
                                SituacaoFuncionamento situacaoFuncionamento,
                                Date dataInicioAnoLetivo,
                                Date dataDeTerminoDoAnoLetivo,
@@ -240,7 +239,6 @@ public class UnidadeEnsinoEntity {
                                OrgaosColegiadosFuncionamentoEscolaEntity orgaosColegiadosFuncionamentoEscola) {
         this.codigoInep = codigoInep;
         this.nome = nome;
-        this.tipoDeRegistro = tipoDeRegistro;
         this.situacaoFuncionamento = situacaoFuncionamento;
         this.dataInicioAnoLetivo = dataInicioAnoLetivo;
         this.dataDeTerminoDoAnoLetivo = dataDeTerminoDoAnoLetivo;
@@ -299,14 +297,6 @@ public class UnidadeEnsinoEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public TipoRegistro getTipoDeRegistro() {
-        return tipoDeRegistro;
-    }
-
-    public void setTipoDeRegistro(TipoRegistro tipoDeRegistro) {
-        this.tipoDeRegistro = tipoDeRegistro;
     }
 
     public SituacaoFuncionamento getSituacaoFuncionamento() {

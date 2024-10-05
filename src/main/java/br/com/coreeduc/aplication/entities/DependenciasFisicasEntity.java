@@ -131,6 +131,46 @@ public class DependenciasFisicasEntity {
     public DependenciasFisicasEntity() {
     }
 
+    public DependenciasFisicasEntity(Boolean almoxarifado, Boolean areaVerde, Boolean auditorio, Boolean banheiro, Boolean banheiroAcessivelPessoasDeficiencia, Boolean banheiroAdequadoEducacaoInfantil, Boolean banheiroExclusivoParaFuncionarios, Boolean banheiroOuVestiarioComChuveiro, Boolean biblioteca, Boolean cozinha, Boolean despensa, Boolean dormitorioAluno, Boolean dormitorioProfessora, Boolean laboratorioCiencias, Boolean laboratorioInformatica, Boolean laboratorioEspecificoEducacaoProfissional, Boolean parqueInfantil, Boolean patioCoberto, Boolean patioDescoberto, Boolean piscina, Boolean quadraEsportesCoberta, Boolean quadraEsportesDescoberta, Boolean refeitorio, Boolean salaRepousoParaAluno, Boolean salaAtelieArtes, Boolean salaMusicaCoral, Boolean salaEstudioDanca, Boolean salaMultiusoMusicaDancaArtes, Boolean terreiroParaRecreacao, Boolean viveiroCriacaoAnimais, Boolean salaDiretoria, Boolean salaLeitura, Boolean salaProfessores, Boolean salaRecursosMultifuncionais, Boolean salaSecretaria, Boolean salasOficinasEducacaoProfissional, Boolean nenhumaDasDependenciasRelacionadas) {
+        this.almoxarifado = almoxarifado;
+        this.areaVerde = areaVerde;
+        this.auditorio = auditorio;
+        this.banheiro = banheiro;
+        this.banheiroAcessivelPessoasDeficiencia = banheiroAcessivelPessoasDeficiencia;
+        this.banheiroAdequadoEducacaoInfantil = banheiroAdequadoEducacaoInfantil;
+        this.banheiroExclusivoParaFuncionarios = banheiroExclusivoParaFuncionarios;
+        this.banheiroOuVestiarioComChuveiro = banheiroOuVestiarioComChuveiro;
+        this.biblioteca = biblioteca;
+        this.cozinha = cozinha;
+        this.despensa = despensa;
+        this.dormitorioAluno = dormitorioAluno;
+        this.dormitorioProfessora = dormitorioProfessora;
+        this.laboratorioCiencias = laboratorioCiencias;
+        this.laboratorioInformatica = laboratorioInformatica;
+        this.laboratorioEspecificoEducacaoProfissional = laboratorioEspecificoEducacaoProfissional;
+        this.parqueInfantil = parqueInfantil;
+        this.patioCoberto = patioCoberto;
+        this.patioDescoberto = patioDescoberto;
+        this.piscina = piscina;
+        this.quadraEsportesCoberta = quadraEsportesCoberta;
+        this.quadraEsportesDescoberta = quadraEsportesDescoberta;
+        this.refeitorio = refeitorio;
+        this.salaRepousoParaAluno = salaRepousoParaAluno;
+        this.salaAtelieArtes = salaAtelieArtes;
+        this.salaMusicaCoral = salaMusicaCoral;
+        this.salaEstudioDanca = salaEstudioDanca;
+        this.salaMultiusoMusicaDancaArtes = salaMultiusoMusicaDancaArtes;
+        this.terreiroParaRecreacao = terreiroParaRecreacao;
+        this.viveiroCriacaoAnimais = viveiroCriacaoAnimais;
+        this.salaDiretoria = salaDiretoria;
+        this.salaLeitura = salaLeitura;
+        this.salaProfessores = salaProfessores;
+        this.salaRecursosMultifuncionais = salaRecursosMultifuncionais;
+        this.salaSecretaria = salaSecretaria;
+        this.salasOficinasEducacaoProfissional = salasOficinasEducacaoProfissional;
+        this.nenhumaDasDependenciasRelacionadas = nenhumaDasDependenciasRelacionadas;
+    }
+
     public DependenciasFisicasEntity(Long id,
                                      Boolean almoxarifado,
                                      Boolean areaVerde,

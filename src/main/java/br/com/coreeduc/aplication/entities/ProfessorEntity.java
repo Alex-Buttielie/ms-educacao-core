@@ -3,10 +3,6 @@ package br.com.coreeduc.aplication.entities;
 import br.com.coreeduc.aplication.contraints.MaiorNivelEscolaridadeConcluido;
 import br.com.coreeduc.aplication.contraints.TipoEnsinoMedioCursado;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -21,11 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Table(name = "professor")
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class ProfessorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,4 +57,111 @@ public class ProfessorEntity {
     @Column(name = "maior_nivel_escolaridade_concluido")
     private MaiorNivelEscolaridadeConcluido maiorNivelEscolaridadeConcluido;
 
+    public ProfessorEntity() {
+    }
+
+    public ProfessorEntity(Long id, PessoaEntity pessoa, OutrosCursosEspecificosEntity outrosCursosEspecificos, FormacaoComplementarPedagogicaProfessorEntity formacaoComplementarPedagogicaProfessor, PosGraduacaoConcluidaProfessorEntity posGraduacaoConcluidaProfessor, TipoDeficienciaEspectroAltasHabilidadesEntity tipoDeficienciaEspectroAltasHabilidades, RecursoAlunoParaAvaliacaoInepEntity recursoAlunoParaAvaliacaoInep, Boolean naoTemPosGraduacaoConcluida, TipoEnsinoMedioCursado tipoEnsinoMedioCursado, MaiorNivelEscolaridadeConcluido maiorNivelEscolaridadeConcluido) {
+        this.id = id;
+        this.pessoa = pessoa;
+        this.outrosCursosEspecificos = outrosCursosEspecificos;
+        this.formacaoComplementarPedagogicaProfessor = formacaoComplementarPedagogicaProfessor;
+        this.posGraduacaoConcluidaProfessor = posGraduacaoConcluidaProfessor;
+        this.tipoDeficienciaEspectroAltasHabilidades = tipoDeficienciaEspectroAltasHabilidades;
+        this.recursoAlunoParaAvaliacaoInep = recursoAlunoParaAvaliacaoInep;
+        this.naoTemPosGraduacaoConcluida = naoTemPosGraduacaoConcluida;
+        this.tipoEnsinoMedioCursado = tipoEnsinoMedioCursado;
+        this.maiorNivelEscolaridadeConcluido = maiorNivelEscolaridadeConcluido;
+    }
+
+    public ProfessorEntity(PessoaEntity pessoa, OutrosCursosEspecificosEntity outrosCursosEspecificos, FormacaoComplementarPedagogicaProfessorEntity formacaoComplementarPedagogicaProfessor, PosGraduacaoConcluidaProfessorEntity posGraduacaoConcluidaProfessor, TipoDeficienciaEspectroAltasHabilidadesEntity tipoDeficienciaEspectroAltasHabilidades, RecursoAlunoParaAvaliacaoInepEntity recursoAlunoParaAvaliacaoInep, Boolean naoTemPosGraduacaoConcluida, TipoEnsinoMedioCursado tipoEnsinoMedioCursado, MaiorNivelEscolaridadeConcluido maiorNivelEscolaridadeConcluido) {
+        this.pessoa = pessoa;
+        this.outrosCursosEspecificos = outrosCursosEspecificos;
+        this.formacaoComplementarPedagogicaProfessor = formacaoComplementarPedagogicaProfessor;
+        this.posGraduacaoConcluidaProfessor = posGraduacaoConcluidaProfessor;
+        this.tipoDeficienciaEspectroAltasHabilidades = tipoDeficienciaEspectroAltasHabilidades;
+        this.recursoAlunoParaAvaliacaoInep = recursoAlunoParaAvaliacaoInep;
+        this.naoTemPosGraduacaoConcluida = naoTemPosGraduacaoConcluida;
+        this.tipoEnsinoMedioCursado = tipoEnsinoMedioCursado;
+        this.maiorNivelEscolaridadeConcluido = maiorNivelEscolaridadeConcluido;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public PessoaEntity getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(PessoaEntity pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public OutrosCursosEspecificosEntity getOutrosCursosEspecificos() {
+        return outrosCursosEspecificos;
+    }
+
+    public void setOutrosCursosEspecificos(OutrosCursosEspecificosEntity outrosCursosEspecificos) {
+        this.outrosCursosEspecificos = outrosCursosEspecificos;
+    }
+
+    public FormacaoComplementarPedagogicaProfessorEntity getFormacaoComplementarPedagogicaProfessor() {
+        return formacaoComplementarPedagogicaProfessor;
+    }
+
+    public void setFormacaoComplementarPedagogicaProfessor(FormacaoComplementarPedagogicaProfessorEntity formacaoComplementarPedagogicaProfessor) {
+        this.formacaoComplementarPedagogicaProfessor = formacaoComplementarPedagogicaProfessor;
+    }
+
+    public PosGraduacaoConcluidaProfessorEntity getPosGraduacaoConcluidaProfessor() {
+        return posGraduacaoConcluidaProfessor;
+    }
+
+    public void setPosGraduacaoConcluidaProfessor(PosGraduacaoConcluidaProfessorEntity posGraduacaoConcluidaProfessor) {
+        this.posGraduacaoConcluidaProfessor = posGraduacaoConcluidaProfessor;
+    }
+
+    public TipoDeficienciaEspectroAltasHabilidadesEntity getTipoDeficienciaEspectroAltasHabilidades() {
+        return tipoDeficienciaEspectroAltasHabilidades;
+    }
+
+    public void setTipoDeficienciaEspectroAltasHabilidades(TipoDeficienciaEspectroAltasHabilidadesEntity tipoDeficienciaEspectroAltasHabilidades) {
+        this.tipoDeficienciaEspectroAltasHabilidades = tipoDeficienciaEspectroAltasHabilidades;
+    }
+
+    public RecursoAlunoParaAvaliacaoInepEntity getRecursoAlunoParaAvaliacaoInep() {
+        return recursoAlunoParaAvaliacaoInep;
+    }
+
+    public void setRecursoAlunoParaAvaliacaoInep(RecursoAlunoParaAvaliacaoInepEntity recursoAlunoParaAvaliacaoInep) {
+        this.recursoAlunoParaAvaliacaoInep = recursoAlunoParaAvaliacaoInep;
+    }
+
+    public Boolean getNaoTemPosGraduacaoConcluida() {
+        return naoTemPosGraduacaoConcluida;
+    }
+
+    public void setNaoTemPosGraduacaoConcluida(Boolean naoTemPosGraduacaoConcluida) {
+        this.naoTemPosGraduacaoConcluida = naoTemPosGraduacaoConcluida;
+    }
+
+    public TipoEnsinoMedioCursado getTipoEnsinoMedioCursado() {
+        return tipoEnsinoMedioCursado;
+    }
+
+    public void setTipoEnsinoMedioCursado(TipoEnsinoMedioCursado tipoEnsinoMedioCursado) {
+        this.tipoEnsinoMedioCursado = tipoEnsinoMedioCursado;
+    }
+
+    public MaiorNivelEscolaridadeConcluido getMaiorNivelEscolaridadeConcluido() {
+        return maiorNivelEscolaridadeConcluido;
+    }
+
+    public void setMaiorNivelEscolaridadeConcluido(MaiorNivelEscolaridadeConcluido maiorNivelEscolaridadeConcluido) {
+        this.maiorNivelEscolaridadeConcluido = maiorNivelEscolaridadeConcluido;
+    }
 }
