@@ -1,11 +1,7 @@
 package br.com.coreeduc.aplication.entities;
 
 import br.com.coreeduc.aplication.contraints.CategoriaEscola;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,11 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "mantenedora_escola_privada")
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
 public class MantenedoraEscolaPrivadaEntity {
 
@@ -50,4 +42,91 @@ public class MantenedoraEscolaPrivadaEntity {
     @Column(name="categoria_escola_privada")
     private CategoriaEscola categoriaEscola;
 
+    public MantenedoraEscolaPrivadaEntity(Long id, Boolean empresaGruposEmpresariaisSetorPrivadoPessoaFisica, Boolean sindicatosTrabalhadoresPatronaisAssociacoesCooperativas, Boolean organizacaoNaoGovernamenta, Boolean instituicaoSemFinsLucrativos, Boolean sistemasSesiSenaiSescOutros, Boolean organizacaoDaSociedadeCivilDeInteressePublico, CategoriaEscola categoriaEscola) {
+        this.id = id;
+        this.empresaGruposEmpresariaisSetorPrivadoPessoaFisica = empresaGruposEmpresariaisSetorPrivadoPessoaFisica;
+        this.sindicatosTrabalhadoresPatronaisAssociacoesCooperativas = sindicatosTrabalhadoresPatronaisAssociacoesCooperativas;
+        this.organizacaoNaoGovernamenta = organizacaoNaoGovernamenta;
+        this.instituicaoSemFinsLucrativos = instituicaoSemFinsLucrativos;
+        this.sistemasSesiSenaiSescOutros = sistemasSesiSenaiSescOutros;
+        this.organizacaoDaSociedadeCivilDeInteressePublico = organizacaoDaSociedadeCivilDeInteressePublico;
+        this.categoriaEscola = categoriaEscola;
+    }
+
+    public MantenedoraEscolaPrivadaEntity(Boolean empresaGruposEmpresariaisSetorPrivadoPessoaFisica, Boolean sindicatosTrabalhadoresPatronaisAssociacoesCooperativas, Boolean organizacaoNaoGovernamenta, Boolean instituicaoSemFinsLucrativos, Boolean sistemasSesiSenaiSescOutros, Boolean organizacaoDaSociedadeCivilDeInteressePublico, CategoriaEscola categoriaEscola) {
+        this.empresaGruposEmpresariaisSetorPrivadoPessoaFisica = empresaGruposEmpresariaisSetorPrivadoPessoaFisica;
+        this.sindicatosTrabalhadoresPatronaisAssociacoesCooperativas = sindicatosTrabalhadoresPatronaisAssociacoesCooperativas;
+        this.organizacaoNaoGovernamenta = organizacaoNaoGovernamenta;
+        this.instituicaoSemFinsLucrativos = instituicaoSemFinsLucrativos;
+        this.sistemasSesiSenaiSescOutros = sistemasSesiSenaiSescOutros;
+        this.organizacaoDaSociedadeCivilDeInteressePublico = organizacaoDaSociedadeCivilDeInteressePublico;
+        this.categoriaEscola = categoriaEscola;
+    }
+
+    public MantenedoraEscolaPrivadaEntity() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getEmpresaGruposEmpresariaisSetorPrivadoPessoaFisica() {
+        return empresaGruposEmpresariaisSetorPrivadoPessoaFisica;
+    }
+
+    public void setEmpresaGruposEmpresariaisSetorPrivadoPessoaFisica(Boolean empresaGruposEmpresariaisSetorPrivadoPessoaFisica) {
+        this.empresaGruposEmpresariaisSetorPrivadoPessoaFisica = empresaGruposEmpresariaisSetorPrivadoPessoaFisica;
+    }
+
+    public Boolean getSindicatosTrabalhadoresPatronaisAssociacoesCooperativas() {
+        return sindicatosTrabalhadoresPatronaisAssociacoesCooperativas;
+    }
+
+    public void setSindicatosTrabalhadoresPatronaisAssociacoesCooperativas(Boolean sindicatosTrabalhadoresPatronaisAssociacoesCooperativas) {
+        this.sindicatosTrabalhadoresPatronaisAssociacoesCooperativas = sindicatosTrabalhadoresPatronaisAssociacoesCooperativas;
+    }
+
+    public Boolean getOrganizacaoNaoGovernamenta() {
+        return organizacaoNaoGovernamenta;
+    }
+
+    public void setOrganizacaoNaoGovernamenta(Boolean organizacaoNaoGovernamenta) {
+        this.organizacaoNaoGovernamenta = organizacaoNaoGovernamenta;
+    }
+
+    public Boolean getInstituicaoSemFinsLucrativos() {
+        return instituicaoSemFinsLucrativos;
+    }
+
+    public void setInstituicaoSemFinsLucrativos(Boolean instituicaoSemFinsLucrativos) {
+        this.instituicaoSemFinsLucrativos = instituicaoSemFinsLucrativos;
+    }
+
+    public Boolean getSistemasSesiSenaiSescOutros() {
+        return sistemasSesiSenaiSescOutros;
+    }
+
+    public void setSistemasSesiSenaiSescOutros(Boolean sistemasSesiSenaiSescOutros) {
+        this.sistemasSesiSenaiSescOutros = sistemasSesiSenaiSescOutros;
+    }
+
+    public Boolean getOrganizacaoDaSociedadeCivilDeInteressePublico() {
+        return organizacaoDaSociedadeCivilDeInteressePublico;
+    }
+
+    public void setOrganizacaoDaSociedadeCivilDeInteressePublico(Boolean organizacaoDaSociedadeCivilDeInteressePublico) {
+        this.organizacaoDaSociedadeCivilDeInteressePublico = organizacaoDaSociedadeCivilDeInteressePublico;
+    }
+
+    public CategoriaEscola getCategoriaEscola() {
+        return categoriaEscola;
+    }
+
+    public void setCategoriaEscola(CategoriaEscola categoriaEscola) {
+        this.categoriaEscola = categoriaEscola;
+    }
 }

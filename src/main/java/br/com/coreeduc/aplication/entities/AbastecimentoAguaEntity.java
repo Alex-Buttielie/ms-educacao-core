@@ -36,18 +36,8 @@ public class AbastecimentoAguaEntity {
     public AbastecimentoAguaEntity() {
     }
 
-    public AbastecimentoAguaEntity(Long id,
-                                   Boolean redePublica,
-                                   Boolean pocoArtesiano,
-                                   Boolean cacimbaCisternaPoco,
-                                   Boolean fonteRioIgarapeRiachoCorrego,
-                                   Boolean naoHaAbastecimentoAgua) {
+    public AbastecimentoAguaEntity(Long id) {
         this.id = id;
-        this.redePublica = redePublica;
-        this.pocoArtesiano = pocoArtesiano;
-        this.cacimbaCisternaPoco = cacimbaCisternaPoco;
-        this.fonteRioIgarapeRiachoCorrego = fonteRioIgarapeRiachoCorrego;
-        this.naoHaAbastecimentoAgua = naoHaAbastecimentoAgua;
     }
 
     public Long getId() {
