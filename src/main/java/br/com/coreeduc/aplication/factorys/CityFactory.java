@@ -13,7 +13,7 @@ public class CityFactory {
         var builder = new Builder();
 
         setCity(
-                builder.id(Optional.ofNullable(properties.getProperty("id")).map(Long::valueOf).orElse(null))
+                builder.id(Optional.ofNullable(properties.getProperty("id")).orElse(null))
                         .name(properties.getProperty("name"))
                         .state(properties.getProperty("state"))
                         .build().getCity()
@@ -41,7 +41,7 @@ public class CityFactory {
             city = new CityEntity();
         }
 
-        public Builder id(Long id) {
+        public Builder id(String id) {
             city.setId(id);
             return this;
         }
