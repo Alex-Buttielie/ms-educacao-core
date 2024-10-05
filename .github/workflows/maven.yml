@@ -27,6 +27,6 @@ jobs:
 
     - name: Build Docker Image
       run: | 
-        docker build -t alexbuttielie/ms-core:core-main -f Dockerfile-core .
+        docker build -t alexbuttielie/ms-core:core-main -f Dockerfile .
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker push alexbuttielie/ms-core:core-main
