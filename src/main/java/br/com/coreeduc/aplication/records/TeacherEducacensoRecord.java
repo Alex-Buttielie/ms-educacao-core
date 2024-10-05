@@ -1,0 +1,43 @@
+package br.com.coreeduc.aplication.records;
+
+import java.util.Date;
+
+public record TeacherEducacensoRecord (
+        Long uniqueIdentification,
+        Integer schoolCodeInep,
+        Integer personCodeInOwnSystem,
+        String cpf,
+        String name,
+        Date dateBirth,
+        Integer affiliationType,
+        String nameMom,
+        String nameFather,
+        Integer gender,
+        Integer colorRace,
+        Integer nationality,
+        Integer countryNationality,
+        CityRecord cityNativity,
+        String registrationNumberBirthCertificate,
+        Integer countryResidence,
+        String postalCode,
+        CityRecord cityResidense,
+        Integer residentialAreaLocation,
+        Integer differentiatedResidentialLocation,
+        Integer highestCompletedLevelOfEducation,
+        Integer typeOfHighSchoolCompleted,
+        Long knowledgeAreaCurricularComponents1,
+        Long knowledgeAreaCurricularComponents2,
+        Long knowledgeAreaCurricularComponents3,
+        PostGraduationTeacher postGraduationTeacher1,
+        PostGraduationTeacher postGraduationTeacher2,
+        PostGraduationTeacher postGraduationTeacher3,
+        PostGraduationTeacher postGraduationTeacher4,
+        PostGraduationTeacher postGraduationTeacher5,
+        PostGraduationTeacher postGraduationTeacher6,
+        Integer noCompletedPostGraduation,
+        Integer locationResidentialArea,
+        Integer differentiatedLocationResidence,
+        TypeImpairmentSpectrumHighSkillsEducacensoRecord typeImpairmentSpectrumHighSkillsEducacensoRecord,
+        OtherSpecificCoursesEducacensoRecord otherSpecificCoursesEducacensoRecord,
+        StudentResourceForAssessmentInepEducacensoRecord studentResourceForAssessmentInepEducacensoRecord
+) { }
