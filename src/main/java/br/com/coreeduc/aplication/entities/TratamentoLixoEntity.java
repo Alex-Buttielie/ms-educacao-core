@@ -1,6 +1,10 @@
 package br.com.coreeduc.aplication.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -11,7 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Table(name = "tratamento_lixo")
+@Getter
+@Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class TratamentoLixoEntity {
 
@@ -32,61 +40,4 @@ public class TratamentoLixoEntity {
     @Column(name = "nao_faz_tratamento")
     private Boolean naoFazTratamento;
 
-    public TratamentoLixoEntity() {
-    }
-
-    public TratamentoLixoEntity(Long id, Boolean separacaoDoLixoResiduos, Boolean reaproveitamentoReutilizacao, Boolean reciclagem, Boolean naoFazTratamento) {
-        this.id = id;
-        this.separacaoDoLixoResiduos = separacaoDoLixoResiduos;
-        this.reaproveitamentoReutilizacao = reaproveitamentoReutilizacao;
-        this.reciclagem = reciclagem;
-        this.naoFazTratamento = naoFazTratamento;
-    }
-
-    public TratamentoLixoEntity(Boolean separacaoDoLixoResiduos, Boolean reaproveitamentoReutilizacao, Boolean reciclagem, Boolean naoFazTratamento) {
-        this.separacaoDoLixoResiduos = separacaoDoLixoResiduos;
-        this.reaproveitamentoReutilizacao = reaproveitamentoReutilizacao;
-        this.reciclagem = reciclagem;
-        this.naoFazTratamento = naoFazTratamento;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Boolean getSeparacaoDoLixoResiduos() {
-        return separacaoDoLixoResiduos;
-    }
-
-    public void setSeparacaoDoLixoResiduos(Boolean separacaoDoLixoResiduos) {
-        this.separacaoDoLixoResiduos = separacaoDoLixoResiduos;
-    }
-
-    public Boolean getReaproveitamentoReutilizacao() {
-        return reaproveitamentoReutilizacao;
-    }
-
-    public void setReaproveitamentoReutilizacao(Boolean reaproveitamentoReutilizacao) {
-        this.reaproveitamentoReutilizacao = reaproveitamentoReutilizacao;
-    }
-
-    public Boolean getReciclagem() {
-        return reciclagem;
-    }
-
-    public void setReciclagem(Boolean reciclagem) {
-        this.reciclagem = reciclagem;
-    }
-
-    public Boolean getNaoFazTratamento() {
-        return naoFazTratamento;
-    }
-
-    public void setNaoFazTratamento(Boolean naoFazTratamento) {
-        this.naoFazTratamento = naoFazTratamento;
-    }
 }

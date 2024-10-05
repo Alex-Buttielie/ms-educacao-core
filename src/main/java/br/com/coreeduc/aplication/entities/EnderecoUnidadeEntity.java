@@ -1,7 +1,11 @@
 package br.com.coreeduc.aplication.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -16,7 +20,11 @@ import javax.persistence.Table;
 
 
 @Table(name = "endereco_unidade")
+@Getter
+@Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class EnderecoUnidadeEntity {
 
@@ -26,11 +34,15 @@ public class EnderecoUnidadeEntity {
     private Long id;
     @Basic
     @Column(name="cep")
-    private String cep;
+    private Integer cep;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
     private CityEntity fkCity;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private DistritoEntity distrito;
     @Basic
     @Column(name="endereco")
     private String  endereco;
@@ -47,91 +59,4 @@ public class EnderecoUnidadeEntity {
     @Column(name="ddd")
     private Integer ddd;
 
-    public EnderecoUnidadeEntity(Long id, String cep, CityEntity fkCity, String endereco, String numero, String complemento, String bairro, Integer ddd) {
-        this.id = id;
-        this.cep = cep;
-        this.fkCity = fkCity;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.ddd = ddd;
-    }
-
-    public EnderecoUnidadeEntity(String cep, CityEntity fkCity, String endereco, String numero, String complemento, String bairro, Integer ddd) {
-        this.cep = cep;
-        this.fkCity = fkCity;
-        this.endereco = endereco;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.ddd = ddd;
-    }
-
-    public EnderecoUnidadeEntity() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public CityEntity getFkCity() {
-        return fkCity;
-    }
-
-    public void setFkCity(CityEntity fkCity) {
-        this.fkCity = fkCity;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public Integer getDdd() {
-        return ddd;
-    }
-
-    public void setDdd(Integer ddd) {
-        this.ddd = ddd;
-    }
 }
