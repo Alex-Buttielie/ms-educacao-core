@@ -13,6 +13,16 @@ public enum TypeUnitCompany {
         this.code = code;
     }
 
+    public static TypeUnitCompany findByTypeUnitCompanyFromCode(String code) {
+        for (TypeUnitCompany typeUnitCompany : TypeUnitCompany.values()) {
+            if (typeUnitCompany.code.equals(code)) {
+                return typeUnitCompany;
+            }
+        }
+
+        return null;
+    }
+
     public String getDescription() {
         return description;
     }

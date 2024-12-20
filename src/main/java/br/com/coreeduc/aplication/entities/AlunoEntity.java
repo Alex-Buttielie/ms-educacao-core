@@ -1,11 +1,6 @@
 package br.com.coreeduc.aplication.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Table(name = "aluno")
 @Entity
@@ -31,13 +28,14 @@ public class AlunoEntity implements Serializable {
     @JoinColumn()
     @JsonFormat
     private PessoaEntity pessoa;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private Collection<AlunoTurmaEntity> alunoTurma;
 
     public AlunoEntity() {
     }
 
-    public AlunoEntity(Long id, PessoaEntity pessoa) {
+    public AlunoEntity(Long id) {
         this.id = id;
-        this.pessoa = pessoa;
     }
 
     public Long getId() {
@@ -56,4 +54,11 @@ public class AlunoEntity implements Serializable {
         this.pessoa = pessoa;
     }
 
+    public Collection<AlunoTurmaEntity> getAlunoTurma() {
+        return alunoTurma;
+    }
+
+    public void setAlunoTurma(Collection<AlunoTurmaEntity> alunoTurma) {
+        this.alunoTurma = alunoTurma;
+    }
 }

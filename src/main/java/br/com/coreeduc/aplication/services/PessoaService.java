@@ -13,4 +13,6 @@ public interface PessoaService {
     List<PessoaEntity> buscar();
 
     Optional findById(Long id);
+
+    Optional<PessoaEntity> rastrearPessoaCacteristicasIndiv(String cpf, String name, Long aLong);
 }

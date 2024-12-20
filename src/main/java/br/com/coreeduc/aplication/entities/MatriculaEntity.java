@@ -17,18 +17,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.UUID;
 
 @Table(name = "matricula")
-@Getter
-@Setter
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 public class MatriculaEntity {
+
     @Id
+    @Basic
+    @Column(name = "code")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long code;
+    @Basic
     @Column(name = "id")
-    private Long id;
+    private String id = UUID.randomUUID().toString();
     @Basic
     @Column(name = "data_matricula")
     private Date dataMatricula;
@@ -39,17 +41,74 @@ public class MatriculaEntity {
     @Column(name = "situacao")
     private Integer situacao;
     @Basic
-    @Column(name = "matricula")
-    private String matricula;
-    @Basic
     @Column(name = "is_ativa")
-    private String isAtiva;
+    private Boolean isAtiva;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn()
     @JsonFormat
     private UnidadeEnsinoEntity unidadeEnsino;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn()
-    @JsonFormat
-    private AlunoEntity aluno;
+
+    public MatriculaEntity() {
+    }
+
+    public MatriculaEntity(Long code) {
+        this.code = code;
+    }
+
+    public Long getCode() {
+        return code;
+    }
+
+    public void setCode(Long code) {
+        this.code = code;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getDataMatricula() {
+        return dataMatricula;
+    }
+
+    public void setDataMatricula(Date dataMatricula) {
+        this.dataMatricula = dataMatricula;
+    }
+
+    public Date getDataSaida() {
+        return dataSaida;
+    }
+
+    public void setDataSaida(Date dataSaida) {
+        this.dataSaida = dataSaida;
+    }
+
+    public Integer getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Integer situacao) {
+        this.situacao = situacao;
+    }
+
+    public Boolean getAtiva() {
+        return isAtiva;
+    }
+
+    public void setAtiva(Boolean ativa) {
+        isAtiva = ativa;
+    }
+
+    public UnidadeEnsinoEntity getUnidadeEnsino() {
+        return unidadeEnsino;
+    }
+
+    public void setUnidadeEnsino(UnidadeEnsinoEntity unidadeEnsino) {
+        this.unidadeEnsino = unidadeEnsino;
+    }
+
 }

@@ -3,9 +3,9 @@ CREATE SEQUENCE PROFESSOR_ID_SEQ;
 CREATE TABLE IF NOT EXISTS PROFESSOR
 (
     id        INTEGER UNIQUE DEFAULT nextval('PROFESSOR_ID_SEQ'),
-    pessoa_id INTEGER,
-    CONSTRAINT fk_pessoa FOREIGN KEY (pessoa_id)
-        REFERENCES pessoa (id)
+    pessoa_codigo INTEGER,
+    CONSTRAINT fk_pessoa FOREIGN KEY (pessoa_codigo)
+        REFERENCES pessoa (codigo)
 );
 
 ALTER SEQUENCE PROFESSOR_ID_SEQ

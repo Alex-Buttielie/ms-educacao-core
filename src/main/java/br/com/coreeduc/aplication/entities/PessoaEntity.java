@@ -11,28 +11,29 @@ import br.com.coreeduc.aplication.contraints.TipoRegistro;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 @Table(name = "pessoa")
 @Entity
 public class PessoaEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic
+    @Column(name = "codigo")
+    private Long codigo;
+    @Basic
     @Column(name = "id")
-    private Long id;
+    private String id = UUID.randomUUID().toString();
     @Basic
     @Column(name = "identificacao_unica")
     private Long identificacaoUnica;
@@ -91,11 +92,11 @@ public class PessoaEntity implements Serializable {
     @JoinColumn()
     @JsonFormat
     private UnidadeEnsinoEntity fkUni;
-    @OneToOne(cascade = CascadeType.MERGE, orphanRemoval = true)
+    @OneToOne()
     @JoinColumn()
     @JsonFormat
     private CityEntity fkCityNasc;
-    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER )
+    @OneToOne()
     @JoinColumn()
     @JsonFormat
     private CityEntity fkCityResid;
@@ -103,15 +104,23 @@ public class PessoaEntity implements Serializable {
     public PessoaEntity() {
     }
 
-    public PessoaEntity(Long id) {
-        this.id = id;
+    public PessoaEntity(Long codigo) {
+        this.codigo = codigo;
     }
 
-    public Long getId() {
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

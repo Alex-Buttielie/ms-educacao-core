@@ -1,13 +1,13 @@
-CREATE SEQUENCE TURMA_ID_SEQ;
 
 CREATE TABLE IF NOT EXISTS TURMA
 (
-    id           INTEGER UNIQUE DEFAULT nextval('TURMA_ID_SEQ'),
+    id           TEXT UNIQUE,
+    codigo_turma text PRIMARY KEY,
     nome         varchar(100),
     diretriz_id  INTEGER,
     turno_id     INTEGER,
     tipo         INTEGER,
-    codigo_inep  INTEGER,
+    codigo_inep  INTEGER ,
     data_criacao DATE,
     sala_aula_id INTEGER,
     CONSTRAINT fk_diretriz FOREIGN KEY (diretriz_id)
@@ -18,5 +18,3 @@ CREATE TABLE IF NOT EXISTS TURMA
         REFERENCES turno (id)
 );
 
-ALTER SEQUENCE TURMA_ID_SEQ
-    OWNED BY TURMA.ID;

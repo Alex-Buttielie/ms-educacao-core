@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS FREQUENCIA
     is_presente    BOOLEAN,
     data_registro  DATE,
     chamada_id     integer,
-    aluno_turma_id integer,
+    aluno_turma_id TEXT,
     CONSTRAINT fk_chamada FOREIGN KEY (chamada_id)
         REFERENCES chamada (id),
     CONSTRAINT fk_alu_turma FOREIGN KEY (aluno_turma_id)

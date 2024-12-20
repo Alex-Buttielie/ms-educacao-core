@@ -60,6 +60,11 @@ public class BranchActingServiceImpl implements BranchActingService {
     }
 
     @Override
+    public BranchActing findBranchActingByCode(String code) {
+        return repository.findBranchActingByCode(code).orElse(null);
+    }
+
+    @Override
     public void importBranchActings(List<BranchActingRecord> branchActings) {
         branchActings.forEach(this::processBranchActing);
     }

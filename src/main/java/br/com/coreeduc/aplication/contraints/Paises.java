@@ -248,17 +248,17 @@ public enum Paises {
     ZAMBIA(894, "ZMB", "ZÂMBIA"),
     OUTRA_NACIONALIDADE(999, "OOO", "OUTRA NACIONALIDADE");
 
-    private final int valor;
+    private final Integer valor;
     private final String abreviatura;
     private final String descricao;
 
-    Paises(int valor, String abreviatura, String descricao) {
+    Paises(Integer valor, String abreviatura, String descricao) {
         this.valor = valor;
         this.abreviatura = abreviatura;
         this.descricao = descricao;
     }
 
-    public static Paises getCountryByValue(int valor) {
+    public static Paises getCountryByValue(Integer valor) {
         for (Paises status : values())
             if (status.getValor() == valor)
                 return status;

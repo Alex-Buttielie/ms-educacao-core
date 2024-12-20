@@ -7,21 +7,26 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.UUID;
 
 @Table(name = "aluno_turma")
 @Entity
 public class AlunoTurmaEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic
     @Column(name = "id")
-    private Long id;
+    private String id = UUID.randomUUID().toString();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn()
+    @JsonFormat
+    private MatriculaEntity matricula;
     @Basic
     @Column(name = "situacao")
     private Integer situacao;
@@ -34,24 +39,23 @@ public class AlunoTurmaEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private MatriculaEntity matricula;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn()
-    @JsonFormat
     private TurmaEntity turma;
+    @ManyToOne
+    @JoinColumn(name = "aluno_id", referencedColumnName = "id", nullable = false)
+    private AlunoEntity aluno;
 
     public AlunoTurmaEntity() {
     }
 
-    public AlunoTurmaEntity(Long id) {
+    public AlunoTurmaEntity(String id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -95,4 +99,11 @@ public class AlunoTurmaEntity {
         this.turma = turma;
     }
 
+    public AlunoEntity getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(AlunoEntity aluno) {
+        this.aluno = aluno;
+    }
 }

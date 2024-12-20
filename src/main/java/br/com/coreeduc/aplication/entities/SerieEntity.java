@@ -43,6 +43,6 @@ public class SerieEntity implements Serializable {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
-    private ComposicaoEnsinoEntity composicaoEnsino;
+    private ComposicaoEnsinoEntity composicao;
 
 }

@@ -56,8 +56,9 @@ public class NeighbordhoodFactory {
 
             neighbordhoodEntity.setId(
                     Optional.ofNullable(properties.getProperty("id"))
-                            .map(id -> !id.isEmpty() ? id : null)
-                            .map(Long::valueOf).orElse(null)
+                            .filter(id -> !id.isBlank())
+                            .map(Long::valueOf)
+                            .orElse(null)
             );
             neighbordhoodEntity.setDescription(properties.getProperty("description"));
 

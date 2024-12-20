@@ -26,7 +26,7 @@ public class HorarioFuncionamentoTurmaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long idUser;
+    private Long id;
     @Basic
     @Column(name = "hora_inicial")
     private String horaInicial;
