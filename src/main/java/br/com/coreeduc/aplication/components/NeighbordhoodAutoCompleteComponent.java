@@ -1,5 +1,6 @@
 package br.com.coreeduc.aplication.components;
 
+import br.com.coreeduc.aplication.entities.CityEntity;
 import br.com.coreeduc.aplication.entities.NeighbordhoodEntity;
 import br.com.coreeduc.aplication.factorys.NeighbordhoodFactory;
 import br.com.coreeduc.aplication.records.NeighbordhoodRecord;
@@ -12,6 +13,7 @@ import javax.annotation.PostConstruct;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.stream.Collectors;
 
@@ -30,7 +32,7 @@ public enum NeighbordhoodAutoCompleteComponent {
     NEIGHBORDHOOD_BY_CITY ("city"){
         @Override
         public List<NeighbordhoodRecord> findNeighbordhoods(String value, String key) {
-            var city = cityRepository.findById(value !=null && value != "" ? Long.parseLong(value) : 0).orElse(null);
+            var city = cityRepository.findById(value !=null && value != "" ? value : "").orElse(null);
             var neighbordhood = new NeighbordhoodFactory(city).getNeighbordhoodEntity();
             var neighbordhoods = Objects.nonNull(neighbordhood.getCity()) ?
                     neighbordhoodRepository.findNeighbordhoodEntitiesByCity(neighbordhood.getCity()) :
@@ -57,7 +59,22 @@ public enum NeighbordhoodAutoCompleteComponent {
     }
 
     private NeighbordhoodRecord convertsNeighbordhoodInRecord(NeighbordhoodEntity neighbordhood) {
-        return new NeighbordhoodRecord(neighbordhood.getId().toString(), neighbordhood.getDescription(), neighbordhood.getCity().getId().toString());
+        String cityCode = Optional.ofNullable(neighbordhood)
+                .map(NeighbordhoodEntity::getCity)
+                .map(CityEntity::getCodigoMec)
+                .map(String::valueOf)
+                .orElse(null);
+
+        var code = neighbordhood.getId().toString();
+        var description = neighbordhood.getDescription();
+
+        var neighbordhoodRecord = new NeighbordhoodRecord(
+                code,
+                description,
+                cityCode
+        );
+
+        return neighbordhoodRecord;
     }
 
     public abstract List<NeighbordhoodRecord> findNeighbordhoods(String value, String key);

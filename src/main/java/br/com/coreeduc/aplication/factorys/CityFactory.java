@@ -13,7 +13,13 @@ public class CityFactory {
         var builder = new Builder();
 
         setCity(
-                builder.codigoMec(Optional.ofNullable(properties.getProperty("id")).map(Long::parseLong).orElse(null))
+                builder.codigoMec(
+                                Optional
+                                        .ofNullable(properties.getProperty("codigoMec"))
+                                        .filter(code -> Boolean.FALSE.equals(code.isBlank()))
+                                        .map(Long::parseLong)
+                                        .orElse(0L)
+                        )
                         .name(properties.getProperty("name"))
                         .state(properties.getProperty("state"))
                         .build().getCity()

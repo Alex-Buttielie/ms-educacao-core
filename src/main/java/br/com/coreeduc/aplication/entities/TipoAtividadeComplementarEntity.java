@@ -55,6 +55,6 @@ public class TipoAtividadeComplementarEntity {
     private Long etapa;
     @Basic
     @Column(name = "codigo_curso")
-    private Long codigo_curso;
+    private Long codigoCurso;
 
 }

@@ -1,8 +1,7 @@
-CREATE SEQUENCE PESSOA_ID_SEQ;
-
 CREATE TABLE IF NOT EXISTS PESSOA
 (
-    id                                             INTEGER PRIMARY KEY DEFAULT nextval('PESSOA_ID_SEQ'),
+    id                                             text,
+    codigo                                         INTEGER PRIMARY KEY,
     nome                                           VARCHAR(100),
     --Voltar quando tiver com a importação de unidade de ensino pronta codigo_unidade_ensino_inep_id INTEGER ,
     fk_uni_codigo_inep                             INTEGER,
@@ -41,7 +40,3 @@ CREATE TABLE IF NOT EXISTS PESSOA
     CONSTRAINT fk_codigo_inep FOREIGN KEY (fk_uni_codigo_inep)
         REFERENCES UNIDADE_ENSINO (codigo_inep)
 );
-
-ALTER SEQUENCE PESSOA_ID_SEQ
-    OWNED BY PESSOA.id;
-

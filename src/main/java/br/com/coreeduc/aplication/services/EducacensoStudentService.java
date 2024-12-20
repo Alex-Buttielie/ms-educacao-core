@@ -1,7 +1,7 @@
 package br.com.coreeduc.aplication.services;
 
-import br.com.coreeduc.aplication.entities.PessoaEntity;
+import br.com.coreeduc.aplication.entities.AlunoEntity;
 
 public interface EducacensoStudentService extends EducacensoService{
-    PessoaEntity convetSerializedMessageInPersonEntity(String serializedMessage);
+    AlunoEntity convertSerializedMessageInStudentEntity(String dados);
 }

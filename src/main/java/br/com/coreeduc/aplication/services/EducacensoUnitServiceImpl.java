@@ -75,7 +75,7 @@ import static java.util.Optional.ofNullable;
 @Service
 public class EducacensoUnitServiceImpl implements EducacensoUnitService{
 
-    private ObjectMapper objectMapper;
+    protected ObjectMapper objectMapper;
 
     @Autowired
     public EducacensoUnitServiceImpl(ObjectMapper objectMapper) {
@@ -84,7 +84,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
 
     @Override
     public UnidadeEnsinoEntity convetSerializedMessageInUnitEntity(String serializedMessage) {
-        return convertRecordInEntity(this.desealizedObject(serializedMessage));
+        return convertRecordInEntity((UnitEducacensoRecord) this.desealizedObject(serializedMessage));
     }
 
     private UnidadeEnsinoEntity convertRecordInEntity(UnitEducacensoRecord unitEducacensoRecord) {
@@ -222,14 +222,14 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
                 getByCodeToBoolean(localNetworkInterconnectionComputersEducacensoRecord.noLocalNetworkInterconnection()));
     }
 
-    private EquipamentosUsadosAlunosAcessoInternetEntity convertEquipmentStudentsInternetAccessRecordInEntity(UsedEquipmentStudentsInternetAccessEducacensoRecord usedEquipmentStudentsInternetAccessEducacensoRecord) {
+    public EquipamentosUsadosAlunosAcessoInternetEntity convertEquipmentStudentsInternetAccessRecordInEntity(UsedEquipmentStudentsInternetAccessEducacensoRecord usedEquipmentStudentsInternetAccessEducacensoRecord) {
         return new EquipamentosUsadosAlunosAcessoInternetEntity(
                 getByCodeToBoolean(usedEquipmentStudentsInternetAccessEducacensoRecord.libraryUnitComputersTablets()),
                 getByCodeToBoolean(usedEquipmentStudentsInternetAccessEducacensoRecord.personalDevicesPortableComputers()),
                 getByCodeToBoolean(usedEquipmentStudentsInternetAccessEducacensoRecord.broadbandInternet()));
     }
 
-    private AcessoInternetEntity convertAccessEducacensoRecordInEntity(InternetAccessEducacensoRecord internetAccessEducacensoRecord) {
+    public AcessoInternetEntity convertAccessEducacensoRecordInEntity(InternetAccessEducacensoRecord internetAccessEducacensoRecord) {
         var acessoInternet = new AcessoInternetEntity();
         acessoInternet.setParaUsoAdministrativo(getByCodeToBoolean(internetAccessEducacensoRecord.forAdministrativeUse()));
         acessoInternet.setParaUsoProcessoApredizagem(getByCodeToBoolean(internetAccessEducacensoRecord.forLearningProcessUse()));
@@ -239,7 +239,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         return acessoInternet;
     }
 
-    private QuantidadeComputadoresEmUsoAlunosEntity convertComputersInUseByStudentsRecordInEntity(NumberComputersInUseByStudentsEducacensoRecord numberComputersInUseByStudentsEducacensoRecord) {
+    public QuantidadeComputadoresEmUsoAlunosEntity convertComputersInUseByStudentsRecordInEntity(NumberComputersInUseByStudentsEducacensoRecord numberComputersInUseByStudentsEducacensoRecord) {
         return new QuantidadeComputadoresEmUsoAlunosEntity(
                 numberComputersInUseByStudentsEducacensoRecord.desktopComputers(),
                 numberComputersInUseByStudentsEducacensoRecord.portableComputers(),
@@ -247,7 +247,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    private QuantidadeEquipamentosProcessoAprendizagemEntity quantityEquimentLearningProcessRecordInEntity(QuantityEquipmentLearningProcessEducacensoRecord quantityEquipmentLearningProcessEducacensoRecord) {
+    public QuantidadeEquipamentosProcessoAprendizagemEntity quantityEquimentLearningProcessRecordInEntity(QuantityEquipmentLearningProcessEducacensoRecord quantityEquipmentLearningProcessEducacensoRecord) {
         return new QuantidadeEquipamentosProcessoAprendizagemEntity(
                 quantityEquipmentLearningProcessEducacensoRecord.dVDBlurayPlayer(),
                 quantityEquipmentLearningProcessEducacensoRecord.soundSystem(),
@@ -257,7 +257,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    private EquipamentosExistentesUnidadeEntity convertExistingUnitEquipmentRecordInEntity(ExistingUnitEquipmentEducacensoRecord existingUnitEquipmentEducacensoRecord) {
+    public EquipamentosExistentesUnidadeEntity convertExistingUnitEquipmentRecordInEntity(ExistingUnitEquipmentEducacensoRecord existingUnitEquipmentEducacensoRecord) {
         return new EquipamentosExistentesUnidadeEntity(
                 getByCodeToBoolean(existingUnitEquipmentEducacensoRecord.satelliteDish()),
                 getByCodeToBoolean(existingUnitEquipmentEducacensoRecord.computers()),
@@ -269,7 +269,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    private RecursoPessoasDeficientesEntity convertDisabledPeopleResourceRecordInEntity(DisabledPeopleResourceEducacensoRecord disabledPeopleResourceEducacensoRecord) {
+    public RecursoPessoasDeficientesEntity convertDisabledPeopleResourceRecordInEntity(DisabledPeopleResourceEducacensoRecord disabledPeopleResourceEducacensoRecord) {
         return new RecursoPessoasDeficientesEntity(
                 getByCodeToBoolean(disabledPeopleResourceEducacensoRecord.handrailsGuardRails()),
                 getByCodeToBoolean(disabledPeopleResourceEducacensoRecord.elevator()),
@@ -287,7 +287,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    private DependenciasFisicasEntity convertPhysicalDependenciesRecordInEntity(PhysicalDependenciesEducacensoRecord physicalDependenciesEducacensoRecord) {
+    public DependenciasFisicasEntity convertPhysicalDependenciesRecordInEntity(PhysicalDependenciesEducacensoRecord physicalDependenciesEducacensoRecord) {
         return new DependenciasFisicasEntity(
                 getByCodeToBoolean(physicalDependenciesEducacensoRecord.storageRoom()),
                 getByCodeToBoolean(physicalDependenciesEducacensoRecord.greenArea()),
@@ -329,7 +329,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    private TratamentoLixoEntity convertWasteTreatmentRecordInentity(WasteTreatmentEducacensoRecord wasteTreatmentEducacensoRecord) {
+    public TratamentoLixoEntity convertWasteTreatmentRecordInentity(WasteTreatmentEducacensoRecord wasteTreatmentEducacensoRecord) {
         return new TratamentoLixoEntity(
                 getByCodeToBoolean(wasteTreatmentEducacensoRecord.wasteSeparation()),
                 getByCodeToBoolean(wasteTreatmentEducacensoRecord.reuseRecycling()),
@@ -338,7 +338,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    private DestinacaoLixoEntity convertWasteDisposalRecordInEntity(WasteDisposalEducacensoRecord wasteDisposalEducacensoRecord) {
+    public DestinacaoLixoEntity convertWasteDisposalRecordInEntity(WasteDisposalEducacensoRecord wasteDisposalEducacensoRecord) {
         return new DestinacaoLixoEntity(
                 getByCodeToBoolean(wasteDisposalEducacensoRecord.collectionService()),
                 getByCodeToBoolean(wasteDisposalEducacensoRecord.burning()),
@@ -348,7 +348,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    private EsgotamentoSanitarioEntity convertSanitarySewageRecordInEntity(SanitarySewageEducacensoRecord sanitarySewageEducacensoRecord) {
+    public EsgotamentoSanitarioEntity convertSanitarySewageRecordInEntity(SanitarySewageEducacensoRecord sanitarySewageEducacensoRecord) {
         return new EsgotamentoSanitarioEntity(
                 getByCodeToBoolean(sanitarySewageEducacensoRecord.publicSewageSystem()),
                 getByCodeToBoolean(sanitarySewageEducacensoRecord.septicTank()),
@@ -357,7 +357,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    private FonteEnergiaEletricaEntity convertEletricEnergySourceRecordInEntity(ElectricEnergySourceEducacensoRecord electricEnergySourceEducacensoRecord) {
+    public FonteEnergiaEletricaEntity convertEletricEnergySourceRecordInEntity(ElectricEnergySourceEducacensoRecord electricEnergySourceEducacensoRecord) {
         return new FonteEnergiaEletricaEntity(
                 getByCodeToBoolean(electricEnergySourceEducacensoRecord.publicGrid()),
                 getByCodeToBoolean(electricEnergySourceEducacensoRecord.fossilFuelPoweredGenerator()),
@@ -366,7 +366,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    private AbastecimentoAguaEntity convertWaterSupplyRecordInEntity(WaterSupplyEducacensoRecord waterSupplyEducacensoRecord) {
+    public AbastecimentoAguaEntity convertWaterSupplyRecordInEntity(WaterSupplyEducacensoRecord waterSupplyEducacensoRecord) {
         var abastecimento =  new AbastecimentoAguaEntity();
         abastecimento.setRedePublica(getByCodeToBoolean(waterSupplyEducacensoRecord.publicWaterSupply()));
         abastecimento.setPocoArtesiano(getByCodeToBoolean(waterSupplyEducacensoRecord.artesianWell()));
@@ -376,7 +376,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         return abastecimento;
     }
 
-    private EscolasComQualCompartilhaEntity convertScoolParticipationRecordInEntity(SchoolParticipationEducacensoRecord schoolParticipationEducacensoRecord) {
+    public EscolasComQualCompartilhaEntity convertScoolParticipationRecordInEntity(SchoolParticipationEducacensoRecord schoolParticipationEducacensoRecord) {
         return new EscolasComQualCompartilhaEntity(
                 getShool(schoolParticipationEducacensoRecord.sharedSchoolCode1()),
                 getShool(schoolParticipationEducacensoRecord.sharedSchoolCode2()),
@@ -392,7 +392,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         return cdMec != null ? new UnidadeEnsinoEntity(cdMec) : null;
     }
 
-    private LocalFuncionamentoEscolaEntity convertSchoolLocationRecordInEntity(SchoolLocationEducacensoRecord schoolLocationEducacensoRecord) {
+    public LocalFuncionamentoEscolaEntity convertSchoolLocationRecordInEntity(SchoolLocationEducacensoRecord schoolLocationEducacensoRecord) {
         return new LocalFuncionamentoEscolaEntity(
                 getByCodeToBoolean(schoolLocationEducacensoRecord.schoolBuilding()),
                 getByCodeToBoolean(schoolLocationEducacensoRecord.classroomsInAnotherSchool()),
@@ -505,7 +505,7 @@ public class EducacensoUnitServiceImpl implements EducacensoUnitService{
         );
     }
 
-    public UnitEducacensoRecord desealizedObject(String serializedMessage) {
+    public Object desealizedObject(String serializedMessage) {
         try {
             return objectMapper.readValue(serializedMessage, UnitEducacensoRecord.class);
         } catch (JsonProcessingException e) {

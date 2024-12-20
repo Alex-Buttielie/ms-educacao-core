@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -46,6 +47,11 @@ public class CityServiceImpl implements CityService {
         cityRepository.saveAllAndFlush(citysEntitys);
         cityRepository.flush();
 
+    }
+
+    @Override
+    public CityEntity findCityByCodeMec(Number id) {
+        return Optional.ofNullable(id).map(idd->cityRepository.findById(idd.longValue()).orElse(null)).orElse(null);
     }
 
     private Function<Map<String, Object>, CityEntity> functionReturnCityEntityToMap = cityMap -> {

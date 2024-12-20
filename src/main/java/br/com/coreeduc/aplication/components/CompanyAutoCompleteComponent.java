@@ -10,8 +10,10 @@ import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public enum CompanyAutoCompleteComponent {
 
@@ -42,7 +44,10 @@ public enum CompanyAutoCompleteComponent {
     };
 
     public List<CompanyEntity> findd(List<CompanyEntity> all) {
-        return all.isEmpty() ? companyRepository.findAll() : all;
+        var returning = all.isEmpty() ? companyRepository.findAll() : all;
+        return returning.stream()
+                .filter(c -> Objects.nonNull(c.getNameCompany()) && !c.getNameCompany().isBlank())
+                .collect(Collectors.toList());
     }
 
     public abstract List<CompanyEntity> findCompanys(String value, String key);

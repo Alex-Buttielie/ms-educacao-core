@@ -1,18 +1,17 @@
-CREATE SEQUENCE ALUNO_TURMA_ID_SEQ;
+CREATE SEQUENCE ALUNO_TURMA_MATRICULA_SEQ;
 
 CREATE TABLE IF NOT EXISTS ALUNO_TURMA
 (
-    id            INTEGER UNIQUE DEFAULT nextval('ALUNO_TURMA_ID_SEQ'),
-    matricula_id  INTEGER,
-    turma_id      INTEGER,
+    id            text PRIMARY KEY,
+    matricula_code INTEGER DEFAULT nextval('ALUNO_TURMA_MATRICULA_SEQ'),
+    turma_codigo_turma      text,
     situacao      INTEGER,
     data_alocacao date,
     data_saida    date,
-    CONSTRAINT fk_matricula FOREIGN KEY (matricula_id)
-        REFERENCES matricula (id),
-    CONSTRAINT fk_turma FOREIGN KEY (turma_id)
-        REFERENCES turma (id)
+    CONSTRAINT fk_matricula FOREIGN KEY (matricula_code)
+        REFERENCES matricula (code),
+    CONSTRAINT fk_turma FOREIGN KEY (turma_codigo_turma)
+        REFERENCES turma (codigo_turma)
 );
-
-ALTER SEQUENCE ALUNO_TURMA_ID_SEQ
-    OWNED BY ALUNO_TURMA.ID;
+ALTER SEQUENCE ALUNO_TURMA_MATRICULA_SEQ
+    OWNED BY ALUNO_TURMA.matricula_code;

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static br.com.coreeduc.aplication.utils.Util.isCpfValido;
@@ -35,8 +36,14 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public Optional<PessoaEntity> rastrearPessoaCacteristicasIndiv(String cpf, String nome) {
+    public Optional<PessoaEntity> rastrearPessoaCacteristicasIndiv(String cpf, String nome, Long personCodeSystem) {
+
+        if(Objects.nonNull(personCodeSystem)) {
+            return Optional.of(repository.findById(personCodeSystem).orElseGet(() -> new PessoaEntity(personCodeSystem)));
+        }
+
         if (isCpfValido(cpf)) {
+
             var pessoaRastPorCpf = rastrearPessoaCpf(cpf);
 
             if (pessoaRastPorCpf.isPresent()) {
@@ -44,6 +51,15 @@ public class PessoaServiceImpl implements PessoaService {
             }
 
         }
+
+        if(Objects.nonNull(cpf)) {
+            var  pessoa = repository.findPessoaByNomeAndCpf(nome, cpf);
+
+            if (pessoa.isPresent()) {
+                return pessoa;
+            }
+        }
+
 
         return rastrearPessoaNome(nome);
 

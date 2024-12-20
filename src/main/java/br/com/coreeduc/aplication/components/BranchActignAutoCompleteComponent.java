@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Properties;
@@ -21,7 +22,9 @@ public enum BranchActignAutoCompleteComponent {
         @Override
         public List<BranchActingRecord> findBranchsActing(String value, String key) {
             var branchActing = new BranchActingFactory(getProperties(value, key)).getBranchActing();
-            return findd(branchActingRepository.findBranchActingByCode(branchActing.getCode()));
+            return findd(branchActingRepository.findBranchActingByCode(branchActing.getCode())
+                    .map(List::of)
+                    .orElse(Collections.emptyList()));
         }
     },
     BRANCH_ACTING_BY_DESCRIPTION ("descricao"){

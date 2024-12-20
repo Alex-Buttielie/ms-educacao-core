@@ -14,5 +14,5 @@ public interface PessoaService {
 
     Optional findById(Long id);
 
-    Optional<PessoaEntity> rastrearPessoaCacteristicasIndiv(String cpf, String name);
+    Optional<PessoaEntity> rastrearPessoaCacteristicasIndiv(String cpf, String name, Long aLong);
 }

@@ -1,6 +1,5 @@
 package br.com.coreeduc.aplication.resources;
 
-import br.com.coreeduc.aplication.entities.NeighbordhoodEntity;
 import br.com.coreeduc.aplication.records.NeighbordhoodRecord;
 import br.com.coreeduc.aplication.records.PropertiesViewRecord;
 import br.com.coreeduc.aplication.services.NeighbordhoodService;

@@ -17,6 +17,15 @@ public enum TypeLegalNature {
         this.code = code;
     }
 
+    public static TypeLegalNature findByLegalNatureFromCode(String code) {
+        for (TypeLegalNature typeLegalNature : TypeLegalNature.values()) {
+            if (typeLegalNature.code.equals(code)) {
+                return typeLegalNature;
+            }
+        }
+        return null;
+    }
+
     public String getDescription() {
         return description;
     }

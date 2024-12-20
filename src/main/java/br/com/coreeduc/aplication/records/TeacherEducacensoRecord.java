@@ -5,7 +5,7 @@ import java.util.Date;
 public record TeacherEducacensoRecord (
         Long uniqueIdentification,
         Integer schoolCodeInep,
-        Integer personCodeInOwnSystem,
+        Long personCodeInOwnSystem,
         String cpf,
         String name,
         Date dateBirth,

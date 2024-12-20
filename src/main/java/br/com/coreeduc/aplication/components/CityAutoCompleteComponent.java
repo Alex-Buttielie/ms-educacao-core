@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Properties;
@@ -27,11 +28,11 @@ public enum CityAutoCompleteComponent {
             return find(cityRepository.findByStateIgnoreCase(city.getState()));
         }
     },
-    CITYS_BY_ID("id"){
+    CITYS_BY_CODIGO_MEC("codigoMec"){
         @Override
         public List<CityEntity> findCitys(String value, String key) {
             var city = new CityFactory(getProperties(value, key)).getCity();
-            return find(List.of(cityRepository.findById(city.getId()).orElse(null)));
+            return find(cityRepository.findById(city.getCodigoMec()).map(List::of).orElse(Collections.emptyList()));
         }
     };
 

@@ -24,7 +24,7 @@ public enum PublicPlaceAutoCompleteComponent {
         @Override
         public List<PublicPlaceEntity> findPublicPlaces(String value, String key) {
             var publicPlace = new PublicPlaceFactory(getProperties(value, key)).getPublicPlaceEntity();
-            return find(publicPlaceRespository.findPublicPlaceEntityByDescriptionIgnoreCase(publicPlace.getDescription()));
+            return find(publicPlaceRespository.findPublicPlaceEntitiesByDescriptionIgnoreCase(publicPlace.getDescription()));
         }
     };
 

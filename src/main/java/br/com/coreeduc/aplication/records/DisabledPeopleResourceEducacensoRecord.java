@@ -5,6 +5,7 @@ public record DisabledPeopleResourceEducacensoRecord(Integer handrailsGuardRails
                                                      Integer tactileFloors,
                                                      Integer doorsWithFreePass,
                                                      Integer ramps,
+                                                     Integer sinalizacaoalarmeLuminoso,
                                                      Integer auditorySignage,
                                                      Integer tactileSignage,
                                                      Integer visualSignage,

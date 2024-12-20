@@ -8,4 +8,5 @@ import java.util.Map;
 public interface CityService extends CommomService{
     List<CityEntity> autoComplete(String value, String key);
     void importCitys(List<Map<String, Object>> citys);
+    CityEntity findCityByCodeMec(Number number);
 }

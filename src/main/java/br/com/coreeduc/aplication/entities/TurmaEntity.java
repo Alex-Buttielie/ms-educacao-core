@@ -1,5 +1,6 @@
 package br.com.coreeduc.aplication.entities;
 
+import br.com.coreeduc.aplication.contraints.TipoMediacao;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Basic;
@@ -15,20 +16,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.UUID;
 
 @Table(name = "turma")
 @Entity
 public class TurmaEntity {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    @Basic
+    @Column(name = "codigo_turma")
+    private String codigoTurma;
     @Basic
     @Column(name = "codigo_inep")
     private Long codigoInep;
     @Basic
-    @Column(name = "codigo_turma")
-    private String codigoTurma;
+    @Column(name = "id")
+    private String id = UUID.randomUUID().toString();
     @Basic
     @Column(name = "nome")
     private String nome;
@@ -53,7 +56,7 @@ public class TurmaEntity {
     private UnidadeEnsinoEntity unidadeEnsino;
     @Basic
     @Column(name = "tipo_mediacao")
-    private Integer tipoMediacao;
+    private TipoMediacao tipoMediacao;
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
@@ -88,7 +91,7 @@ public class TurmaEntity {
     @JoinColumn()
     @JsonFormat
     private FormaOrganizacaoTurmaEntity formaOrganizacaoTurma;
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn()
     @JsonFormat
     private UnidadeCurricularTurmaEntity unidadeCurricularTurma;
@@ -96,59 +99,16 @@ public class TurmaEntity {
     public TurmaEntity() {
     }
 
-    public TurmaEntity(Long id, Long codigoInep, String codigoTurma, String nome, DiretrizEntity diretriz, TurnoEntity turno, Date dataCriacao, SalaAulaEntity salaAula, UnidadeEnsinoEntity unidadeEnsino, Integer tipoMediacao, HorarioFuncionamentoTurmaEntity horarioFuncionamento, DiasSemanaTurmaEntity diasSemana, Boolean escolarizacao, Boolean atividadeComplementar, Boolean atendimentoEspecializado, Boolean formacaoGeralBasica, Boolean itinerarioInformativo, Boolean naoSeAplica, TipoAtividadeComplementarEntity tipoAtividadeComplementar, FormaOrganizacaoTurmaEntity formaOrganizacaoTurma, UnidadeCurricularTurmaEntity unidadeCurricularTurma) {
-        this.id = id;
-        this.codigoInep = codigoInep;
+    public TurmaEntity(String codigoTurma) {
         this.codigoTurma = codigoTurma;
-        this.nome = nome;
-        this.diretriz = diretriz;
-        this.turno = turno;
-        this.dataCriacao = dataCriacao;
-        this.salaAula = salaAula;
-        this.unidadeEnsino = unidadeEnsino;
-        this.tipoMediacao = tipoMediacao;
-        this.horarioFuncionamento = horarioFuncionamento;
-        this.diasSemana = diasSemana;
-        this.escolarizacao = escolarizacao;
-        this.atividadeComplementar = atividadeComplementar;
-        this.atendimentoEspecializado = atendimentoEspecializado;
-        this.formacaoGeralBasica = formacaoGeralBasica;
-        this.itinerarioInformativo = itinerarioInformativo;
-        this.naoSeAplica = naoSeAplica;
-        this.tipoAtividadeComplementar = tipoAtividadeComplementar;
-        this.formaOrganizacaoTurma = formaOrganizacaoTurma;
-        this.unidadeCurricularTurma = unidadeCurricularTurma;
     }
 
-    public TurmaEntity(Long codigoInep, String codigoTurma, String nome, DiretrizEntity diretriz, TurnoEntity turno, Date dataCriacao, SalaAulaEntity salaAula, UnidadeEnsinoEntity unidadeEnsino, Integer tipoMediacao, HorarioFuncionamentoTurmaEntity horarioFuncionamento, DiasSemanaTurmaEntity diasSemana, Boolean escolarizacao, Boolean atividadeComplementar, Boolean atendimentoEspecializado, Boolean formacaoGeralBasica, Boolean itinerarioInformativo, Boolean naoSeAplica, TipoAtividadeComplementarEntity tipoAtividadeComplementar, FormaOrganizacaoTurmaEntity formaOrganizacaoTurma, UnidadeCurricularTurmaEntity unidadeCurricularTurma) {
-        this.codigoInep = codigoInep;
+    public String getCodigoTurma() {
+        return codigoTurma;
+    }
+
+    public void setCodigoTurma(String codigoTurma) {
         this.codigoTurma = codigoTurma;
-        this.nome = nome;
-        this.diretriz = diretriz;
-        this.turno = turno;
-        this.dataCriacao = dataCriacao;
-        this.salaAula = salaAula;
-        this.unidadeEnsino = unidadeEnsino;
-        this.tipoMediacao = tipoMediacao;
-        this.horarioFuncionamento = horarioFuncionamento;
-        this.diasSemana = diasSemana;
-        this.escolarizacao = escolarizacao;
-        this.atividadeComplementar = atividadeComplementar;
-        this.atendimentoEspecializado = atendimentoEspecializado;
-        this.formacaoGeralBasica = formacaoGeralBasica;
-        this.itinerarioInformativo = itinerarioInformativo;
-        this.naoSeAplica = naoSeAplica;
-        this.tipoAtividadeComplementar = tipoAtividadeComplementar;
-        this.formaOrganizacaoTurma = formaOrganizacaoTurma;
-        this.unidadeCurricularTurma = unidadeCurricularTurma;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getCodigoInep() {
@@ -159,12 +119,12 @@ public class TurmaEntity {
         this.codigoInep = codigoInep;
     }
 
-    public String getCodigoTurma() {
-        return codigoTurma;
+    public String getId() {
+        return id;
     }
 
-    public void setCodigoTurma(String codigoTurma) {
-        this.codigoTurma = codigoTurma;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -215,11 +175,11 @@ public class TurmaEntity {
         this.unidadeEnsino = unidadeEnsino;
     }
 
-    public Integer getTipoMediacao() {
+    public TipoMediacao getTipoMediacao() {
         return tipoMediacao;
     }
 
-    public void setTipoMediacao(Integer tipoMediacao) {
+    public void setTipoMediacao(TipoMediacao tipoMediacao) {
         this.tipoMediacao = tipoMediacao;
     }
 

@@ -1,6 +1,5 @@
 package br.com.coreeduc.aplication.services;
 
-import br.com.caelum.stella.validation.CPFValidator;
 import br.com.coreeduc.aplication.contraints.CorRaca;
 import br.com.coreeduc.aplication.contraints.LocalizacaoDiferenciadaResidencia;
 import br.com.coreeduc.aplication.contraints.LocalizacaoZonaResidencia;
@@ -24,7 +23,7 @@ import br.com.coreeduc.aplication.records.TypeImpairmentSpectrumHighSkillsEducac
 import br.com.coreeduc.aplication.repositories.AreaConhecimentoRepository;
 import br.com.coreeduc.aplication.repositories.AreaPosGraduacaoRepository;
 import br.com.coreeduc.aplication.repositories.CityRepository;
-import br.com.coreeduc.aplication.repositories.PessoaRepository;
+import br.com.coreeduc.aplication.repositories.ProfessorRepository;
 import br.com.coreeduc.architecture.exceptions.UnserializedMessageRabbitMQ;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,8 +38,8 @@ import static br.com.coreeduc.aplication.utils.Util.isCpfValido;
 @Service
 public class EducacensoTeacherServiceImpl implements EducacensoTeacherService {
 
+    private final ProfessorRepository professorRepository;
     private ObjectMapper objectMapper;
-    private PessoaRepository pessoaRepository;
     private PessoaService pessoaService;
     private CityRepository cityRepository;
     private AreaConhecimentoRepository areaConhecimentoRepository;
@@ -48,17 +47,16 @@ public class EducacensoTeacherServiceImpl implements EducacensoTeacherService {
 
     @Autowired
     public EducacensoTeacherServiceImpl(ObjectMapper objectMapper,
-                                        PessoaRepository pessoaRepository,
                                         CityRepository cityRepository,
                                         AreaConhecimentoRepository areaConhecimentoRepository,
                                         AreaPosGraduacaoRepository areaPosGraduacaoRepository,
-                                        PessoaService pessoaService) {
+                                        PessoaService pessoaService, ProfessorRepository professorRepository) {
         this.objectMapper = objectMapper;
-        this.pessoaRepository = pessoaRepository;
         this.cityRepository = cityRepository;
         this.areaConhecimentoRepository = areaConhecimentoRepository;
         this.areaPosGraduacaoRepository = areaPosGraduacaoRepository;
         this.pessoaService = pessoaService;
+        this.professorRepository = professorRepository;
     }
 
     @Override
@@ -78,13 +76,19 @@ public class EducacensoTeacherServiceImpl implements EducacensoTeacherService {
     }
 
     private ProfessorEntity createTeacherEntityToRecord(TeacherEducacensoRecord teacherEducacensoRecord, PessoaEntity pessoa) {
-        var teacherEntity = new ProfessorEntity();
+        var teacherEntity = consultarProfessorPelaPessoa(pessoa);
         teacherEntity.setPessoa(pessoa);
         teacherEntity.setOutrosCursosEspecificos(convertRecordOtherCoursesInEntity(teacherEducacensoRecord.otherSpecificCoursesEducacensoRecord()));
         teacherEntity.setFormacaoComplementarPedagogicaProfessor(convertRecordTeacherInFormasOrganizacaoEntity(teacherEducacensoRecord));
         teacherEntity.setPosGraduacaoConcluidaProfessor(convertRecordTeacherInPosGraducaoEntity(teacherEducacensoRecord));
         teacherEntity.setTipoDeficienciaEspectroAltasHabilidades(convertRecordTypeSpectrumHighSkillsInEntity(teacherEducacensoRecord.typeImpairmentSpectrumHighSkillsEducacensoRecord()));
         return teacherEntity;
+    }
+
+    private ProfessorEntity consultarProfessorPelaPessoa(PessoaEntity pessoa) {
+        return professorRepository
+                .findProfessorEntityByPessoa(pessoaService.rastrearPessoaCacteristicasIndiv(pessoa.getCpf(), pessoa.getNome(), pessoa.getCodigo()).orElse(null))
+                .orElseGet(ProfessorEntity::new);
     }
 
     private TipoDeficienciaEspectroAltasHabilidadesEntity convertRecordTypeSpectrumHighSkillsInEntity(TypeImpairmentSpectrumHighSkillsEducacensoRecord typeImpairmentSpectrumHighSkillsEducacensoRecord) {
@@ -186,31 +190,32 @@ public class EducacensoTeacherServiceImpl implements EducacensoTeacherService {
     }
 
     private PessoaEntity findPersonOfRecord(TeacherEducacensoRecord teacherEducacensoRecord) {
-        var pessoa = pessoaService.rastrearPessoaCacteristicasIndiv(teacherEducacensoRecord.cpf(), teacherEducacensoRecord.name())
+        var pessoa = pessoaService.rastrearPessoaCacteristicasIndiv(teacherEducacensoRecord.cpf(), teacherEducacensoRecord.name(), teacherEducacensoRecord.personCodeInOwnSystem())
                 .orElseGet(PessoaEntity::new);
 
         var cityCodeResidense = Optional.ofNullable(teacherEducacensoRecord.cityResidense()).map(CityRecord::codigoMec).orElse(0L);
         var cityCodeNativity = Optional.ofNullable(teacherEducacensoRecord.cityNativity()).map(CityRecord::codigoMec).orElse(0L);
 
         pessoa.setIdentificacaoUnica(teacherEducacensoRecord.uniqueIdentification());
+        pessoa.setCodigo(teacherEducacensoRecord.personCodeInOwnSystem());
         pessoa.setCpf(isCpfValido(teacherEducacensoRecord.cpf()) ? teacherEducacensoRecord.cpf() : null);
         pessoa.setNome(teacherEducacensoRecord.name());
         pessoa.setDataNascimento(teacherEducacensoRecord.dateBirth());
         pessoa.setTipoFiliacao(TipoFiliacao.getAffiliationTypeByCode(teacherEducacensoRecord.affiliationType()));
         pessoa.setNomeMae(teacherEducacensoRecord.nameMom());
         pessoa.setNomePai(teacherEducacensoRecord.nameFather());
-        pessoa.setSexo(Sexo.getSexByCode(teacherEducacensoRecord.gender()));
+        pessoa.setSexo(Sexo.getSexByCode(Optional.ofNullable(teacherEducacensoRecord.gender()).orElse(0)));
         pessoa.setCorRaca(CorRaca.getColorRaceByCode(teacherEducacensoRecord.colorRace()));
-        pessoa.setNacionalidade(Nacionalidade.getNacionalityByCode(teacherEducacensoRecord.nationality()));
-        pessoa.setPaisNacionalidade(Paises.getCountryByValue(teacherEducacensoRecord.countryNationality()));
+        pessoa.setNacionalidade(Nacionalidade.getNacionalityByCode(Optional.ofNullable(teacherEducacensoRecord.nationality()).orElse(0)));
+        pessoa.setPaisNacionalidade(Paises.getCountryByValue(Optional.ofNullable(teacherEducacensoRecord.countryNationality()).orElse(0)));
         pessoa.setFkCityNasc(cityRepository.findById(cityCodeNativity).orElse(null));
         pessoa.setNumeroMatriculaCertidaoNascimento(teacherEducacensoRecord.registrationNumberBirthCertificate());
-        pessoa.setPaisResidencia(Paises.getCountryByValue(teacherEducacensoRecord.countryResidence() !=null ? teacherEducacensoRecord.countryResidence() : 0));
+        pessoa.setPaisResidencia(Paises.getCountryByValue(Optional.ofNullable(teacherEducacensoRecord.countryResidence()).orElse(0)));
         pessoa.setCep(teacherEducacensoRecord.postalCode());
         pessoa.setFkCityResid(cityRepository.findById(cityCodeResidense).orElse(null));
-        pessoa.setLocalizacaoZonaResidencia(LocalizacaoZonaResidencia.getByCode(teacherEducacensoRecord.locationResidentialArea()));
-        pessoa.setLocalizacaoDiferenciadaResidencia(LocalizacaoDiferenciadaResidencia.getByCode(teacherEducacensoRecord.differentiatedLocationResidence()));
-        pessoa.setEnderecoEletronicoEmail(teacherEducacensoRecord.otherSpecificCoursesEducacensoRecord().electronicAddressEmail());
+        pessoa.setLocalizacaoZonaResidencia(LocalizacaoZonaResidencia.getByCode(Optional.ofNullable(teacherEducacensoRecord.locationResidentialArea()).orElse(0)));
+        pessoa.setLocalizacaoDiferenciadaResidencia(LocalizacaoDiferenciadaResidencia.getByCode(Optional.ofNullable(teacherEducacensoRecord.differentiatedLocationResidence()).orElse(0)));
+        pessoa.setEnderecoEletronicoEmail(Optional.ofNullable(teacherEducacensoRecord.otherSpecificCoursesEducacensoRecord()).map(OtherSpecificCoursesEducacensoRecord::electronicAddressEmail).orElse(null));
 
         return pessoa;
     }

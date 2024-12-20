@@ -14,7 +14,7 @@ public interface BranchActingRepository extends JpaRepository<BranchActing, Long
     Optional<BranchActing> findBranchActingByCodeAndDescriptionIgnoreCaseAndObservationIgnoreCaseAndGroupBranchActing(
             String code, String description, String observacao, GroupBranchActing groupBranchActing
     );
-
-    List<BranchActing> findBranchActingByCode(String code);
+    Optional<BranchActing> findBranchActingByCode(String code);
     List<BranchActing> findBranchActingByDescriptionIgnoreCase(String description);
+    Optional<BranchActing> findBranchActingByDescription(String description);
 }

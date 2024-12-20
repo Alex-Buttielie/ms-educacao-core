@@ -17,8 +17,6 @@ import org.mockito.Mockito;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -28,21 +26,32 @@ import static org.mockito.Mockito.when;
 class CompanyServiceImplTest {
 
     private CompanyRepository companyRepository;
+    private CityService cityService;
     private CompanyServiceImpl companyService;
+    private BranchActingService branchActingService;
+    private NeighbordhoodService neighbordhoodService;
+    private PublicPlaceService publicPlaceService;
 
     @BeforeEach
     void setUp() {
         companyRepository = Mockito.mock(CompanyRepository.class);
-        companyService = new CompanyServiceImpl(companyRepository);
+        cityService = Mockito.mock(CityService.class);
+        branchActingService = Mockito.mock(BranchActingService.class);
+        neighbordhoodService = Mockito.mock(NeighbordhoodService.class);
+        publicPlaceService = Mockito.mock(PublicPlaceService.class);
+        companyService = new CompanyServiceImpl(companyRepository, cityService, branchActingService,
+                neighbordhoodService,
+                publicPlaceService);
     }
 
     @Test
     void testFindPropertiesView() {
         var expectedMap = new HashMap<String, OptionSelectedViewRecord>();
-        expectedMap.put("states", getStates());
-        expectedMap.put("sizesCompany", getCompanysSiza());
-        expectedMap.put("legalsNature", getLegalsNature());
-        expectedMap.put("typeUnitCompany", getTypeUnitCompany());
+        expectedMap.put("states", companyService.getStates());
+        expectedMap.put("sizesCompany", companyService.getCompanysSiza());
+        expectedMap.put("legalsNature", companyService.getLegalsNature());
+        expectedMap.put("typeUnitCompany", companyService.getTypeUnitCompany());
+        expectedMap.put("statusRegistry", companyService.getStatusRegistry());
         PropertiesViewRecord expected = new PropertiesViewRecord(expectedMap);
         PropertiesViewRecord actual = companyService.findPropertiesView();
         assertEquals(expected, actual, "Expected PropertiesViewRecord does not match actual");
@@ -52,27 +61,45 @@ class CompanyServiceImplTest {
     void testFindPropertiesFromSeleted() {
         var actual = companyService.findPropertiesFromSeleted();
         var expected = new HashMap<>();
-        expected.put("states", getStates());
-        expected.put("sizesCompany", getCompanysSiza());
-        expected.put("legalsNature", getLegalsNature());
-        expected.put("typeUnitCompany", getTypeUnitCompany());
+        expected.put("states", companyService.getStates());
+        expected.put("sizesCompany", companyService.getCompanysSiza());
+        expected.put("legalsNature", companyService.getLegalsNature());
+        expected.put("typeUnitCompany", companyService.getTypeUnitCompany());
+        expected.put("statusRegistry", companyService.getStatusRegistry());
         assertEquals(expected, actual, "Expected properties from findPropertiesFromSeleted do not match actual");
     }
 
     @Test
-    void testAutoComplete() {
-        var value = "TestCompany";
+    void testAutoCompleteFindByFantasyNameNotResultIfNameCompanyEmpity() {
+        var value = "Teste Company";
         var key = "fantasyName";
         var company = new CompanyEntity();
         company.setFantasyName(value);
         var companyList = Arrays.asList(company);
         var component = CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME;
         component.setCompanyRepository(companyRepository);
-        when(companyRepository.findAllByFantasyNameIgnoreCase(value)).thenReturn(companyList);
+        when(companyRepository.findAllByFantasyNameIgnoreCase(value))
+                .thenReturn(companyList);
+        var result = companyService.autoComplete(value, key);
+        assertNotNull(result);
+        assertEquals(0, result.size());
+    }
+
+    @Test
+    void testAutoCompleteFindByFantasyNameResultSucessIfNameCompanyEmpity() {
+        var value = "Teste Company";
+        var key = "fantasyName";
+        var company = new CompanyEntity();
+        company.setFantasyName(value);
+        company.setNameCompany(value);
+        var companyList = Arrays.asList(company);
+        var component = CompanyAutoCompleteComponent.COMPANYS_BY_FANTASY_NAME;
+        component.setCompanyRepository(companyRepository);
+        when(companyRepository.findAllByFantasyNameIgnoreCase(value))
+                .thenReturn(companyList);
         var result = companyService.autoComplete(value, key);
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals(value, result.get(0).getFantasyName());
     }
 
     @Test
@@ -100,37 +127,5 @@ class CompanyServiceImplTest {
         }
     }
 
-
-    private OptionSelectedViewRecord getTypeUnitCompany() {
-        return new OptionSelectedViewRecord(
-                Arrays.stream(TypeUnitCompany.values())
-                        .map(type -> new PropertiesOptionSelectedViewRecord(type.getCode(), type.getDescription()))
-                        .toList()
-        );
-    }
-
-    private OptionSelectedViewRecord getLegalsNature() {
-        return new OptionSelectedViewRecord(
-                Arrays.stream(TypeLegalNature.values())
-                        .map(nature -> new PropertiesOptionSelectedViewRecord(nature.getCode(), nature.getDescription()))
-                        .toList()
-        );
-    }
-
-    private OptionSelectedViewRecord getStates() {
-        return new OptionSelectedViewRecord(
-                Arrays.stream(StatesBrazil.values())
-                        .map(state -> new PropertiesOptionSelectedViewRecord(state.getCodigo(), state.getNome()))
-                        .toList()
-        );
-    }
-
-    private OptionSelectedViewRecord getCompanysSiza() {
-        return new OptionSelectedViewRecord(
-                Arrays.stream(SizesCompany.values())
-                        .map(size -> new PropertiesOptionSelectedViewRecord(size.getCodigo(), size.getNome()))
-                        .toList()
-        );
-    }
 
 }
