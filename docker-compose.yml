@@ -27,6 +27,9 @@ services:
       - .env
     environment:
       - ${EUREKA_SERVER_URL}=${EUREKA_SERVER_URL}
+    depends_on:
+      - eureka-server
+      - angular
     
   db:
     image: postgres:latest
