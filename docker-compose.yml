@@ -1,33 +1,33 @@
 version: '3.8'
 
 services:
+
+  angular:
+    image: educacao-front
+    restart: always
+    ports:
+      - "8089:80"
+
   eureka-server:
-    image: ms-server/ms-server:server
-    build:
-      context: ./../ms-server-educacao
-      dockerfile: Dockerfile
+    image: ms-server
+    restart: always
     ports:
       - "8081:8081"
     env_file:
       - .env
     environment:
       - ${EUREKA_SERVER_URL}=${EUREKA_SERVER_URL}
-    networks:
-      - eureka-network
 
   eureka-gateway:
-    image: ms-gateway/ms-gateway:gateway
-    build:
-      context: ./../ms-gateway-educacao
-      dockerfile: Dockerfile
+    image: ms-gateway
+    restart: always
     ports:
       - "8082:8082"
     env_file:
       - .env
     environment:
       - ${EUREKA_SERVER_URL}=${EUREKA_SERVER_URL}
-    networks:
-      - eureka-network
+    
   db:
     image: postgres:latest
     restart: always
@@ -37,19 +37,17 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
-    networks:
-      - eureka-network
+    
 
   rabbitmq:
     image: rabbitmq:3-management
     ports:
       - "5672:5672"
       - "15672:15672"
-    networks:
-      - eureka-network
 
-  app:
+  core:
     image: ms-core/ms-core:core-main
+    container_name: core
     build:
       context: .
       dockerfile: Dockerfile
@@ -69,9 +67,7 @@ services:
       - eureka-server
       - eureka-gateway
       - rabbitmq
-    networks:
-      - eureka-network
+      - angular
 
-networks:
-  eureka-network:
-    driver: bridge
+#networks:
+ # eureka-network:
