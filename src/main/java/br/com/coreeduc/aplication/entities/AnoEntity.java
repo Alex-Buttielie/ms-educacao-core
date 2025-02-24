@@ -19,13 +19,13 @@ public class AnoEntity implements Serializable {
     @Column(name = "id")
     private Long id;
     @Basic
-    @Column(name = "dt_fechamento_ano ")
+    @Column(name = "dt_fechamento_ano")
     private Date dtFechamentoAno;
     @Basic
-    @Column(name = "dt_fechamento_1_semestre  ")
+    @Column(name = "dt_fechamento_1_semestre")
     private Date dtFechamento1Semestre;
     @Basic
-    @Column(name = "dtFechamento2Semestre  ")
+    @Column(name = "dt_fechamento_2_semestre")
     private Date dtFechamento2Semestre;
 
     public AnoEntity() {
