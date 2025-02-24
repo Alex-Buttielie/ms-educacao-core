@@ -24,10 +24,10 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static final String[] PUBLIC_MATCHERS_AUTH = {"/auth/**",
+    private static final String[] PUBLIC_MATCHERS_AUTH = {
+            "/auth/**",
             "/company/**",
             "/city/**",
             "/branch-acting/**",
@@ -42,7 +42,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil))
+        http
+                .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil,  userDetailsService))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -50,10 +51,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf()
                 .disable()
-                .authorizeRequests()
+                .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_AUTH)
                 .permitAll()
                 .antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_AUTH)
+                .permitAll()
+                .antMatchers(HttpMethod.PUT, PUBLIC_MATCHERS_AUTH)
+                .permitAll()
+                .antMatchers(HttpMethod.OPTIONS, PUBLIC_MATCHERS_AUTH)
                 .permitAll()
                 .anyRequest()
                 .authenticated();

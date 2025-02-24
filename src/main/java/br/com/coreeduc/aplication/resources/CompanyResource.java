@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping(value = "/company")
 public class CompanyResource implements ComumResource {
 
     private final CompanyService service;
