@@ -28,7 +28,7 @@ public enum CompanyAutoCompleteComponent {
         @Override
         public List<CompanyEntity> findCompanys(String value, String key) {
             var company = new CompanyFactory(getProperties(value, key)).getCompany();
-            return companyRepository.findAllByNameCompanyIgnoreCase(company.getNameCompany());
+            return findd(companyRepository.findAllByNameCompanyIgnoreCase(company.getNameCompany()));
         }
     },
     COMPANYS_BY_ID ("id"){
