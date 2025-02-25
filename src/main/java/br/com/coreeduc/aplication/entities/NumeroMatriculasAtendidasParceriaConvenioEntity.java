@@ -1,11 +1,7 @@
 package br.com.coreeduc.aplication.entities;
 
 import br.com.coreeduc.aplication.contraints.Regulamentacao;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -55,7 +51,7 @@ public class NumeroMatriculasAtendidasParceriaConvenioEntity {
     private Integer ensinoRegularensinoFundamentalAnosFinaisInteg;
     @Basic
     @Column(name="ensino_regular_ensino_medio_parc")
-    private Integer ensinoRegularensinoMedioParc;
+    private Integer ensinoRegularEnsinoMedioParc;
     @Basic
     @Column(name="ensino_regular_ensino_medio_integ")
     private Integer ensinoRegularEnsinoMedioInteg;
@@ -64,7 +60,7 @@ public class NumeroMatriculasAtendidasParceriaConvenioEntity {
     private Integer eduEspecialClasseEspecialParc;
     @Basic
     @Column(name="edu_especial_classe_especial_integ")
-    private Integer eduEspecialClasseEspecialinteg;
+    private Integer eduEspecialClasseEspecialInteg;
     @Basic
     @Column(name="edu_jov_adult_ensino_fundamental_medio_parc")
     private Integer eduJovAdultoEnsinoFundamentalMedioParc;
@@ -159,7 +155,7 @@ public class NumeroMatriculasAtendidasParceriaConvenioEntity {
     @Column(name="reg_autor_conselho_orgao_mun_est_fed_edu")
     private Regulamentacao regAutorConselhoOrgaoMunEstFedEdu;
 
-    public NumeroMatriculasAtendidasParceriaConvenioEntity(Long id, Integer atividadeComplementar, Integer atendimentoEducacionalEspecializado, Integer ensinoRegularCrecheParc, Integer ensinoRegularCrecheInteg, Integer ensinoRegularPreEscolaParc, Integer ensinoRegularPreEscolaInteg, Integer ensinoRegularEnsinoFundamentalAnosIniciaisParc, Integer ensinoRegularEnsinoFundamentalAnosIniciaisInteg, Integer ensinoRegularEnsinoFundamentalAnosFinaisParc, Integer ensinoRegularensinoFundamentalAnosFinaisInteg, Integer ensinoRegularensinoMedioParc, Integer ensinoRegularEnsinoMedioInteg, Integer eduEspecialClasseEspecialParc, Integer eduEspecialClasseEspecialinteg, Integer eduJovAdultoEnsinoFundamentalMedioParc, Integer eduDeJovEAdultejaensinoFundamentalEMedioInteg, Integer eduProfQualProfintegEduJovAdultNoEnsinoFundamentalParc, Integer eduProfQualProfintegEduJovAdultEnsFundInteg, Integer eduProfQualTecintegJovAdultNivMedioParc, Integer eduProfQualProfTecintegJovAdultNivMedioInteg, Integer eduProfQualProfTecConcomitEduJovAdultNivMedParc, Integer eduProfQualProfTecConcomitEduJovAdultNivMedInteg, Integer eduQualProfTecConcomInterComplEduJovAduNivMedioParc, Integer eduQualProfTecConcomInterComplEduJovAduNivMedInteg, Integer eduProfQualProfTecintegEnsMedParc, Integer eduProfQualProfTecintegEnsMedInteg, Integer eduProQualProfTecConcomitEnsMedParc, Integer eduProQualProfTecConcomitEnsMedInteg, Integer eduProQualProfTecConcomitInterComplEnsMedParc, Integer eduProQualProfTecConcomitInterComplEnsMedInteg, Integer eduProfTecNivMedIntegEduJovAdultNivMedParc, Integer eduProfTecNivMedIntegEduJovAdultNivMedInteg, Integer eduProfTecNivMedConcomitEduJovAdultNivMedParc, Integer eduProfTecNivMedConcomitEduJovAdultNivMedInteg, Integer eduProfTecNivMedConcomitIntEduJovAdultNivMedParc, Integer eduProfTecNivMedConcomitIntEduJovAdultNivMedInteg, Integer eduProfTecNivMedintegEnsMedParc, Integer eduProfTecNivMedintegEnsMedInteg, Integer eduProfTecNivMedConcomitEnsMedParc, Integer eduProfTecNivMedSubsequenteEnsMed, Integer eduProfTecNivMedConcomitEnsMedInteg, Integer eduProfTecNivMedConcomitInterComplEnsMedioParc, Integer eduProfTecNivMedioConcomitInterCompleEnsMedioInteg, String cnpjMantenedoraPrincEscolaPrivada, Regulamentacao regAutorConselhoOrgaoMunEstFedEdu) {
+    public NumeroMatriculasAtendidasParceriaConvenioEntity(Long id, Integer atividadeComplementar, Integer atendimentoEducacionalEspecializado, Integer ensinoRegularCrecheParc, Integer ensinoRegularCrecheInteg, Integer ensinoRegularPreEscolaParc, Integer ensinoRegularPreEscolaInteg, Integer ensinoRegularEnsinoFundamentalAnosIniciaisParc, Integer ensinoRegularEnsinoFundamentalAnosIniciaisInteg, Integer ensinoRegularEnsinoFundamentalAnosFinaisParc, Integer ensinoRegularensinoFundamentalAnosFinaisInteg, Integer ensinoRegularEnsinoMedioParc, Integer ensinoRegularEnsinoMedioInteg, Integer eduEspecialClasseEspecialParc, Integer eduEspecialClasseEspecialInteg, Integer eduJovAdultoEnsinoFundamentalMedioParc, Integer eduDeJovEAdultejaensinoFundamentalEMedioInteg, Integer eduProfQualProfintegEduJovAdultNoEnsinoFundamentalParc, Integer eduProfQualProfintegEduJovAdultEnsFundInteg, Integer eduProfQualTecintegJovAdultNivMedioParc, Integer eduProfQualProfTecintegJovAdultNivMedioInteg, Integer eduProfQualProfTecConcomitEduJovAdultNivMedParc, Integer eduProfQualProfTecConcomitEduJovAdultNivMedInteg, Integer eduQualProfTecConcomInterComplEduJovAduNivMedioParc, Integer eduQualProfTecConcomInterComplEduJovAduNivMedInteg, Integer eduProfQualProfTecintegEnsMedParc, Integer eduProfQualProfTecintegEnsMedInteg, Integer eduProQualProfTecConcomitEnsMedParc, Integer eduProQualProfTecConcomitEnsMedInteg, Integer eduProQualProfTecConcomitInterComplEnsMedParc, Integer eduProQualProfTecConcomitInterComplEnsMedInteg, Integer eduProfTecNivMedIntegEduJovAdultNivMedParc, Integer eduProfTecNivMedIntegEduJovAdultNivMedInteg, Integer eduProfTecNivMedConcomitEduJovAdultNivMedParc, Integer eduProfTecNivMedConcomitEduJovAdultNivMedInteg, Integer eduProfTecNivMedConcomitIntEduJovAdultNivMedParc, Integer eduProfTecNivMedConcomitIntEduJovAdultNivMedInteg, Integer eduProfTecNivMedintegEnsMedParc, Integer eduProfTecNivMedintegEnsMedInteg, Integer eduProfTecNivMedConcomitEnsMedParc, Integer eduProfTecNivMedSubsequenteEnsMed, Integer eduProfTecNivMedConcomitEnsMedInteg, Integer eduProfTecNivMedConcomitInterComplEnsMedioParc, Integer eduProfTecNivMedioConcomitInterCompleEnsMedioInteg, String cnpjMantenedoraPrincEscolaPrivada, Regulamentacao regAutorConselhoOrgaoMunEstFedEdu) {
         this.id = id;
         this.atividadeComplementar = atividadeComplementar;
         this.atendimentoEducacionalEspecializado = atendimentoEducacionalEspecializado;
@@ -171,10 +167,10 @@ public class NumeroMatriculasAtendidasParceriaConvenioEntity {
         this.ensinoRegularEnsinoFundamentalAnosIniciaisInteg = ensinoRegularEnsinoFundamentalAnosIniciaisInteg;
         this.ensinoRegularEnsinoFundamentalAnosFinaisParc = ensinoRegularEnsinoFundamentalAnosFinaisParc;
         this.ensinoRegularensinoFundamentalAnosFinaisInteg = ensinoRegularensinoFundamentalAnosFinaisInteg;
-        this.ensinoRegularensinoMedioParc = ensinoRegularensinoMedioParc;
+        this.ensinoRegularEnsinoMedioParc = ensinoRegularEnsinoMedioParc;
         this.ensinoRegularEnsinoMedioInteg = ensinoRegularEnsinoMedioInteg;
         this.eduEspecialClasseEspecialParc = eduEspecialClasseEspecialParc;
-        this.eduEspecialClasseEspecialinteg = eduEspecialClasseEspecialinteg;
+        this.eduEspecialClasseEspecialInteg = eduEspecialClasseEspecialInteg;
         this.eduJovAdultoEnsinoFundamentalMedioParc = eduJovAdultoEnsinoFundamentalMedioParc;
         this.eduDeJovEAdultejaensinoFundamentalEMedioInteg = eduDeJovEAdultejaensinoFundamentalEMedioInteg;
         this.eduProfQualProfintegEduJovAdultNoEnsinoFundamentalParc = eduProfQualProfintegEduJovAdultNoEnsinoFundamentalParc;
@@ -208,7 +204,7 @@ public class NumeroMatriculasAtendidasParceriaConvenioEntity {
         this.regAutorConselhoOrgaoMunEstFedEdu = regAutorConselhoOrgaoMunEstFedEdu;
     }
 
-    public NumeroMatriculasAtendidasParceriaConvenioEntity(Integer atividadeComplementar, Integer atendimentoEducacionalEspecializado, Integer ensinoRegularCrecheParc, Integer ensinoRegularCrecheInteg, Integer ensinoRegularPreEscolaParc, Integer ensinoRegularPreEscolaInteg, Integer ensinoRegularEnsinoFundamentalAnosIniciaisParc, Integer ensinoRegularEnsinoFundamentalAnosIniciaisInteg, Integer ensinoRegularEnsinoFundamentalAnosFinaisParc, Integer ensinoRegularensinoFundamentalAnosFinaisInteg, Integer ensinoRegularensinoMedioParc, Integer ensinoRegularEnsinoMedioInteg, Integer eduEspecialClasseEspecialParc, Integer eduEspecialClasseEspecialinteg, Integer eduJovAdultoEnsinoFundamentalMedioParc, Integer eduDeJovEAdultejaensinoFundamentalEMedioInteg, Integer eduProfQualProfintegEduJovAdultNoEnsinoFundamentalParc, Integer eduProfQualProfintegEduJovAdultEnsFundInteg, Integer eduProfQualTecintegJovAdultNivMedioParc, Integer eduProfQualProfTecintegJovAdultNivMedioInteg, Integer eduProfQualProfTecConcomitEduJovAdultNivMedParc, Integer eduProfQualProfTecConcomitEduJovAdultNivMedInteg, Integer eduQualProfTecConcomInterComplEduJovAduNivMedioParc, Integer eduQualProfTecConcomInterComplEduJovAduNivMedInteg, Integer eduProfQualProfTecintegEnsMedParc, Integer eduProfQualProfTecintegEnsMedInteg, Integer eduProQualProfTecConcomitEnsMedParc, Integer eduProQualProfTecConcomitEnsMedInteg, Integer eduProQualProfTecConcomitInterComplEnsMedParc, Integer eduProQualProfTecConcomitInterComplEnsMedInteg, Integer eduProfTecNivMedIntegEduJovAdultNivMedParc, Integer eduProfTecNivMedIntegEduJovAdultNivMedInteg, Integer eduProfTecNivMedConcomitEduJovAdultNivMedParc, Integer eduProfTecNivMedConcomitEduJovAdultNivMedInteg, Integer eduProfTecNivMedConcomitIntEduJovAdultNivMedParc, Integer eduProfTecNivMedConcomitIntEduJovAdultNivMedInteg, Integer eduProfTecNivMedintegEnsMedParc, Integer eduProfTecNivMedintegEnsMedInteg, Integer eduProfTecNivMedConcomitEnsMedParc, Integer eduProfTecNivMedSubsequenteEnsMed, Integer eduProfTecNivMedConcomitEnsMedInteg, Integer eduProfTecNivMedConcomitInterComplEnsMedioParc, Integer eduProfTecNivMedioConcomitInterCompleEnsMedioInteg, String cnpjMantenedoraPrincEscolaPrivada, Regulamentacao regAutorConselhoOrgaoMunEstFedEdu) {
+    public NumeroMatriculasAtendidasParceriaConvenioEntity(Integer atividadeComplementar, Integer atendimentoEducacionalEspecializado, Integer ensinoRegularCrecheParc, Integer ensinoRegularCrecheInteg, Integer ensinoRegularPreEscolaParc, Integer ensinoRegularPreEscolaInteg, Integer ensinoRegularEnsinoFundamentalAnosIniciaisParc, Integer ensinoRegularEnsinoFundamentalAnosIniciaisInteg, Integer ensinoRegularEnsinoFundamentalAnosFinaisParc, Integer ensinoRegularensinoFundamentalAnosFinaisInteg, Integer ensinoRegularEnsinoMedioParc, Integer ensinoRegularEnsinoMedioInteg, Integer eduEspecialClasseEspecialParc, Integer eduEspecialClasseEspecialInteg, Integer eduJovAdultoEnsinoFundamentalMedioParc, Integer eduDeJovEAdultejaensinoFundamentalEMedioInteg, Integer eduProfQualProfintegEduJovAdultNoEnsinoFundamentalParc, Integer eduProfQualProfintegEduJovAdultEnsFundInteg, Integer eduProfQualTecintegJovAdultNivMedioParc, Integer eduProfQualProfTecintegJovAdultNivMedioInteg, Integer eduProfQualProfTecConcomitEduJovAdultNivMedParc, Integer eduProfQualProfTecConcomitEduJovAdultNivMedInteg, Integer eduQualProfTecConcomInterComplEduJovAduNivMedioParc, Integer eduQualProfTecConcomInterComplEduJovAduNivMedInteg, Integer eduProfQualProfTecintegEnsMedParc, Integer eduProfQualProfTecintegEnsMedInteg, Integer eduProQualProfTecConcomitEnsMedParc, Integer eduProQualProfTecConcomitEnsMedInteg, Integer eduProQualProfTecConcomitInterComplEnsMedParc, Integer eduProQualProfTecConcomitInterComplEnsMedInteg, Integer eduProfTecNivMedIntegEduJovAdultNivMedParc, Integer eduProfTecNivMedIntegEduJovAdultNivMedInteg, Integer eduProfTecNivMedConcomitEduJovAdultNivMedParc, Integer eduProfTecNivMedConcomitEduJovAdultNivMedInteg, Integer eduProfTecNivMedConcomitIntEduJovAdultNivMedParc, Integer eduProfTecNivMedConcomitIntEduJovAdultNivMedInteg, Integer eduProfTecNivMedintegEnsMedParc, Integer eduProfTecNivMedintegEnsMedInteg, Integer eduProfTecNivMedConcomitEnsMedParc, Integer eduProfTecNivMedSubsequenteEnsMed, Integer eduProfTecNivMedConcomitEnsMedInteg, Integer eduProfTecNivMedConcomitInterComplEnsMedioParc, Integer eduProfTecNivMedioConcomitInterCompleEnsMedioInteg, String cnpjMantenedoraPrincEscolaPrivada, Regulamentacao regAutorConselhoOrgaoMunEstFedEdu) {
         this.atividadeComplementar = atividadeComplementar;
         this.atendimentoEducacionalEspecializado = atendimentoEducacionalEspecializado;
         this.ensinoRegularCrecheParc = ensinoRegularCrecheParc;
@@ -219,10 +215,10 @@ public class NumeroMatriculasAtendidasParceriaConvenioEntity {
         this.ensinoRegularEnsinoFundamentalAnosIniciaisInteg = ensinoRegularEnsinoFundamentalAnosIniciaisInteg;
         this.ensinoRegularEnsinoFundamentalAnosFinaisParc = ensinoRegularEnsinoFundamentalAnosFinaisParc;
         this.ensinoRegularensinoFundamentalAnosFinaisInteg = ensinoRegularensinoFundamentalAnosFinaisInteg;
-        this.ensinoRegularensinoMedioParc = ensinoRegularensinoMedioParc;
+        this.ensinoRegularEnsinoMedioParc = ensinoRegularEnsinoMedioParc;
         this.ensinoRegularEnsinoMedioInteg = ensinoRegularEnsinoMedioInteg;
         this.eduEspecialClasseEspecialParc = eduEspecialClasseEspecialParc;
-        this.eduEspecialClasseEspecialinteg = eduEspecialClasseEspecialinteg;
+        this.eduEspecialClasseEspecialInteg = eduEspecialClasseEspecialInteg;
         this.eduJovAdultoEnsinoFundamentalMedioParc = eduJovAdultoEnsinoFundamentalMedioParc;
         this.eduDeJovEAdultejaensinoFundamentalEMedioInteg = eduDeJovEAdultejaensinoFundamentalEMedioInteg;
         this.eduProfQualProfintegEduJovAdultNoEnsinoFundamentalParc = eduProfQualProfintegEduJovAdultNoEnsinoFundamentalParc;
@@ -347,12 +343,12 @@ public class NumeroMatriculasAtendidasParceriaConvenioEntity {
         this.ensinoRegularensinoFundamentalAnosFinaisInteg = ensinoRegularensinoFundamentalAnosFinaisInteg;
     }
 
-    public Integer getEnsinoRegularensinoMedioParc() {
-        return ensinoRegularensinoMedioParc;
+    public Integer getEnsinoRegularEnsinoMedioParc() {
+        return ensinoRegularEnsinoMedioParc;
     }
 
-    public void setEnsinoRegularensinoMedioParc(Integer ensinoRegularensinoMedioParc) {
-        this.ensinoRegularensinoMedioParc = ensinoRegularensinoMedioParc;
+    public void setEnsinoRegularEnsinoMedioParc(Integer ensinoRegularEnsinoMedioParc) {
+        this.ensinoRegularEnsinoMedioParc = ensinoRegularEnsinoMedioParc;
     }
 
     public Integer getEnsinoRegularEnsinoMedioInteg() {
@@ -371,12 +367,12 @@ public class NumeroMatriculasAtendidasParceriaConvenioEntity {
         this.eduEspecialClasseEspecialParc = eduEspecialClasseEspecialParc;
     }
 
-    public Integer getEduEspecialClasseEspecialinteg() {
-        return eduEspecialClasseEspecialinteg;
+    public Integer getEduEspecialClasseEspecialInteg() {
+        return eduEspecialClasseEspecialInteg;
     }
 
-    public void setEduEspecialClasseEspecialinteg(Integer eduEspecialClasseEspecialinteg) {
-        this.eduEspecialClasseEspecialinteg = eduEspecialClasseEspecialinteg;
+    public void setEduEspecialClasseEspecialInteg(Integer eduEspecialClasseEspecialinteg) {
+        this.eduEspecialClasseEspecialInteg = eduEspecialClasseEspecialinteg;
     }
 
     public Integer getEduJovAdultoEnsinoFundamentalMedioParc() {
