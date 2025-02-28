@@ -16,8 +16,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Collection;
 
 @Table(name = "matriz_curricular")
 @Getter
@@ -32,8 +34,11 @@ public class MatrizCurricularEntity {
     @Column(name = "id")
     private Long id;
     @Basic
-    @Column(name="ch_horaria_total")
+    @Column(name="carga_horaria_total")
     private String chHorariaTotal;
+    @Basic
+    @Column(name="nome")
+    private String nome;
     @Basic
     @Column(name="tipo")
     private TipoMatriz tipo;
@@ -41,9 +46,7 @@ public class MatrizCurricularEntity {
     @JoinColumn()
     @JsonFormat
     private ConfigAtivComplementarEntity configAtivComplementar;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn()
-    @JsonFormat
-    private DiretrizEntity diretriz;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private Collection<DisciplinasMatrizEntity> disciplinasMatrizEntities;
 
 }

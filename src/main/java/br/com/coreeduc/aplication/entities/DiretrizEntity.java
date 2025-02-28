@@ -44,5 +44,9 @@ public class DiretrizEntity implements Serializable {
     @JoinColumn()
     @JsonFormat
     private SerieEntity serie;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn()
+    @JsonFormat
+    private MatrizCurricularEntity matriz;
 
 }

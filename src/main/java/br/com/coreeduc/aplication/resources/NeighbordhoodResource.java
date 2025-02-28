@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/neighbordhood")
-public class NeighbordhoodResource implements ComumResource {
+public class NeighbordhoodResource implements CommomResource {
 
     private final NeighbordhoodService service;
 
@@ -37,7 +37,7 @@ public class NeighbordhoodResource implements ComumResource {
 
     @Override
     @GetMapping("/autoComplete")
-    public ResponseEntity<List<NeighbordhoodRecord>> autoComplete(@RequestParam String value, @RequestParam String key) {
+    public ResponseEntity<List<?>> autoComplete(@RequestParam String value, @RequestParam String key) {
         return ResponseEntity.ok(getService().autoComplete(value, key));
     }
 

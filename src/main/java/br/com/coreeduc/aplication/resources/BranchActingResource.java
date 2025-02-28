@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/branch-acting")
 @Transactional
-public class BranchActingResource implements ComumResource {
+public class BranchActingResource implements CommomResource {
 
     private BranchActingService service;
 
@@ -46,7 +46,7 @@ public class BranchActingResource implements ComumResource {
 
     @Override
     @GetMapping("/autoComplete")
-    public ResponseEntity<List<BranchActingRecord>> autoComplete(@RequestParam String value, @RequestParam String key) {
+    public ResponseEntity<List<?>> autoComplete(@RequestParam String value, @RequestParam String key) {
         return ResponseEntity.ok(getService().autoComplete(value, key));
     }
 

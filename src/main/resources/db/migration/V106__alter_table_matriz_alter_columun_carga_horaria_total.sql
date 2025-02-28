@@ -1,0 +1,1 @@
+ALTER TABLE matriz_curricular ALTER COLUMN  carga_horaria_total TYPE varchar USING carga_horaria_total::varchar;
