@@ -11,14 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/company")
-public class CompanyResource implements ComumResource {
+public class CompanyResource implements CommomResource {
 
     private final CompanyService service;
 
@@ -40,7 +42,7 @@ public class CompanyResource implements ComumResource {
 
     @Override
     @GetMapping("/autoComplete")
-    public ResponseEntity<List<CompanyRecord>> autoComplete(@RequestParam String value, @RequestParam String key) {
+    public ResponseEntity<List<?>> autoComplete(@RequestParam String value, @RequestParam String key) {
         return ResponseEntity.ok(getService().autoComplete(value, key));
     }
 
@@ -48,6 +50,12 @@ public class CompanyResource implements ComumResource {
     @ApiOperation(value = "Salva empresa")
     public ResponseEntity<CompanyRecord> save(@RequestBody @Valid CompanyRecord companyRecord) {
         return ResponseEntity.ok(getService().save(companyRecord));
+    }
+
+    @PostMapping("upload-logotipo")
+    @ApiOperation(value = "Salvar Logo")
+    public ResponseEntity<?> uploadLogotipo(@RequestPart(value = "file") MultipartFile file) {
+        return ResponseEntity.ok("");
     }
 
 }

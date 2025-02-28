@@ -15,10 +15,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.Collection;
 
-@Table(name = "disciplina")
+@Table(name = "disciplinas")
 @Getter
 @Setter
 @Entity
@@ -43,4 +45,7 @@ public class DisciplinaEntity {
     @JoinColumn()
     @JsonFormat
     private AreaConhecimentoEntity areaConhecimento;
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private Collection<DisciplinasMatrizEntity> disciplinasMatrizEntities;
+
 }

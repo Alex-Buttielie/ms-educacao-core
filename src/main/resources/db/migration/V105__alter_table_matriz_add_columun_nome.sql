@@ -1,0 +1,1 @@
+ALTER TABLE matriz_curricular ADD nome varchar(150);

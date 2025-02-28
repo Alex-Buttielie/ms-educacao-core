@@ -3,8 +3,10 @@ package br.com.coreeduc.aplication.resources;
 import br.com.coreeduc.aplication.records.PropertiesViewRecord;
 import org.springframework.http.ResponseEntity;
 
-public interface ComumResource {
+import java.util.List;
+
+public interface CommomResource {
     ResponseEntity<PropertiesViewRecord>  findPropertiesView();
-    ResponseEntity autoComplete(String value, String key);
+    ResponseEntity<List<?>> autoComplete(String value, String key);
 }
 

@@ -89,7 +89,7 @@ public class CompanyServiceImpl implements CompanyService {
                 .findCompanys(value, key)
                 .stream()
                 .map(this::recordReturnByCompanySave)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

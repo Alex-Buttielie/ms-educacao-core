@@ -32,7 +32,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/city/**",
             "/branch-acting/**",
             "/neighbordhood/**",
-            "/public-place/**"};
+            "/public-place/**",
+            "/curriculum-matrix/**",
+            "/matrix-discipline/**",
+            "/discipline/**"
+    };
     private static final String[] PUBLIC_MATCHERS_AUTHORIZATION = {"/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**"};
 
     @Autowired

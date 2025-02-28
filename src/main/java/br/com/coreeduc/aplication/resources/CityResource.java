@@ -1,7 +1,5 @@
 package br.com.coreeduc.aplication.resources;
 
-import br.com.coreeduc.aplication.entities.CityEntity;
-import br.com.coreeduc.aplication.records.BranchActingRecord;
 import br.com.coreeduc.aplication.records.PropertiesViewRecord;
 import br.com.coreeduc.aplication.services.CityService;
 import io.swagger.annotations.ApiOperation;
@@ -19,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/city")
-public class CityResource implements ComumResource {
+public class CityResource implements CommomResource {
 
     private final CityService service;
 
@@ -41,7 +39,7 @@ public class CityResource implements ComumResource {
 
     @Override
     @GetMapping("/autoComplete")
-    public ResponseEntity<List<CityEntity>> autoComplete(@RequestParam String value, @RequestParam String key) {
+    public ResponseEntity<List<?>> autoComplete(@RequestParam String value, @RequestParam String key) {
         return ResponseEntity.ok(getService().autoComplete(value, key));
     }
 

@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/public-place")
-public class PublicPlaceResource implements ComumResource {
+public class PublicPlaceResource implements CommomResource {
 
     private final PublicPlaceService service;
 
@@ -37,7 +37,7 @@ public class PublicPlaceResource implements ComumResource {
 
     @Override
     @GetMapping("/autoComplete")
-    public ResponseEntity<List<PublicPlaceEntity>> autoComplete(@RequestParam String value, @RequestParam String key) {
+    public ResponseEntity<List<?>> autoComplete(@RequestParam String value, @RequestParam String key) {
         return ResponseEntity.ok(getService().autoComplete(value, key));
     }
 

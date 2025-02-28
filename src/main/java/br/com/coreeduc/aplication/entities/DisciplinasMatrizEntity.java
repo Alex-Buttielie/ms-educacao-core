@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -37,13 +38,11 @@ public class DisciplinasMatrizEntity implements Serializable {
     @Basic
     @Column(name = "carga_horaria_disciplina")
     private Integer cargaHorariaDisciplina;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn()
-    @JsonFormat
+    @ManyToOne
+    @JoinColumn(name = "disciplina_id", referencedColumnName = "id", nullable = false)
     private DisciplinaEntity disciplina;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn()
-    @JsonFormat
-    private MatrizCurricularEntity matrizCurricularEntity;
+    @ManyToOne
+    @JoinColumn(name = "matriz_curricular_id", referencedColumnName = "id", nullable = false)
+    private MatrizCurricularEntity matrizCurricularEntities;
 
 }
