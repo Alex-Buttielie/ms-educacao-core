@@ -1,0 +1,2 @@
+update tb_user set password_user = '$2a$10$QETEeZlLR.RiwB0l.ZWSJeAY5YcceEO6gWB3kLOjXkEGXmr6kcaTi' where ds_login = 'ADMIN';
+update tb_user set password_user = '$2a$10$QETEeZlLR.RiwB0l.ZWSJeAY5YcceEO6gWB3kLOjXkEGXmr6kcaTi' where ds_login = 'SECRE';
