@@ -95,6 +95,14 @@ public class JWTUtil {
             return null;
         }
 
+        return getTenant(token);
+    }
+
+    public String getTenant(String token) {
+        if (token == null) {
+            return null;
+        }
+
         var tenant = "";
 
         tenant = Jwts.parser()

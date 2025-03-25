@@ -24,18 +24,11 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS_AUTH = {
-            "/auth/**",
-            "/company/**",
-            "/city/**",
-            "/branch-acting/**",
-            "/neighbordhood/**",
-            "/public-place/**",
-            "/curriculum-matrix/**",
-            "/matrix-discipline/**",
-            "/discipline/**"
+            "/auth/**"
     };
     private static final String[] PUBLIC_MATCHERS_AUTHORIZATION = {"/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**"};
 

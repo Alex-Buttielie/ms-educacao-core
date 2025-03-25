@@ -31,9 +31,11 @@ class TenantFilter implements Filter {
 
         try {
             chain.doFilter(request, response);
+        }  catch (Exception e){
+            e.printStackTrace();
         } finally {
             SecurityContextHolder.clearContext();
-            TenantContext.setCurrentTenant("");
+            TenantContext.setCurrentTenant(null);
         }
     }
 }
