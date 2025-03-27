@@ -1,6 +1,6 @@
 FROM openjdk:17
 
-COPY target/core-0.0.1-SNAPSHOT.jar /usr/local/tomcat/webapps/
+COPY target/core-0.0.2-SNAPSHOT.jar /usr/local/tomcat/webapps/
 
 EXPOSE 8085
 
