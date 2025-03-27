@@ -37,7 +37,6 @@ public class AuthServiceImpl implements AuthService {
     public String sendNewPassword(EmailAuthenticationRecord dto) {
         return Optional
                 .ofNullable(getRepository().findByEmail(dto.email()))
-                .map(functionValidarSenhaInformada(dto))
                 .map(user -> createNewPassword(user, dto.newPassword(), dto.lastPassword()))
                 .orElseThrow(() -> new AuthorizationExceptionInvalidToken("Verifique o e-mail informado, usuário não encontrado"));
     }

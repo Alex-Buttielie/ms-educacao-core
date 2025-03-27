@@ -41,7 +41,7 @@ public class MatrixDisciplineServiceImpl implements MatrixDisciplineService {
     public List<MatrixDisciplineRecord> findDisciplinasMatriz(String matrixCode) {
         return disciplinasMatrizRepository.findDisciplinasMatrizEntityByMatrizCurricularEntitiesId(Long.parseLong(matrixCode))
                 .stream().map(MatrixDisciplineFactory::new)
-                .map(MatrixDisciplineFactory::getRecord)
+                .map(MatrixDisciplineFactory::getRecordHoraFormatada)
                 .toList();
     }
 

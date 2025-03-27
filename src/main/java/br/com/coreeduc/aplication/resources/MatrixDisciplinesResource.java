@@ -27,8 +27,8 @@ public class MatrixDisciplinesResource implements CommomResource {
     }
 
     @GetMapping("/findDisciplinasMatriz")
-    public List<MatrixDisciplineRecord> findDisciplinasMatriz(@RequestParam String matrixCode) {
-        return matrixDisciplineService.findDisciplinasMatriz(matrixCode);
+    public ResponseEntity<List<MatrixDisciplineRecord>> findDisciplinasMatriz(@RequestParam String matrixCode) {
+        return ResponseEntity.ok(matrixDisciplineService.findDisciplinasMatriz(matrixCode));
     }
 
     @Override

@@ -4,6 +4,7 @@ import br.com.coreeduc.aplication.entities.DisciplinaEntity;
 import br.com.coreeduc.aplication.entities.DisciplinasMatrizEntity;
 import br.com.coreeduc.aplication.entities.MatrizCurricularEntity;
 import br.com.coreeduc.aplication.records.MatrixDisciplineRecord;
+import br.com.coreeduc.aplication.utils.Util;
 
 import java.util.Optional;
 import java.util.Properties;
@@ -33,9 +34,21 @@ public class MatrixDisciplineFactory {
     public MatrixDisciplineRecord getRecord() {
         return new MatrixDisciplineRecord(
                 disciplinasMatrizEntity.getId(),
-                disciplinasMatrizEntity.getCargaHorariaDisciplina(),
+                disciplinasMatrizEntity.getCargaHorariaDisciplina().toString(),
                 disciplinasMatrizEntity.getDisciplina().getId(),
-                disciplinasMatrizEntity.getMatrizCurricularEntities().getId());
+                disciplinasMatrizEntity.getMatrizCurricularEntities().getId(),
+                disciplinasMatrizEntity.getDisciplina().getNome(),
+                disciplinasMatrizEntity.getDisciplina().getAbreviacao());
+    }
+
+    public MatrixDisciplineRecord getRecordHoraFormatada() {
+        return new MatrixDisciplineRecord(
+                disciplinasMatrizEntity.getId(),
+                Util.formatarHora(disciplinasMatrizEntity.getCargaHorariaDisciplina().toString()),
+                disciplinasMatrizEntity.getDisciplina().getId(),
+                disciplinasMatrizEntity.getMatrizCurricularEntities().getId(),
+                disciplinasMatrizEntity.getDisciplina().getNome(),
+                disciplinasMatrizEntity.getDisciplina().getAbreviacao());
     }
 
     private MatrixDisciplineFactory(Builder builder) {

@@ -2,8 +2,10 @@ package br.com.coreeduc.aplication.records;
 
 public record MatrixDisciplineRecord(
         Long id,
-        Integer cargaHorariaDisciplina,
+        String cargaHorariaDisciplina,
         Long disciplina,
-        Long idMatrix
+        Long idMatrix,
+        String nome,
+        String abreviacao
 ) {
 }

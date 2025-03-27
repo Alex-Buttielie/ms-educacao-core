@@ -14,4 +14,12 @@ public abstract class Util {
         }
     }
 
+    public static String formatarHora(String hora) {
+       if (hora == null || hora.trim().isEmpty()) {
+           return null;
+       } else {
+           return hora.substring(0, 2) + ":" + hora.substring(2, 4);
+       }
+    }
+
 }
