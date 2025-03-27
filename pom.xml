@@ -14,7 +14,7 @@
     </properties>
     <groupId>br.com.core-educ</groupId>
     <artifactId>core</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>core-educ</name>
     <description>core-educ</description>
     <dependencies>
